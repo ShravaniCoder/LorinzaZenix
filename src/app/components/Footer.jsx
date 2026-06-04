@@ -1,0 +1,129 @@
+import { Link } from "react-router";
+import { Facebook, Instagram, Twitter, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+
+const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD" };
+const sora = { fontFamily: "'Sora', sans-serif" };
+
+export function Footer() {
+  return (
+    <footer style={{ backgroundColor: C.dark, borderTop: `1px solid rgba(65, 90, 119, 0.2)` }}>
+      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "80px 32px 0" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1.2fr", gap: 52, marginBottom: 64 }}>
+
+          {/* Brand */}
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
+              <span style={{ ...sora, fontWeight: 800, fontSize: 19, color: C.light, letterSpacing: "-0.02em", textTransform: "uppercase" }}>
+                Lorinza<span style={{ color: C.support }}>Zenix</span>
+              </span>
+            </div>
+            <p style={{ color: C.support, fontSize: 13.5, lineHeight: 1.8, marginBottom: 24, maxWidth: 260 }}>
+              Empowering businesses with cutting-edge digital solutions. We craft brands that connect, inspire, and convert.
+            </p>
+            <div style={{ display: "flex", gap: 10 }}>
+              {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (
+                <a key={i} href="#" style={{
+                  width: 34, height: 34, borderRadius: 0,
+                  border: "1px solid rgba(65,90,119,0.4)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  color: C.support, transition: "all 0.2s",
+                  textDecoration: "none",
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.backgroundColor = C.accent; e.currentTarget.style.color = C.light; e.currentTarget.style.borderColor = C.accent; }}
+                  onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = C.support; e.currentTarget.style.borderColor = "rgba(65,90,119,0.4)"; }}
+                >
+                  <Icon size={14} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 style={{ ...sora, color: C.light, fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 22 }}>
+              Quick Links
+            </h4>
+            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 12 }}>
+              {[
+                { label: "Home", to: "/" },
+                { label: "About Us", to: "/about" },
+                { label: "Services", to: "/services" },
+                { label: "Contact Us", to: "/contact" },
+              ].map(({ label, to }) => (
+                <li key={to}>
+                  <Link to={to} style={{
+                    color: C.support, textDecoration: "none", fontSize: 13.5,
+                    display: "flex", alignItems: "center", gap: 8, transition: "color 0.2s",
+                  }}
+                    onMouseEnter={e => e.currentTarget.style.color = C.light}
+                    onMouseLeave={e => e.currentTarget.style.color = C.support}
+                  >
+                    <span style={{ width: 12, height: 1.5, backgroundColor: C.accent, display: "inline-block", flexShrink: 0 }} />
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 style={{ ...sora, color: C.light, fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 22 }}>
+              Services
+            </h4>
+            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 12 }}>
+              {["UI/UX Design", "Web Development", "Digital Marketing", "Brand Identity", "SEO Optimization", "Social Media"].map(s => (
+                <li key={s}>
+                  <span style={{
+                    color: C.support, fontSize: 13.5,
+                    display: "flex", alignItems: "center", gap: 8,
+                  }}>
+                    <span style={{ width: 12, height: 1.5, backgroundColor: C.accent, display: "inline-block", flexShrink: 0 }} />
+                    {s}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 style={{ ...sora, color: C.light, fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 22 }}>
+              Get In Touch
+            </h4>
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              {[
+                { Icon: Mail, text: "hello@lorinzazenix.com" },
+                { Icon: Phone, text: "+1 (555) 123-4567" },
+                { Icon: MapPin, text: "123 Digital Avenue, Tech City, TC 10001" },
+              ].map(({ Icon, text }, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+                  <div style={{
+                    width: 30, height: 30, borderRadius: 0,
+                    backgroundColor: "rgba(65,90,119,0.2)",
+                    display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+                  }}>
+                    <Icon size={13} color={C.support} />
+                  </div>
+                  <span style={{ color: C.support, fontSize: 12.5, lineHeight: 1.65, paddingTop: 5 }}>{text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div style={{ borderTop: "1px solid rgba(65,90,119,0.15)", padding: "22px 32px" }}>
+        <div style={{ maxWidth: 1240, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
+          <p style={{ color: "rgba(119,141,169,0.6)", fontSize: 12.5 }}>
+            © {new Date().getFullYear()} LorinzaZenix Digital Agency. All rights reserved.
+          </p>
+          <p style={{ color: "rgba(119,141,169,0.6)", fontSize: 12.5 }}>
+            Crafted with <span style={{ color: C.accent }}>♥</span> for excellence
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
