@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import { Search, Target, Rocket, Palette, Code2, Megaphone, Monitor, Star, ChevronRight } from "lucide-react";
+import { Search, Target, Rocket, Palette, Code2, Megaphone, Monitor, Star, ChevronRight,
+  MonitorSmartphone,
+  
+ 
+  Globe,
+  Lightbulb, } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import HeroBg from "../../assets/circle.png"
 
-const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD" };
+const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD" , blue: "#151922" };
 
 const sora = { fontFamily: "'Sora', sans-serif" };
 
@@ -55,163 +61,388 @@ export function Home() {
       {/* ══════════════════════════════════════════
           SECTION 1 — HERO  (WokWok: full-screen dark, center text)
       ══════════════════════════════════════════ */}
-      <section style={{
-        position: "relative", minHeight: "100vh",
-        backgroundColor: C.dark,
-        display: "flex", flexDirection: "column",
-        alignItems: "center", justifyContent: "center",
-        overflow: "hidden", textAlign: "center",
+      <section
+      style={{
+        position: "relative",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: "hidden",
+        textAlign: "center",
         padding: "120px 24px 100px",
-      }}>
-        {/* Background texture */}
-        <div style={{
-          position: "absolute", inset: 0, zIndex: 0,
-          backgroundImage: `radial-gradient(circle at 50% 50%, rgba(65, 90, 119, 0.15) 0%, transparent 65%)`,
-        }} />
+      }}
+    >
+      {/* Background Image */}
+      <img
+        src={HeroBg}
+        className=""
+        alt="LorinzaZenix Background"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover top",
+          objectPosition: "top center",
+          zIndex: 0,
+        }}
+      />
 
-        {/* Hero content */}
-        <div style={{ position: "relative", zIndex: 2, maxWidth: 900 }}>
-          <p style={{
-            ...sora, color: C.support, fontSize: 12, fontWeight: 700,
-            letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 24,
-          }}>
-            GET FREE CONSULTATION
-          </p>
-          <h1 style={{
+      {/* Dark Overlay */}
+     
+
+      {/* Texture Effect */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 2,
+          backgroundImage:
+            "radial-gradient(circle at 50% 50%, rgba(198,161,110,0.15) 0%, transparent 65%)",
+        }}
+      />
+
+      {/* Hero Content */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 3,
+          maxWidth: "900px",
+        }}
+      >
+        <p
+          style={{
             ...sora,
+            color: C.accent,
+            fontSize: "12px",
+            fontWeight: 700,
+            letterSpacing: "0.25em",
+            textTransform: "uppercase",
+            marginBottom: "24px",
+          }}
+        >
+          GET FREE CONSULTATION
+        </p>
+
+        <h1
+          className="font-playfair"
+          style={{
             color: C.light,
-            fontSize: "clamp(2.4rem, 5.2vw, 4.5rem)",
+            fontSize: "clamp(2rem, 5vw, 4.5rem)",
             fontWeight: 800,
             lineHeight: 1.1,
-            letterSpacing: "-0.02em",
+            letterSpacing: "-0.03em",
             textTransform: "uppercase",
-            marginBottom: 28,
-          }}>
-            WE DON'T JUST DESIGN BRANDS WE SHAPE IDENTITIES THAT INSPIRE, RESONATE, AND LAST
-            <AccentDot />
-          </h1>
-          <p style={{
-            color: C.support, fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)",
-            lineHeight: 1.8, maxWidth: 620, margin: "0 auto 44px",
-          }}>
-            LorinzaZenix empowers businesses with cutting-edge digital solutions — from brand identity to full-stack development, SEO, and beyond.
-          </p>
-          <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <Link to="/contact" style={{
-              ...sora,
-              backgroundColor: C.accent, color: C.light,
-              padding: "14px 36px", borderRadius: 0,
-              textDecoration: "none", fontSize: 11.5, fontWeight: 700,
-              letterSpacing: "0.1em", textTransform: "uppercase",
-              border: `1.5px solid ${C.accent}`,
-              transition: "all 0.2s ease",
-            }}
-              onMouseEnter={e => {
-                e.currentTarget.style.backgroundColor = "transparent";
-                e.currentTarget.style.color = C.light;
-                e.currentTarget.style.borderColor = C.light;
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.backgroundColor = C.accent;
-                e.currentTarget.style.color = C.light;
-                e.currentTarget.style.borderColor = C.accent;
-              }}
-            >
-              GIVE IT A TRY NOW
-            </Link>
-            <Link to="/services" style={{
-              ...sora,
-              backgroundColor: "transparent", color: C.light,
-              padding: "14px 36px", borderRadius: 0,
-              border: `1.5px solid rgba(65,90,119,0.55)`,
-              textDecoration: "none", fontSize: 11.5, fontWeight: 700,
-              letterSpacing: "0.1em", textTransform: "uppercase",
-              transition: "all 0.2s ease",
-            }}
-              onMouseEnter={e => {
-                e.currentTarget.style.borderColor = C.light;
-                e.currentTarget.style.color = C.light;
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.borderColor = "rgba(65,90,119,0.55)";
-                e.currentTarget.style.color = C.light;
-              }}
-            >
-              OUR SERVICES
-            </Link>
-          </div>
-        </div>
+            marginBottom: "28px",
+          }}
+        >
+          We Build Brands That Move
+          <br />
+          People and Markets
+          <AccentDot />
+        </h1>
 
-        {/* Bottom scroll arrow */}
-        <div style={{ position: "absolute", bottom: 36, left: "50%", transform: "translateX(-50%)", zIndex: 2, display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
-          <div style={{ width: 1, height: 40, background: `linear-gradient(${C.accent}, transparent)` }} />
-          <span style={{ color: C.accent, fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase" }}>Scroll</span>
+        <p
+          className="font-roboto font-semibold"
+          style={{
+            color: C.support,
+            fontSize: "clamp(1rem, 1.8vw, 1.25rem)",
+            lineHeight: 1.8,
+            maxWidth: "700px",
+            margin: "0 auto 44px",
+          }}
+        >
+          At LorinzaZenix, we don't just design—we define. We blend
+          creativity, technology, and strategy to build powerful identities
+          that inspire trust, spark engagement, and drive measurable business
+          growth.
+        </p>
+
+        <div
+          style={{
+            display: "flex",
+            gap: "16px",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          {/* Primary Button */}
+          <Link
+            to="/contact"
+            style={{
+              ...sora,
+              backgroundColor: C.accent,
+              color: C.light,
+              padding: "14px 36px",
+              textDecoration: "none",
+              fontSize: "11.5px",
+              fontWeight: 700,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              border: `1.5px solid ${C.accent}`,
+              transition: "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+              e.currentTarget.style.borderColor = C.light;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = C.accent;
+              e.currentTarget.style.borderColor = C.accent;
+            }}
+          >
+            GIVE IT A TRY NOW
+          </Link>
+
+          {/* Secondary Button */}
+          <Link
+            to="/services"
+            style={{
+              ...sora,
+              backgroundColor: "transparent",
+              color: C.light,
+              padding: "14px 36px",
+              textDecoration: "none",
+              fontSize: "11.5px",
+              fontWeight: 700,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              border: "1.5px solid rgba(255,255,255,0.4)",
+              transition: "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = C.light;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor =
+                "rgba(255,255,255,0.4)";
+            }}
+          >
+            OUR SERVICES
+          </Link>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "36px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 3,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "6px",
+        }}
+      >
+        <div
+          style={{
+            width: "1px",
+            height: "40px",
+            background: `linear-gradient(${C.accent}, transparent)`,
+          }}
+        />
+        <span
+          style={{
+            color: C.accent,
+            fontSize: "10px",
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+          }}
+        >
+          Scroll
+        </span>
+      </div>
+    </section>
+
+     {/* ══════════════════════════════════════════
+          SECTION 4 — INVESTMENT STATEMENT  (WokWok: light bg, large bold text)
+      ══════════════════════════════════════════ */}
+      <section style={{ backgroundColor: C.light, padding: "100px 32px 80px" }}>
+        <div style={{ maxWidth: 1300, margin: "0 auto", textAlign: "center" }}>
+          <p className="font-playfair" style={{
+           
+            color: C.dark,
+            fontSize: "clamp(1.8rem, 4.2vw, 3.2rem)",
+            fontWeight: 800, lineHeight: 1.15,
+            textTransform: "uppercase", letterSpacing: "-0.02em",
+            marginBottom: 24,
+          }}>
+           We Don't Just Deliver. We Build What Lasts — 
+           
+          </p>
+          <p  style={{
+            ...sora,
+            color: C.dark,
+            fontSize: "clamp(1.8rem, 4.2vw, 2.2rem)",
+            fontWeight: 400, lineHeight: 1.15,
+            textTransform: " ", letterSpacing: "-0.02em",
+            marginBottom: 24,
+          }}>Digital solutions that don't just look good, they perform</p>
+          <p className="font-roboto" style={{
+            color: C.accent, fontSize: 20.5, lineHeight: 1.85,
+            maxWidth: 680, margin: "0 auto",
+          }}>
+        LorinzaZenix partners with brands at every stage — shaping identity, designing experience, driving visibility, and building the digital infrastructure that turns ambition into momentum.
+          </p>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════
           SECTION 2 — PROCESS CARDS  (WokWok: 3 cols, first card accent bg)
       ══════════════════════════════════════════ */}
-      <section style={{ backgroundColor: C.light, padding: "0" }}>
-        <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px" }}>
-          <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 0 }}>
-            {[
-              {
-                Icon: Search, title: "RESEARCH",
-                desc: "We'll discover who you are, what makes you unique, and what your audience truly needs.",
-                accent: true,
-              },
-              {
-                Icon: Target, title: "STRATEGY",
-                desc: "We'll build a cohesive digital strategy based on deep research and market insights.",
-                accent: false,
-              },
-              {
-                Icon: Rocket, title: "EXECUTE",
-                desc: "Launch with precision-crafted design, development, and marketing that delivers results.",
-                accent: false,
-              },
-            ].map(({ Icon, title, desc, accent }, i) => (
-              <div key={i} style={{
-                backgroundColor: accent ? C.accent : "#FFFFFF",
-                padding: "56px 40px",
-                borderRight: i < 2 ? `1px solid rgba(13, 27, 42, 0.12)` : "none",
-                borderBottom: `1px solid rgba(13, 27, 42, 0.12)`,
-                transition: "background-color 0.3s",
-              }}
-                onMouseEnter={e => { if (!accent) e.currentTarget.style.backgroundColor = "rgba(13, 27, 42, 0.04)"; }}
-                onMouseLeave={e => { if (!accent) e.currentTarget.style.backgroundColor = "#FFFFFF"; }}
-              >
-                <div style={{
-                  width: 52, height: 52, borderRadius: "50%",
-                  backgroundColor: accent ? "rgba(224,225,221,0.15)" : "rgba(13, 27, 42, 0.06)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  marginBottom: 28,
-                }}>
-                  <Icon size={22} color={accent ? C.light : C.accent} strokeWidth={1.5} />
-                </div>
-                <h3 style={{ ...sora, color: accent ? C.light : C.dark, fontSize: "1rem", fontWeight: 800, letterSpacing: "0.08em", marginBottom: 16 }}>
-                  {title}
-                </h3>
-                <p style={{ color: accent ? "rgba(224,225,221,0.85)" : "rgba(13, 27, 42, 0.75)", fontSize: 14, lineHeight: 1.8 }}>{desc}</p>
-              </div>
-            ))}
+      <section
+  style={{
+    backgroundColor: "#071224",
+    padding: "100px 0",
+  }}
+>
+  <div
+    style={{
+      maxWidth: "1240px",
+      margin: "0 auto",
+      padding: "0 32px",
+    }}
+  >
+    <div
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+      style={{
+        gap: "32px",
+      }}
+    >
+      {[
+  {
+    Icon: Palette,
+    title: "Branding",
+    desc: "Craft a powerful identity that resonates with your audience and sets you apart in the market.",
+  },
+  {
+    Icon: MonitorSmartphone,
+    title: "UI/UX Design",
+    desc: "Design intuitive, elegant experiences that delight users and drive engagement.",
+  },
+  {
+    Icon: Search,
+    title: "Search Engine Optimization",
+    desc: "Boost visibility and rankings with strategies that bring organic traffic and measurable results.",
+  },
+  {
+    Icon: Megaphone,
+    title: "Social Media Marketing",
+    desc: "Engage audiences across platforms with campaigns that build trust, loyalty, and conversions.",
+  },
+  {
+    Icon: Globe,
+    title: "Website Development",
+    desc: "Develop fast, scalable, and secure websites tailored to your brand’s goals.",
+  },
+  {
+    Icon: Lightbulb,
+    title: "Digital Strategy",
+    desc: "Align creativity and technology with a roadmap that ensures sustainable growth.",
+  },
+].map(({ Icon, title, desc }, i) => (
+        <div
+          key={i}
+          style={{
+            background: "rgba(18, 28, 48, 0.9)",
+            border: "1px solid rgba(59,130,246,0.25)",
+            borderRadius: "18px",
+            padding: "30px",
+            transition: "all .3s ease",
+            cursor: "pointer",
+            boxShadow: "0 0 20px rgba(59,130,246,0.08)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateY(-8px)";
+            e.currentTarget.style.borderColor =
+              "rgba(59,130,246,0.8)";
+            e.currentTarget.style.boxShadow =
+              "0 0 30px rgba(59,130,246,0.25)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.borderColor =
+              "rgba(59,130,246,0.25)";
+            e.currentTarget.style.boxShadow =
+              "0 0 20px rgba(59,130,246,0.08)";
+          }}
+        >
+          {/* Icon */}
+          <div
+            style={{
+              width: "48px",
+              height: "48px",
+              borderRadius: "12px",
+              background: "rgba(59,130,246,0.12)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginBottom: "20px",
+            }}
+          >
+            <Icon
+              size={22}
+              color="#60A5FA"
+              strokeWidth={2}
+            />
           </div>
+
+          {/* Title */}
+          <h3
+            style={{
+              color: "#fff",
+              fontSize: "20px",
+              fontWeight: 700,
+              marginBottom: "12px",
+            }}
+          >
+            {title}
+          </h3>
+
+          {/* Description */}
+          <p
+            style={{
+              color: "rgba(255,255,255,0.75)",
+              lineHeight: "1.8",
+              fontSize: "15px",
+            }}
+          >
+            {desc}
+          </p>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* ══════════════════════════════════════════
           SECTION 3 — BOLD PHOTO STATEMENT  (WokWok: "ICONIC LOGO HOLDS YOUR VISUAL BRAND.")
       ══════════════════════════════════════════ */}
       <section style={{ position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0 }}>
-          <ImageWithFallback
-            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1920&q=80"
-            alt="Digital workspace"
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-          />
-          <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(13,27,42,0.92)" }} />
-        </div>
+        <div
+  style={{
+    position: "absolute",
+    inset: 0,
+    backgroundImage:
+      "url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1920&q=80')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundAttachment: "fixed", // ← PARALLAX
+  }}
+>
+  <div
+    style={{
+      position: "absolute",
+      inset: 0,
+      backgroundColor: "rgba(13,27,42,0.92)",
+    }}
+  />
+</div>
         <div style={{
           position: "relative", zIndex: 1,
           padding: "120px 32px",
@@ -259,30 +490,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════
-          SECTION 4 — INVESTMENT STATEMENT  (WokWok: light bg, large bold text)
-      ══════════════════════════════════════════ */}
-      <section style={{ backgroundColor: C.light, padding: "100px 32px 80px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{
-            ...sora,
-            color: C.dark,
-            fontSize: "clamp(1.8rem, 4.2vw, 3.2rem)",
-            fontWeight: 800, lineHeight: 1.15,
-            textTransform: "uppercase", letterSpacing: "-0.02em",
-            marginBottom: 24,
-          }}>
-            YOU AREN'T JUST LAUNCHING A WEBSITE — YOU'RE INVESTING IN YOUR DIGITAL FUTURE
-            <span style={{ color: C.accent }}>.</span>
-          </h2>
-          <p style={{
-            color: C.accent, fontSize: 15.5, lineHeight: 1.85,
-            maxWidth: 680, margin: "0 auto",
-          }}>
-            At LorinzaZenix, we invest in creative processes guided by data, strategy, and vision. Every solution we build is designed to represent you distinctively and connect deeply with your audience.
-          </p>
-        </div>
-      </section>
+     
+     
 
       {/* ══════════════════════════════════════════
           SECTION 5 — PORTFOLIO GRID  (WokWok: colored tiles, mixed sizes)

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router";
 import { Menu, X } from "lucide-react";
+import Logo from "../../assets/finalLogo.png";
 
 const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD" };
 
@@ -39,9 +40,7 @@ export function Navigation() {
       }}>
         {/* Logo */}
         <Link to="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
-          <span style={{ fontFamily: "Sora, sans-serif", fontWeight: 800, fontSize: 20, color: C.light, letterSpacing: "-0.02em", textTransform: "uppercase" }}>
-            Lorinza<span style={{ color: C.support }}>Zenix</span>
-          </span>
+           <img src={Logo} alt="Lorinza Zenix logo" className="w-22" />
         </Link>
 
         {/* Desktop links */}
