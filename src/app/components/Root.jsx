@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
 import { MessageCircle, X, Phone, Mail } from "lucide-react";
+import { CustomCursor } from "./CustomCursor";
 
 const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD" };
 const sora = { fontFamily: "'Sora', sans-serif" };
@@ -96,6 +97,7 @@ export function Root() {
 
   return (
     <div style={{ backgroundColor: C.dark, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      <CustomCursor />
       <Navigation />
       <main style={{ flex: 1 }}>
         <Outlet />

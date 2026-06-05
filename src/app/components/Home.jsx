@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { motion } from "framer-motion";
 import { Search, Target, Rocket, Palette, Code2, Megaphone, Monitor, Star, ChevronRight,
   MonitorSmartphone,
-  
- 
   Globe,
   Lightbulb, } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import HeroBg from "../../assets/circle.png"
+import { Counter } from "./Counter";
+
+const MotionLink = motion(Link);
 
 const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD" , blue: "#151922" };
 
@@ -55,6 +57,23 @@ export function Home() {
   const [formEmail, setFormEmail] = useState("");
   const [formSent, setFormSent] = useState(false);
 
+  // Motion variants for luxury scroll reveals
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 35 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } 
+    }
+  };
+
+  const staggerContainer = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.08 }
+    }
+  };
+
   return (
     <div style={{ backgroundColor: C.dark }}>
 
@@ -90,9 +109,6 @@ export function Home() {
         }}
       />
 
-      {/* Dark Overlay */}
-     
-
       {/* Texture Effect */}
       <div
         style={{
@@ -105,14 +121,17 @@ export function Home() {
       />
 
       {/* Hero Content */}
-      <div
+      <motion.div
         style={{
           position: "relative",
           zIndex: 3,
           maxWidth: "900px",
         }}
+        initial="hidden"
+        animate="visible"
+        variants={staggerContainer}
       >
-        <p
+        <motion.p
           style={{
             ...sora,
             color: C.accent,
@@ -122,11 +141,15 @@ export function Home() {
             textTransform: "uppercase",
             marginBottom: "24px",
           }}
+          variants={{
+            hidden: { opacity: 0, y: -10 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+          }}
         >
           GET FREE CONSULTATION
-        </p>
+        </motion.p>
 
-        <h1
+        <motion.h1
           className="font-playfair"
           style={{
             color: C.light,
@@ -137,14 +160,15 @@ export function Home() {
             textTransform: "uppercase",
             marginBottom: "28px",
           }}
+          variants={fadeInUp}
         >
           We Build Brands That Move
           <br />
           People and Markets
           <AccentDot />
-        </h1>
+        </motion.h1>
 
-        <p
+        <motion.p
           className="font-roboto font-semibold"
           style={{
             color: C.support,
@@ -153,23 +177,25 @@ export function Home() {
             maxWidth: "700px",
             margin: "0 auto 44px",
           }}
+          variants={fadeInUp}
         >
           At LorinzaZenix, we don't just design—we define. We blend
           creativity, technology, and strategy to build powerful identities
           that inspire trust, spark engagement, and drive measurable business
           growth.
-        </p>
+        </motion.p>
 
-        <div
+        <motion.div
           style={{
             display: "flex",
             gap: "16px",
             justifyContent: "center",
             flexWrap: "wrap",
           }}
+          variants={fadeInUp}
         >
           {/* Primary Button */}
-          <Link
+          <MotionLink
             to="/contact"
             style={{
               ...sora,
@@ -182,22 +208,22 @@ export function Home() {
               letterSpacing: "0.1em",
               textTransform: "uppercase",
               border: `1.5px solid ${C.accent}`,
-              transition: "all 0.3s ease",
+              display: "inline-block",
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "transparent";
-              e.currentTarget.style.borderColor = C.light;
+            whileHover={{
+              scale: 1.03,
+              backgroundColor: "transparent",
+              borderColor: "#F4C95D",
+              color: "#F4C95D",
+              boxShadow: "0 0 20px rgba(244, 201, 93, 0.4)",
             }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = C.accent;
-              e.currentTarget.style.borderColor = C.accent;
-            }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
           >
             GIVE IT A TRY NOW
-          </Link>
+          </MotionLink>
 
           {/* Secondary Button */}
-          <Link
+          <MotionLink
             to="/services"
             style={{
               ...sora,
@@ -210,23 +236,23 @@ export function Home() {
               letterSpacing: "0.1em",
               textTransform: "uppercase",
               border: "1.5px solid rgba(255,255,255,0.4)",
-              transition: "all 0.3s ease",
+              display: "inline-block",
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = C.light;
+            whileHover={{
+              scale: 1.03,
+              borderColor: "#E0E1DD",
+              color: "#E0E1DD",
+              boxShadow: "0 0 15px rgba(224, 225, 221, 0.15)",
             }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor =
-                "rgba(255,255,255,0.4)";
-            }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
           >
             OUR SERVICES
-          </Link>
-        </div>
-      </div>
+          </MotionLink>
+        </motion.div>
+      </motion.div>
 
       {/* Scroll Indicator */}
-      <div
+      <motion.div
         style={{
           position: "absolute",
           bottom: "36px",
@@ -238,6 +264,9 @@ export function Home() {
           alignItems: "center",
           gap: "6px",
         }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8, duration: 0.8 }}
       >
         <div
           style={{
@@ -256,16 +285,21 @@ export function Home() {
         >
           Scroll
         </span>
-      </div>
+      </motion.div>
     </section>
 
-     {/* ══════════════════════════════════════════
+      {/* ══════════════════════════════════════════
           SECTION 4 — INVESTMENT STATEMENT  (WokWok: light bg, large bold text)
       ══════════════════════════════════════════ */}
-      <section style={{ backgroundColor: C.light, padding: "100px 32px 80px" }}>
+      <motion.section 
+        style={{ backgroundColor: C.light, padding: "100px 32px 80px" }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUp}
+      >
         <div style={{ maxWidth: 1300, margin: "0 auto", textAlign: "center" }}>
           <p className="font-playfair" style={{
-           
             color: C.dark,
             fontSize: "clamp(1.8rem, 4.2vw, 3.2rem)",
             fontWeight: 800, lineHeight: 1.15,
@@ -273,9 +307,8 @@ export function Home() {
             marginBottom: 24,
           }}>
            We Don't Just Deliver. We Build What Lasts — 
-           
           </p>
-          <p  style={{
+          <p style={{
             ...sora,
             color: C.dark,
             fontSize: "clamp(1.8rem, 4.2vw, 2.2rem)",
@@ -290,135 +323,131 @@ export function Home() {
         LorinzaZenix partners with brands at every stage — shaping identity, designing experience, driving visibility, and building the digital infrastructure that turns ambition into momentum.
           </p>
         </div>
-      </section>
+      </motion.section>
 
       {/* ══════════════════════════════════════════
           SECTION 2 — PROCESS CARDS  (WokWok: 3 cols, first card accent bg)
       ══════════════════════════════════════════ */}
-      <section
-  style={{
-    backgroundColor: "#071224",
-    padding: "100px 0",
-  }}
->
-  <div
-    style={{
-      maxWidth: "1240px",
-      margin: "0 auto",
-      padding: "0 32px",
-    }}
-  >
-    <div
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-      style={{
-        gap: "32px",
-      }}
-    >
-      {[
-  {
-    Icon: Palette,
-    title: "Branding",
-    desc: "Craft a powerful identity that resonates with your audience and sets you apart in the market.",
-  },
-  {
-    Icon: MonitorSmartphone,
-    title: "UI/UX Design",
-    desc: "Design intuitive, elegant experiences that delight users and drive engagement.",
-  },
-  {
-    Icon: Search,
-    title: "Search Engine Optimization",
-    desc: "Boost visibility and rankings with strategies that bring organic traffic and measurable results.",
-  },
-  {
-    Icon: Megaphone,
-    title: "Social Media Marketing",
-    desc: "Engage audiences across platforms with campaigns that build trust, loyalty, and conversions.",
-  },
-  {
-    Icon: Globe,
-    title: "Website Development",
-    desc: "Develop fast, scalable, and secure websites tailored to your brand’s goals.",
-  },
-  {
-    Icon: Lightbulb,
-    title: "Digital Strategy",
-    desc: "Align creativity and technology with a roadmap that ensures sustainable growth.",
-  },
-].map(({ Icon, title, desc }, i) => (
+      <motion.section
+        style={{
+          backgroundColor: "#071224",
+          padding: "100px 0",
+        }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+      >
         <div
-          key={i}
           style={{
-            background: "rgba(18, 28, 48, 0.9)",
-            border: "1px solid rgba(59,130,246,0.25)",
-            borderRadius: "18px",
-            padding: "30px",
-            transition: "all .3s ease",
-            cursor: "pointer",
-            boxShadow: "0 0 20px rgba(59,130,246,0.08)",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "translateY(-8px)";
-            e.currentTarget.style.borderColor =
-              "rgba(59,130,246,0.8)";
-            e.currentTarget.style.boxShadow =
-              "0 0 30px rgba(59,130,246,0.25)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "translateY(0)";
-            e.currentTarget.style.borderColor =
-              "rgba(59,130,246,0.25)";
-            e.currentTarget.style.boxShadow =
-              "0 0 20px rgba(59,130,246,0.08)";
+            maxWidth: "1240px",
+            margin: "0 auto",
+            padding: "0 32px",
           }}
         >
-          {/* Icon */}
           <div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
             style={{
-              width: "48px",
-              height: "48px",
-              borderRadius: "12px",
-              background: "rgba(59,130,246,0.12)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginBottom: "20px",
+              gap: "32px",
             }}
           >
-            <Icon
-              size={22}
-              color="#60A5FA"
-              strokeWidth={2}
-            />
+            {[
+              {
+                Icon: Palette,
+                title: "Branding",
+                desc: "Craft a powerful identity that resonates with your audience and sets you apart in the market.",
+              },
+              {
+                Icon: MonitorSmartphone,
+                title: "UI/UX Design",
+                desc: "Design intuitive, elegant experiences that delight users and drive engagement.",
+              },
+              {
+                Icon: Search,
+                title: "Search Engine Optimization",
+                desc: "Boost visibility and rankings with strategies that bring organic traffic and measurable results.",
+              },
+              {
+                Icon: Megaphone,
+                title: "Social Media Marketing",
+                desc: "Engage audiences across platforms with campaigns that build trust, loyalty, and conversions.",
+              },
+              {
+                Icon: Globe,
+                title: "Website Development",
+                desc: "Develop fast, scalable, and secure websites tailored to your brand’s goals.",
+              },
+              {
+                Icon: Lightbulb,
+                title: "Digital Strategy",
+                desc: "Align creativity and technology with a roadmap that ensures sustainable growth.",
+              },
+            ].map(({ Icon, title, desc }, i) => (
+              <motion.div
+                key={i}
+                style={{
+                  background: "rgba(18, 28, 48, 0.9)",
+                  border: "1px solid rgba(59,130,246,0.25)",
+                  borderRadius: "18px",
+                  padding: "30px",
+                  cursor: "pointer",
+                  boxShadow: "0 0 20px rgba(59,130,246,0.08)",
+                }}
+                variants={fadeInUp}
+                whileHover={{
+                  y: -8,
+                  borderColor: "rgba(96, 165, 250, 0.7)",
+                  boxShadow: "0 10px 30px rgba(96, 165, 250, 0.15)",
+                }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                {/* Icon */}
+                <div
+                  style={{
+                    width: "48px",
+                    height: "48px",
+                    borderRadius: "12px",
+                    background: "rgba(59,130,246,0.12)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: "20px",
+                  }}
+                >
+                  <Icon
+                    size={22}
+                    color="#60A5FA"
+                    strokeWidth={2}
+                  />
+                </div>
+
+                {/* Title */}
+                <h3
+                  style={{
+                    color: "#fff",
+                    fontSize: "20px",
+                    fontWeight: 700,
+                    marginBottom: "12px",
+                  }}
+                >
+                  {title}
+                </h3>
+
+                {/* Description */}
+                <p
+                  style={{
+                    color: "rgba(255,255,255,0.75)",
+                    lineHeight: "1.8",
+                    fontSize: "15px",
+                  }}
+                >
+                  {desc}
+                </p>
+              </motion.div>
+            ))}
           </div>
-
-          {/* Title */}
-          <h3
-            style={{
-              color: "#fff",
-              fontSize: "20px",
-              fontWeight: 700,
-              marginBottom: "12px",
-            }}
-          >
-            {title}
-          </h3>
-
-          {/* Description */}
-          <p
-            style={{
-              color: "rgba(255,255,255,0.75)",
-              lineHeight: "1.8",
-              fontSize: "15px",
-            }}
-          >
-            {desc}
-          </p>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </motion.section>
 
       {/* ══════════════════════════════════════════
           SECTION 3 — BOLD PHOTO STATEMENT  (WokWok: "ICONIC LOGO HOLDS YOUR VISUAL BRAND.")
@@ -579,8 +608,14 @@ export function Home() {
         </div>
       </section>
 
-      {/* ─── SECTION 6 ─── */}
-      <section style={{ backgroundColor: C.light, padding: "80px 32px 96px", textAlign: "center", borderTop: `1px solid rgba(65,90,119,0.15)` }}>
+      {/* ── SECTION 6 ── */}
+      <motion.section 
+        style={{ backgroundColor: C.light, padding: "80px 32px 96px", textAlign: "center", borderTop: `1px solid rgba(65,90,119,0.15)` }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUp}
+      >
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <h2 style={{
             ...sora,
@@ -641,12 +676,18 @@ export function Home() {
             </form>
           )}
         </div>
-      </section>
+      </motion.section>
 
       {/* ══════════════════════════════════════════
           SECTION 7 — "WHAT ARE YOU WAITING FOR?"  (WokWok: dark bg, center text, 5 circles)
       ══════════════════════════════════════════ */}
-      <section style={{ position: "relative", overflow: "hidden", backgroundColor: C.secondary }}>
+      <motion.section 
+        style={{ position: "relative", overflow: "hidden", backgroundColor: C.secondary }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+      >
         <div style={{ position: "absolute", inset: 0 }}>
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80"
@@ -658,7 +699,7 @@ export function Home() {
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1240, margin: "0 auto", padding: "100px 32px 0" }}>
 
           {/* Headline */}
-          <div style={{ textAlign: "center", marginBottom: 24 }}>
+          <motion.div style={{ textAlign: "center", marginBottom: 24 }} variants={fadeInUp}>
             <h2 style={{
               ...sora,
               color: C.light,
@@ -669,18 +710,21 @@ export function Home() {
             }}>
               WHAT ARE YOU WAITING FOR<span style={{ color: C.accent }}>?</span>
             </h2>
-          </div>
+          </motion.div>
 
-          {/* Description — centered like WokWok visual details */}
-          <div style={{ maxWidth: 640, margin: "0 auto 64px", textAlign: "center" }}>
+          {/* Description */}
+          <motion.div style={{ maxWidth: 640, margin: "0 auto 64px", textAlign: "center" }} variants={fadeInUp}>
             <p style={{ color: C.support, fontSize: 14.5, lineHeight: 1.8, marginBottom: 12 }}>
               To become a leading brand in the digital space, you need to understand yourself, your vision, and your audience. LorinzaZenix can help you discover your brand story, and the best way to communicate that to the world.
             </p>
             <p style={{ color: C.light, fontSize: 14.5, fontWeight: 600, letterSpacing: "0.05em" }}>GET STARTED TODAY!</p>
-          </div>
+          </motion.div>
 
-          {/* 5 circular icons — WokWok style, center aligned */}
-          <div style={{ display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center", marginBottom: 80 }}>
+          {/* 5 circular icons */}
+          <motion.div 
+            style={{ display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center", marginBottom: 80 }}
+            variants={staggerContainer}
+          >
             {[
               { Icon: Star, label: "100% SATISFACTION GUARANTEED" },
               { Icon: Monitor, label: "10+ YEARS EXPERIENCE" },
@@ -688,14 +732,18 @@ export function Home() {
               { Icon: Code2, label: "PRICING TRANSPARENCY" },
               { Icon: Megaphone, label: "BUILDING BRANDS" },
             ].map(({ Icon, label }, i) => (
-              <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 14, width: 150 }}>
+              <motion.div
+                key={i}
+                variants={fadeInUp}
+                style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 14, width: 150 }}
+              >
                 <div style={{
-                  width: 72, height: 72, borderRadius: "50%",
-                  border: `2px solid ${C.accent}`,
+                  width: 58, height: 58,
+                  borderRadius: "50%",
                   backgroundColor: "rgba(65,90,119,0.15)",
+                  border: `1.5px solid ${C.accent}`,
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  transition: "all 0.3s ease",
-                  cursor: "default",
+                  transition: "all 0.2s ease",
                 }}
                   onMouseEnter={e => {
                     e.currentTarget.style.backgroundColor = C.accent;
@@ -716,9 +764,9 @@ export function Home() {
                 }}>
                   {label}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* ── STATS BAR (WokWok: 3 dark boxes at bottom) ── */}
@@ -736,33 +784,42 @@ export function Home() {
                 backgroundColor: i === 1 ? "rgba(13, 27, 42, 0.85)" : "#0A141F",
               }}>
                 <p style={{ ...sora, color: C.light, fontSize: "clamp(2rem, 3.8vw, 2.8rem)", fontWeight: 800, lineHeight: 1 }}>
-                  {value}
+                  <Counter value={value} />
                 </p>
                 <p style={{ color: C.support, fontSize: 12, marginTop: 10, letterSpacing: "0.08em", textTransform: "uppercase" }}>{label}</p>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ══════════════════════════════════════════
           SECTION 8 — SERVICES PREVIEW  (4 cards, clean WokWok style)
       ══════════════════════════════════════════ */}
-      <section style={{ backgroundColor: C.light, padding: "110px 32px" }}>
+      <motion.section 
+        style={{ backgroundColor: C.light, padding: "110px 32px" }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+      >
         <div style={{ maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
           <SectionTag>What We Do</SectionTag>
-          <h2 style={{
-            ...sora, color: C.dark,
-            fontSize: "clamp(1.8rem, 4vw, 3rem)",
-            fontWeight: 800, textTransform: "uppercase",
-            letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 16,
-          }}>
+          <motion.h2 
+            style={{
+              ...sora, color: C.dark,
+              fontSize: "clamp(1.8rem, 4vw, 3rem)",
+              fontWeight: 800, textTransform: "uppercase",
+              letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 16,
+            }}
+            variants={fadeInUp}
+          >
             SERVICES THAT DRIVE REAL RESULTS
             <AccentDot />
-          </h2>
-          <p style={{ color: "rgba(13, 27, 42, 0.75)", fontSize: 14.5, lineHeight: 1.8, maxWidth: 600, margin: "0 auto 64px" }}>
+          </motion.h2>
+          <motion.p style={{ color: "rgba(13, 27, 42, 0.75)", fontSize: 14.5, lineHeight: 1.8, maxWidth: 600, margin: "0 auto 64px" }} variants={fadeInUp}>
             End-to-end digital solutions crafted with precision to grow your business and elevate your brand in the digital space.
-          </p>
+          </motion.p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 4 }}>
             {[
@@ -771,23 +828,22 @@ export function Home() {
               { Icon: Megaphone, n: "03", title: "DIGITAL MARKETING", desc: "Data-driven campaigns across all channels that maximize reach and return on investment." },
               { Icon: Monitor, n: "04", title: "BRAND IDENTITY", desc: "Distinctive brand identities that tell your story and set you apart from the competition." },
             ].map(({ Icon, n, title, desc }, i) => (
-              <div key={i} style={{
-                backgroundColor: "#FFFFFF",
-                padding: "48px 36px 44px",
-                textAlign: "left",
-                border: "1.5px solid rgba(13, 27, 42, 0.12)",
-                borderBottom: `3px solid transparent`,
-                transition: "all 0.3s ease",
-                cursor: "default",
-              }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.borderColor = C.accent;
-                  e.currentTarget.style.transform = "translateY(-4px)";
+              <motion.div 
+                key={i} 
+                style={{
+                  backgroundColor: "#FFFFFF",
+                  padding: "48px 36px 44px",
+                  textAlign: "left",
+                  border: "1.5px solid rgba(13, 27, 42, 0.12)",
+                  cursor: "pointer",
                 }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.borderColor = "transparent";
-                  e.currentTarget.style.transform = "translateY(0)";
+                variants={fadeInUp}
+                whileHover={{
+                  y: -6,
+                  borderColor: C.accent,
+                  boxShadow: "0 10px 30px rgba(65, 90, 119, 0.08)",
                 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
               >
                 <p style={{ color: "rgba(65,90,119,0.2)", fontSize: "2.4rem", fontWeight: 900, lineHeight: 1, marginBottom: 20, fontFamily: "Sora, sans-serif" }}>{n}</p>
                 <div style={{
@@ -800,12 +856,12 @@ export function Home() {
                 </div>
                 <h3 style={{ ...sora, color: C.dark, fontSize: "0.95rem", fontWeight: 800, letterSpacing: "0.06em", marginBottom: 12 }}>{title}</h3>
                 <p style={{ color: "rgba(13, 27, 42, 0.75)", fontSize: 13.5, lineHeight: 1.75 }}>{desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
 
-          <div style={{ marginTop: 48 }}>
-            <Link to="/services" style={{
+          <motion.div style={{ marginTop: 48 }} variants={fadeInUp}>
+            <MotionLink to="/services" style={{
               ...sora,
               display: "inline-flex", alignItems: "center", gap: 8,
               backgroundColor: "transparent", color: C.dark,
@@ -813,52 +869,64 @@ export function Home() {
               border: `2px solid ${C.accent}`,
               textDecoration: "none", fontSize: 11.5, fontWeight: 700,
               letterSpacing: "0.1em", textTransform: "uppercase",
-              transition: "all 0.2s ease",
             }}
-              onMouseEnter={e => {
-                e.currentTarget.style.backgroundColor = C.accent;
-                e.currentTarget.style.color = C.light;
-                e.currentTarget.style.borderColor = C.accent;
+              whileHover={{
+                backgroundColor: C.accent,
+                color: C.light,
+                borderColor: C.accent,
+                scale: 1.03
               }}
-              onMouseLeave={e => {
-                e.currentTarget.style.backgroundColor = "transparent";
-                e.currentTarget.style.color = C.dark;
-                e.currentTarget.style.borderColor = C.accent;
-              }}
+              transition={{ duration: 0.2 }}
             >
               VIEW ALL SERVICES <ChevronRight size={14} />
-            </Link>
-          </div>
+            </MotionLink>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ══════════════════════════════════════════
           SECTION 9 — TESTIMONIALS
       ══════════════════════════════════════════ */}
-      <section style={{ backgroundColor: C.secondary, padding: "110px 32px" }}>
+      <motion.section 
+        style={{ backgroundColor: C.secondary, padding: "110px 32px" }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+      >
         <div style={{ maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
           <SectionTag>Client Love</SectionTag>
-          <h2 style={{
-            ...sora, color: C.light,
-            fontSize: "clamp(1.8rem, 4vw, 3rem)",
-            fontWeight: 800, textTransform: "uppercase",
-            letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 60,
-          }}>
+          <motion.h2 
+            style={{
+              ...sora, color: C.light,
+              fontSize: "clamp(1.8rem, 4vw, 3rem)",
+              fontWeight: 800, textTransform: "uppercase",
+              letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 60,
+            }}
+            variants={fadeInUp}
+          >
             WHAT OUR CLIENTS SAY
             <AccentDot />
-          </h2>
+          </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 4 }}>
             {testimonials.map((t, i) => (
-              <div key={i} style={{
-                backgroundColor: C.dark,
-                padding: "44px 36px",
-                textAlign: "left",
-                position: "relative",
-                transition: "transform 0.3s ease",
-                border: `1px solid rgba(65, 90, 119, 0.15)`,
-              }}
-                onMouseEnter={e => e.currentTarget.style.transform = "translateY(-4px)"}
-                onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
+              <motion.div 
+                key={i} 
+                style={{
+                  backgroundColor: C.dark,
+                  padding: "44px 36px",
+                  textAlign: "left",
+                  position: "relative",
+                  border: `1px solid rgba(65, 90, 119, 0.15)`,
+                  cursor: "pointer",
+                }}
+                variants={fadeInUp}
+                whileHover={{
+                  y: -5,
+                  borderColor: C.accent,
+                  boxShadow: "0 10px 30px rgba(65, 90, 119, 0.12)",
+                }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
               >
                 <div style={{ fontSize: "3.5rem", color: "rgba(65,90,119,0.18)", lineHeight: 1, position: "absolute", top: 20, right: 24, fontFamily: "Georgia, serif" }}>"</div>
                 <div style={{ display: "flex", gap: 3, marginBottom: 24 }}>
@@ -871,11 +939,11 @@ export function Home() {
                   <p style={{ ...sora, color: C.light, fontSize: 14, fontWeight: 700 }}>{t.name}</p>
                   <p style={{ color: C.accent, fontSize: 12, marginTop: 4, letterSpacing: "0.02em" }}>{t.role}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
     </div>
   );

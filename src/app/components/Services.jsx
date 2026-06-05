@@ -1,6 +1,9 @@
 import { Link } from "react-router";
 import { Palette, Code2, Megaphone, Monitor, Search, Share2, ArrowRight, CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+
+const MotionLink = motion(Link);
 
 const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD" };
 const sora = { fontFamily: "'Sora', sans-serif" };
@@ -72,6 +75,22 @@ const services = [
 ];
 
 export function Services() {
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } 
+    }
+  };
+
+  const staggerContainer = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.08 }
+    }
+  };
+
   return (
     <div style={{ backgroundColor: C.dark }}>
 
@@ -84,22 +103,33 @@ export function Services() {
         overflow: "hidden",
       }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 50%, rgba(65,90,119,0.25) 0%, transparent 65%)" }} />
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 800, margin: "0 auto" }}>
-          <SectionTag>What We Offer</SectionTag>
-          <h1 style={{
+        <motion.div 
+          style={{ position: "relative", zIndex: 1, maxWidth: 800, margin: "0 auto" }}
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+        >
+          <motion.div variants={fadeInUp}>
+            <SectionTag>What We Offer</SectionTag>
+          </motion.div>
+          <motion.h1 style={{
             ...sora, color: C.light,
             fontSize: "clamp(2.4rem,7vw,4.5rem)",
             fontWeight: 800, textTransform: "uppercase",
             letterSpacing: "-0.02em", lineHeight: 1.1,
             marginBottom: 24,
-          }}>
+          }}
+            variants={fadeInUp}
+          >
             SERVICES ENGINEERED FOR IMPACT
             <span style={{ color: C.accent }}>.</span>
-          </h1>
-          <p style={{ color: C.support, fontSize: 17, lineHeight: 1.8, maxWidth: 580, margin: "0 auto" }}>
+          </motion.h1>
+          <motion.p style={{ color: C.support, fontSize: 17, lineHeight: 1.8, maxWidth: 580, margin: "0 auto" }}
+            variants={fadeInUp}
+          >
             From concept to launch and beyond — end-to-end digital solutions that transform your vision into measurable business growth.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
       </section>
 
       {/* ── QUICK NAV PILLS ── */}
@@ -135,15 +165,32 @@ export function Services() {
 
       {/* ── SERVICE DETAIL SECTIONS ── */}
       {services.map(({ Icon, n, title, tagline, desc, deliverables, img }, i) => (
-        <section key={i} id={`s${i}`} style={{
-          backgroundColor: i % 2 === 0 ? C.dark : C.light,
-          padding: "100px 32px",
-          borderBottom: `1px solid ${i % 2 === 0 ? "rgba(65,90,119,0.15)" : "rgba(13,27,42,0.1)"}`,
-        }}>
+        <section 
+          key={i} 
+          id={`s${i}`} 
+          style={{
+            backgroundColor: i % 2 === 0 ? C.dark : C.light,
+            padding: "100px 32px",
+            borderBottom: `1px solid ${i % 2 === 0 ? "rgba(65,90,119,0.15)" : "rgba(13,27,42,0.1)"}`,
+          }}
+        >
           <div style={{ maxWidth: 1240, margin: "0 auto" }}>
             <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: 80, alignItems: "center" }}>
               {/* Content */}
-              <div style={{ order: i % 2 === 0 ? 0 : 1 }}>
+              <motion.div 
+                style={{ order: i % 2 === 0 ? 0 : 1 }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={{
+                  hidden: { opacity: 0, y: 35 },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0, 
+                    transition: { duration: 0.65, delay: 0.45, ease: [0.16, 1, 0.3, 1] } 
+                  }
+                }}
+              >
                 <p style={{ color: C.accent, fontSize: 11, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16, fontFamily: "Sora, sans-serif" }}>
                   {n} — SERVICE
                 </p>
@@ -167,19 +214,21 @@ export function Services() {
                 <p style={{ color: i % 2 === 0 ? C.support : C.accent, fontSize: 14.5, fontStyle: "italic", marginBottom: 20 }}>{tagline}</p>
                 <p style={{ color: i % 2 === 0 ? C.support : "rgba(13, 27, 42, 0.75)", fontSize: 14.5, lineHeight: 1.85, marginBottom: 32 }}>{desc}</p>
 
-                <div style={{ marginBottom: 36 }}>
+                <motion.div style={{ marginBottom: 36 }} variants={staggerContainer}>
                   <p style={{ ...sora, color: i % 2 === 0 ? C.light : C.dark, fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 16 }}>
                     What's Included:
                   </p>
                   {deliverables.map((d, di) => (
-                    <div key={di} style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 12 }}>
+                    <motion.div key={di} style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 12 }}
+                      variants={fadeInUp}
+                    >
                       <CheckCircle size={15} color={C.accent} style={{ flexShrink: 0, marginTop: 3 }} />
                       <span style={{ color: i % 2 === 0 ? C.support : "rgba(13, 27, 42, 0.75)", fontSize: 14 }}>{d}</span>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
 
-                <Link to="/contact" style={{
+                <MotionLink to="/contact" style={{
                   ...sora,
                   display: "inline-flex", alignItems: "center", gap: 10,
                   backgroundColor: C.accent, color: C.light,
@@ -187,25 +236,34 @@ export function Services() {
                   textDecoration: "none", fontSize: 11.5, fontWeight: 700,
                   letterSpacing: "0.08em", textTransform: "uppercase",
                   border: `2px solid ${C.accent}`,
-                  transition: "all 0.2s ease",
                 }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.backgroundColor = "transparent";
-                    e.currentTarget.style.borderColor = i % 2 === 0 ? C.light : C.dark;
-                    e.currentTarget.style.color = i % 2 === 0 ? C.light : C.dark;
+                  whileHover={{
+                    scale: 1.03,
+                    backgroundColor: "transparent",
+                    borderColor: i % 2 === 0 ? C.light : C.dark,
+                    color: i % 2 === 0 ? C.light : C.dark,
                   }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.backgroundColor = C.accent;
-                    e.currentTarget.style.borderColor = C.accent;
-                    e.currentTarget.style.color = C.light;
-                  }}
+                  transition={{ duration: 0.2 }}
                 >
                   GET A QUOTE <ArrowRight size={13} />
-                </Link>
-              </div>
+                </MotionLink>
+              </motion.div>
 
               {/* Image */}
-              <div style={{ order: i % 2 === 0 ? 1 : 0, position: "relative" }}>
+              <motion.div 
+                style={{ order: i % 2 === 0 ? 1 : 0, position: "relative" }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={{
+                  hidden: { opacity: 0, x: i % 2 === 0 ? 50 : -50 },
+                  visible: { 
+                    opacity: 1, 
+                    x: 0, 
+                    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
+                  }
+                }}
+              >
                 <div style={{
                   position: "absolute",
                   top: -16, left: i % 2 === 0 ? -16 : "auto",
@@ -213,19 +271,31 @@ export function Services() {
                   width: "100%", height: "100%",
                   border: `1px solid ${i % 2 === 0 ? "rgba(65,90,119,0.3)" : "rgba(13,27,42,0.12)"}`, borderRadius: 0, zIndex: 0,
                 }} />
-                <ImageWithFallback
-                  src={img}
-                  alt={title}
-                  style={{ width: "100%", height: 400, objectFit: "cover", borderRadius: 0, display: "block", position: "relative", zIndex: 1, border: `1px solid ${i % 2 === 0 ? "rgba(65,90,119,0.2)" : "rgba(13,27,42,0.1)"}` }}
-                />
-              </div>
+                <motion.div
+                  style={{ width: "100%", borderRadius: 0, overflow: "hidden", position: "relative", zIndex: 1, border: `1px solid ${i % 2 === 0 ? "rgba(65,90,119,0.2)" : "rgba(13,27,42,0.1)"}` }}
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <ImageWithFallback
+                    src={img}
+                    alt={title}
+                    style={{ width: "100%", height: 400, objectFit: "cover", display: "block" }}
+                  />
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </section>
       ))}
 
       {/* ── BOLD STATEMENT ── */}
-      <section style={{ backgroundColor: C.dark, padding: "100px 32px", textAlign: "center" }}>
+      <motion.section 
+        style={{ backgroundColor: C.dark, padding: "100px 32px", textAlign: "center" }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUp}
+      >
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <h2 style={{
             ...sora, color: C.light,
@@ -240,7 +310,7 @@ export function Services() {
           <p style={{ color: C.support, fontSize: 15.5, lineHeight: 1.85, maxWidth: 620, margin: "0 auto 36px" }}>
             We combine strategy, design, and technology to deliver results that matter to your business.
           </p>
-          <Link to="/contact" style={{
+          <MotionLink to="/contact" style={{
             ...sora,
             display: "inline-flex", alignItems: "center", gap: 10,
             backgroundColor: C.accent, color: C.light,
@@ -248,36 +318,42 @@ export function Services() {
             textDecoration: "none", fontSize: 11.5, fontWeight: 700,
             letterSpacing: "0.1em", textTransform: "uppercase",
             border: `2px solid ${C.accent}`,
-            transition: "all 0.2s ease",
           }}
-            onMouseEnter={e => {
-              e.currentTarget.style.backgroundColor = "transparent";
-              e.currentTarget.style.borderColor = C.light;
+            whileHover={{
+              scale: 1.03,
+              backgroundColor: "transparent",
+              borderColor: C.light,
             }}
-            onMouseLeave={e => {
-              e.currentTarget.style.backgroundColor = C.accent;
-              e.currentTarget.style.borderColor = C.accent;
-            }}
+            transition={{ duration: 0.2 }}
           >
             START YOUR PROJECT <ArrowRight size={14} />
-          </Link>
+          </MotionLink>
         </div>
-      </section>
+      </motion.section>
 
       {/* ── PROCESS ── */}
-      <section style={{ backgroundColor: C.light, padding: "110px 32px" }}>
+      <motion.section 
+        style={{ backgroundColor: C.light, padding: "110px 32px" }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+      >
         <div style={{ maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
           <SectionTag>Our Process</SectionTag>
-          <h2 style={{
-            ...sora, color: C.dark,
-            fontSize: "clamp(1.8rem,4vw,3rem)",
-            fontWeight: 800, textTransform: "uppercase",
-            letterSpacing: "-0.02em", lineHeight: 1.15,
-            marginBottom: 60,
-          }}>
+          <motion.h2 
+            style={{
+              ...sora, color: C.dark,
+              fontSize: "clamp(1.8rem,4vw,3rem)",
+              fontWeight: 800, textTransform: "uppercase",
+              letterSpacing: "-0.02em", lineHeight: 1.15,
+              marginBottom: 60,
+            }}
+            variants={fadeInUp}
+          >
             HOW WE MAKE IT HAPPEN
             <span style={{ color: C.accent }}>.</span>
-          </h2>
+          </motion.h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6" style={{ gap: 0 }}>
             {[
               { n: "01", t: "Discovery", d: "Study your business, goals, and audience." },
@@ -287,28 +363,39 @@ export function Services() {
               { n: "05", t: "Launch", d: "Deploy, test, and go live with confidence." },
               { n: "06", t: "Grow", d: "Monitor, optimize, and drive ongoing results." },
             ].map(({ n, t, d }, i) => (
-              <div key={i} style={{
-                backgroundColor: "#FFFFFF",
-                padding: "36px 20px",
-                borderRight: i < 5 ? `1px solid rgba(13,27,42,0.12)` : "none",
-                borderBottom: `1px solid rgba(13,27,42,0.12)`,
-                transition: "background-color 0.3s",
-                textAlign: "center",
-              }}
-                onMouseEnter={e => e.currentTarget.style.backgroundColor = "rgba(13,27,42,0.04)"}
-                onMouseLeave={e => e.currentTarget.style.backgroundColor = "#FFFFFF"}
+              <motion.div 
+                key={i} 
+                style={{
+                  backgroundColor: "#FFFFFF",
+                  padding: "36px 20px",
+                  borderRight: i < 5 ? `1px solid rgba(13,27,42,0.12)` : "none",
+                  borderBottom: `1px solid rgba(13,27,42,0.12)`,
+                  textAlign: "center",
+                  cursor: "pointer",
+                }}
+                variants={fadeInUp}
+                whileHover={{
+                  backgroundColor: "rgba(13,27,42,0.04)"
+                }}
+                transition={{ duration: 0.2 }}
               >
                 <p style={{ color: "rgba(65,90,119,0.2)", fontSize: "2.2rem", fontWeight: 900, lineHeight: 1, marginBottom: 14, fontFamily: "Sora, sans-serif" }}>{n}</p>
                 <p style={{ ...sora, color: C.dark, fontSize: "0.85rem", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 10 }}>{t}</p>
                 <p style={{ color: "rgba(13, 27, 42, 0.75)", fontSize: 13, lineHeight: 1.7 }}>{d}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ── CTA ── */}
-      <section style={{ backgroundColor: C.secondary, padding: "110px 32px", textAlign: "center" }}>
+      <motion.section 
+        style={{ backgroundColor: C.secondary, padding: "110px 32px", textAlign: "center" }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUp}
+      >
         <div style={{ maxWidth: 700, margin: "0 auto" }}>
           <SectionTag>Ready to Start?</SectionTag>
           <h2 style={{
@@ -321,10 +408,10 @@ export function Services() {
             LET'S DISCUSS YOUR PROJECT
             <span style={{ color: C.accent }}>.</span>
           </h2>
-          <p style={{ color: C.support, fontSize: 15.5, lineHeight: 1.8, marginBottom: 40 }}>
+          <p style={{ C: C.support, fontSize: 15.5, lineHeight: 1.8, marginBottom: 40 }}>
             Book a free 30-minute strategy call and discover how LorinzaZenix can accelerate your digital growth.
           </p>
-          <Link to="/contact" style={{
+          <MotionLink to="/contact" style={{
             ...sora,
             display: "inline-flex", alignItems: "center", gap: 10,
             backgroundColor: C.accent, color: C.light,
@@ -332,21 +419,18 @@ export function Services() {
             textDecoration: "none", fontSize: 11.5, fontWeight: 700,
             letterSpacing: "0.1em", textTransform: "uppercase",
             border: `1.5px solid ${C.accent}`,
-            transition: "all 0.2s ease",
           }}
-            onMouseEnter={e => {
-              e.currentTarget.style.backgroundColor = "transparent";
-              e.currentTarget.style.borderColor = C.light;
+            whileHover={{
+              scale: 1.03,
+              backgroundColor: "transparent",
+              borderColor: C.light,
             }}
-            onMouseLeave={e => {
-              e.currentTarget.style.backgroundColor = C.accent;
-              e.currentTarget.style.borderColor = C.accent;
-            }}
+            transition={{ duration: 0.2 }}
           >
             GET A FREE CONSULTATION <ArrowRight size={14} />
-          </Link>
+          </MotionLink>
         </div>
-      </section>
+      </motion.section>
 
     </div>
   );
