@@ -10,6 +10,7 @@ import {
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Counter } from "./Counter";
 
+import heroImage from "../../christopher-gower-m_HRfLhgABo-unsplash.jpg";
 const MotionLink = motion(Link);
 
 const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD", blue: "#151922" };
@@ -220,6 +221,23 @@ export function Home() {
             duration: 18,
             repeat: Infinity,
             ease: "easeInOut",
+          }}
+        />
+
+        {/* Hero Image Layer (visible over animations, fading into background) */}
+        <motion.div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: `url(${heroImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.22,
+            zIndex: 2, // Over the animations (zIndex: 1)
+            pointerEvents: "none",
+            mixBlendMode: "lighten",
+            maskImage: "radial-gradient(ellipse at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%)",
+            WebkitMaskImage: "radial-gradient(ellipse at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%)",
           }}
         />
 
