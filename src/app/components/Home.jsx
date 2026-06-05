@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import { motion } from "framer-motion";
-import { Search, Target, Rocket, Palette, Code2, Megaphone, Monitor, Star, ChevronRight,
+import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  Search, Target, Rocket, Palette, Code2, Megaphone, Monitor, Star, ChevronRight,
   MonitorSmartphone,
   Globe,
-  Lightbulb, } from "lucide-react";
+  Lightbulb,
+} from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import HeroBg from "../../assets/circle.png"
 import { Counter } from "./Counter";
 
 const MotionLink = motion(Link);
 
-const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD" , blue: "#151922" };
+const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD", blue: "#151922" };
 
 const sora = { fontFamily: "'Sora', sans-serif" };
 
@@ -57,13 +58,17 @@ export function Home() {
   const [formEmail, setFormEmail] = useState("");
   const [formSent, setFormSent] = useState(false);
 
+  const { scrollY } = useScroll();
+  const bgY = useTransform(scrollY, [0, 800], [0, 160]);
+  const textY = useTransform(scrollY, [0, 800], [0, 60]);
+
   // Motion variants for luxury scroll reveals
   const fadeInUp = {
     hidden: { opacity: 0, y: 35 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } 
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
     }
   };
 
@@ -81,217 +86,354 @@ export function Home() {
           SECTION 1 — HERO  (WokWok: full-screen dark, center text)
       ══════════════════════════════════════════ */}
       <section
-      style={{
-        position: "relative",
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        overflow: "hidden",
-        textAlign: "center",
-        padding: "120px 24px 100px",
-      }}
-    >
-      {/* Background Image */}
-      <img
-        src={HeroBg}
-        className=""
-        alt="LorinzaZenix Background"
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover top",
-          objectPosition: "top center",
-          zIndex: 0,
-        }}
-      />
-
-      {/* Texture Effect */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 2,
-          backgroundImage:
-            "radial-gradient(circle at 50% 50%, rgba(198,161,110,0.15) 0%, transparent 65%)",
-        }}
-      />
-
-      {/* Hero Content */}
-      <motion.div
         style={{
           position: "relative",
-          zIndex: 3,
-          maxWidth: "900px",
-        }}
-        initial="hidden"
-        animate="visible"
-        variants={staggerContainer}
-      >
-        <motion.p
-          style={{
-            ...sora,
-            color: C.accent,
-            fontSize: "12px",
-            fontWeight: 700,
-            letterSpacing: "0.25em",
-            textTransform: "uppercase",
-            marginBottom: "24px",
-          }}
-          variants={{
-            hidden: { opacity: 0, y: -10 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-          }}
-        >
-          GET FREE CONSULTATION
-        </motion.p>
-
-        <motion.h1
-          className="font-playfair"
-          style={{
-            color: C.light,
-            fontSize: "clamp(2rem, 5vw, 4.5rem)",
-            fontWeight: 800,
-            lineHeight: 1.1,
-            letterSpacing: "-0.03em",
-            textTransform: "uppercase",
-            marginBottom: "28px",
-          }}
-          variants={fadeInUp}
-        >
-          We Build Brands That Move
-          <br />
-          People and Markets
-          <AccentDot />
-        </motion.h1>
-
-        <motion.p
-          className="font-roboto font-semibold"
-          style={{
-            color: C.support,
-            fontSize: "clamp(1rem, 1.8vw, 1.25rem)",
-            lineHeight: 1.8,
-            maxWidth: "700px",
-            margin: "0 auto 44px",
-          }}
-          variants={fadeInUp}
-        >
-          At LorinzaZenix, we don't just design—we define. We blend
-          creativity, technology, and strategy to build powerful identities
-          that inspire trust, spark engagement, and drive measurable business
-          growth.
-        </motion.p>
-
-        <motion.div
-          style={{
-            display: "flex",
-            gap: "16px",
-            justifyContent: "center",
-            flexWrap: "wrap",
-          }}
-          variants={fadeInUp}
-        >
-          {/* Primary Button */}
-          <MotionLink
-            to="/contact"
-            style={{
-              ...sora,
-              backgroundColor: C.accent,
-              color: C.light,
-              padding: "14px 36px",
-              textDecoration: "none",
-              fontSize: "11.5px",
-              fontWeight: 700,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              border: `1.5px solid ${C.accent}`,
-              display: "inline-block",
-            }}
-            whileHover={{
-              scale: 1.03,
-              backgroundColor: "transparent",
-              borderColor: "#F4C95D",
-              color: "#F4C95D",
-              boxShadow: "0 0 20px rgba(244, 201, 93, 0.4)",
-            }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-          >
-            GIVE IT A TRY NOW
-          </MotionLink>
-
-          {/* Secondary Button */}
-          <MotionLink
-            to="/services"
-            style={{
-              ...sora,
-              backgroundColor: "transparent",
-              color: C.light,
-              padding: "14px 36px",
-              textDecoration: "none",
-              fontSize: "11.5px",
-              fontWeight: 700,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              border: "1.5px solid rgba(255,255,255,0.4)",
-              display: "inline-block",
-            }}
-            whileHover={{
-              scale: 1.03,
-              borderColor: "#E0E1DD",
-              color: "#E0E1DD",
-              boxShadow: "0 0 15px rgba(224, 225, 221, 0.15)",
-            }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-          >
-            OUR SERVICES
-          </MotionLink>
-        </motion.div>
-      </motion.div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        style={{
-          position: "absolute",
-          bottom: "36px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 3,
+          minHeight: "100vh",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "6px",
+          justifyContent: "center",
+          overflow: "hidden",
+          textAlign: "center",
+          padding: "120px 24px 100px",
+          backgroundColor: "#070B13", // Luxury dark deep blue-black base
         }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8, duration: 0.8 }}
       >
-        <div
+        {/* Volumetric background depth layers */}
+
+        {/* Blurred glowing orb 1 (Cyan/Blue) */}
+        <motion.div
           style={{
-            width: "1px",
-            height: "40px",
-            background: `linear-gradient(${C.accent}, transparent)`,
+            position: "absolute",
+            top: "8%",
+            right: "12%",
+            width: "550px",
+            height: "550px",
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(65, 90, 119, 0.22) 0%, rgba(13, 27, 42, 0) 70%)",
+            filter: "blur(110px)",
+            zIndex: 1,
+            y: bgY,
+            pointerEvents: "none",
+          }}
+          animate={{
+            scale: [1, 1.05, 1],
+            opacity: [0.8, 0.95, 0.8],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
           }}
         />
-        <span
+
+        {/* Blurred glowing orb 2 (Luxury Gold) */}
+        <motion.div
           style={{
-            color: C.accent,
-            fontSize: "10px",
-            letterSpacing: "0.15em",
-            textTransform: "uppercase",
+            position: "absolute",
+            bottom: "12%",
+            left: "8%",
+            width: "600px",
+            height: "600px",
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(13, 27, 42, 0) 70%)",
+            filter: "blur(130px)",
+            zIndex: 1,
+            y: bgY,
+            pointerEvents: "none",
+          }}
+          animate={{
+            scale: [1, 1.08, 1],
+            opacity: [0.75, 0.9, 0.75],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2.5,
+          }}
+        />
+
+        {/* Volumetric light focal glow right behind the headline */}
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "750px",
+            height: "450px",
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(65, 90, 119, 0.14) 0%, rgba(13, 27, 42, 0) 65%)",
+            filter: "blur(90px)",
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Glassmorphic layered depth shapes (Subtle luxury blurred forms) */}
+        <motion.div
+          style={{
+            position: "absolute",
+            top: "18%",
+            left: "14%",
+            width: "220px",
+            height: "220px",
+            borderRadius: "40px",
+            background: "rgba(255, 255, 255, 0.012)",
+            border: "1px solid rgba(255, 255, 255, 0.025)",
+            backdropFilter: "blur(8px)",
+            zIndex: 1,
+            rotate: 45,
+            y: bgY,
+            pointerEvents: "none",
+          }}
+          animate={{
+            rotate: [45, 55, 45],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+
+        <motion.div
+          style={{
+            position: "absolute",
+            bottom: "22%",
+            right: "10%",
+            width: "160px",
+            height: "160px",
+            borderRadius: "50%",
+            background: "rgba(65, 90, 119, 0.015)",
+            border: "1px solid rgba(65, 90, 119, 0.035)",
+            backdropFilter: "blur(12px)",
+            zIndex: 1,
+            y: bgY,
+            pointerEvents: "none",
+          }}
+          animate={{
+            y: [0, -12, 0],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Hero Content */}
+        <motion.div
+          style={{
+            position: "relative",
+            zIndex: 3,
+            maxWidth: "960px",
+            y: textY,
           }}
         >
-          Scroll
-        </span>
-      </motion.div>
-    </section>
+          {/* Top tagline / Consultation request */}
+          <motion.p
+            style={{
+              ...sora,
+              color: C.accent,
+              fontSize: "12px",
+              fontWeight: 700,
+              letterSpacing: "0.25em",
+              textTransform: "uppercase",
+              marginBottom: "24px",
+            }}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            GET FREE CONSULTATION
+          </motion.p>
+
+          {/* Headline (Word-by-word reveal) */}
+          <h1
+            className="font-playfair"
+            style={{
+              color: C.light,
+              fontSize: "clamp(2rem, 5.2vw, 4.6rem)",
+              fontWeight: 800,
+              lineHeight: 1.1,
+              letterSpacing: "-0.03em",
+              textTransform: "uppercase",
+              marginBottom: "28px",
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              rowGap: "0.15em",
+              columnGap: "0.22em",
+            }}
+          >
+            {"WE BUILD BRANDS THAT MOVE PEOPLE AND MARKETS".split(" ").map((word, idx) => (
+              <span key={idx} style={{ display: "inline-block", overflow: "hidden", paddingBottom: "0.05em" }}>
+                <motion.span
+                  style={{ display: "inline-block" }}
+                  initial={{ y: "100%", opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{
+                    duration: 1.0,
+                    delay: idx * 0.05, // 50ms stagger
+                    ease: [0.16, 1, 0.3, 1], // easeOutExpo
+                  }}
+                >
+                  {word}
+                </motion.span>
+              </span>
+            ))}
+            <motion.span
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.4, delay: 9 * 0.05 + 0.4 }}
+            >
+              <AccentDot />
+            </motion.span>
+          </h1>
+
+          {/* Subheadline (Fade-in after headline completion) */}
+          <motion.p
+            className="font-roboto font-semibold"
+            style={{
+              color: C.support,
+              fontSize: "clamp(1rem, 1.8vw, 1.25rem)",
+              lineHeight: 1.8,
+              maxWidth: "700px",
+              margin: "0 auto 44px",
+            }}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.6,
+              delay: 0.85, // after headline animation mostly completes
+              ease: "easeOut",
+            }}
+          >
+            At LorinzaZenix, we don't just design—we define. We blend
+            creativity, technology, and strategy to build powerful identities
+            that inspire trust, spark engagement, and drive measurable business
+            growth.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            style={{
+              display: "flex",
+              gap: "16px",
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+            initial={{ opacity: 0, y: 8, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{
+              duration: 0.7,
+              delay: 1.15,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+          >
+            {/* Primary Button */}
+            <MotionLink
+              to="/contact"
+              style={{
+                ...sora,
+                backgroundColor: C.accent,
+                color: C.light,
+                padding: "14px 36px",
+                textDecoration: "none",
+                fontSize: "11.5px",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                border: `1.5px solid ${C.accent}`,
+                display: "inline-block",
+                transition: "box-shadow 0.3s ease, border-color 0.3s ease, color 0.3s ease",
+              }}
+              whileHover={{
+                scale: 1.03,
+                backgroundColor: "transparent",
+                borderColor: "#D4AF37",
+                color: "#D4AF37",
+                boxShadow: "0 0 20px rgba(212, 175, 55, 0.35)",
+              }}
+              transition={{ duration: 0.2 }}
+            >
+              GIVE IT A TRY NOW
+            </MotionLink>
+
+            {/* Secondary Button */}
+            <MotionLink
+              to="/services"
+              style={{
+                ...sora,
+                backgroundColor: "transparent",
+                color: C.light,
+                padding: "14px 36px",
+                textDecoration: "none",
+                fontSize: "11.5px",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                border: "1.5px solid rgba(255,255,255,0.4)",
+                display: "inline-block",
+                transition: "box-shadow 0.3s ease, border-color 0.3s ease, color 0.3s ease",
+              }}
+              whileHover={{
+                scale: 1.03,
+                borderColor: "#E0E1DD",
+                color: "#E0E1DD",
+                boxShadow: "0 0 20px rgba(224, 225, 221, 0.18)",
+              }}
+              transition={{ duration: 0.2 }}
+            >
+              OUR SERVICES
+            </MotionLink>
+          </motion.div>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          style={{
+            position: "absolute",
+            bottom: "36px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 3,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "6px",
+            pointerEvents: "none",
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.4, duration: 0.8 }}
+        >
+          <div
+            style={{
+              width: "1px",
+              height: "40px",
+              background: `linear-gradient(${C.accent}, transparent)`,
+            }}
+          />
+          <span
+            style={{
+              color: C.accent,
+              fontSize: "10px",
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+            }}
+          >
+            Scroll
+          </span>
+        </motion.div>
+      </section>
 
       {/* ══════════════════════════════════════════
           SECTION 4 — INVESTMENT STATEMENT  (WokWok: light bg, large bold text)
       ══════════════════════════════════════════ */}
-      <motion.section 
+      <motion.section
         style={{ backgroundColor: C.light, padding: "100px 32px 80px" }}
         initial="hidden"
         whileInView="visible"
@@ -306,7 +448,7 @@ export function Home() {
             textTransform: "uppercase", letterSpacing: "-0.02em",
             marginBottom: 24,
           }}>
-           We Don't Just Deliver. We Build What Lasts — 
+            We Don't Just Deliver. We Build What Lasts —
           </p>
           <p style={{
             ...sora,
@@ -320,7 +462,7 @@ export function Home() {
             color: C.accent, fontSize: 20.5, lineHeight: 1.85,
             maxWidth: 680, margin: "0 auto",
           }}>
-        LorinzaZenix partners with brands at every stage — shaping identity, designing experience, driving visibility, and building the digital infrastructure that turns ambition into momentum.
+            LorinzaZenix partners with brands at every stage — shaping identity, designing experience, driving visibility, and building the digital infrastructure that turns ambition into momentum.
           </p>
         </div>
       </motion.section>
@@ -454,24 +596,24 @@ export function Home() {
       ══════════════════════════════════════════ */}
       <section style={{ position: "relative", overflow: "hidden" }}>
         <div
-  style={{
-    position: "absolute",
-    inset: 0,
-    backgroundImage:
-      "url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1920&q=80')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundAttachment: "fixed", // ← PARALLAX
-  }}
->
-  <div
-    style={{
-      position: "absolute",
-      inset: 0,
-      backgroundColor: "rgba(13,27,42,0.92)",
-    }}
-  />
-</div>
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1920&q=80')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed", // ← PARALLAX
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundColor: "rgba(13,27,42,0.92)",
+            }}
+          />
+        </div>
         <div style={{
           position: "relative", zIndex: 1,
           padding: "120px 32px",
@@ -519,8 +661,8 @@ export function Home() {
         </div>
       </section>
 
-     
-     
+
+
 
       {/* ══════════════════════════════════════════
           SECTION 5 — PORTFOLIO GRID  (WokWok: colored tiles, mixed sizes)
@@ -609,7 +751,7 @@ export function Home() {
       </section>
 
       {/* ── SECTION 6 ── */}
-      <motion.section 
+      <motion.section
         style={{ backgroundColor: C.light, padding: "80px 32px 96px", textAlign: "center", borderTop: `1px solid rgba(65,90,119,0.15)` }}
         initial="hidden"
         whileInView="visible"
@@ -681,7 +823,7 @@ export function Home() {
       {/* ══════════════════════════════════════════
           SECTION 7 — "WHAT ARE YOU WAITING FOR?"  (WokWok: dark bg, center text, 5 circles)
       ══════════════════════════════════════════ */}
-      <motion.section 
+      <motion.section
         style={{ position: "relative", overflow: "hidden", backgroundColor: C.secondary }}
         initial="hidden"
         whileInView="visible"
@@ -721,7 +863,7 @@ export function Home() {
           </motion.div>
 
           {/* 5 circular icons */}
-          <motion.div 
+          <motion.div
             style={{ display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center", marginBottom: 80 }}
             variants={staggerContainer}
           >
@@ -796,7 +938,7 @@ export function Home() {
       {/* ══════════════════════════════════════════
           SECTION 8 — SERVICES PREVIEW  (4 cards, clean WokWok style)
       ══════════════════════════════════════════ */}
-      <motion.section 
+      <motion.section
         style={{ backgroundColor: C.light, padding: "110px 32px" }}
         initial="hidden"
         whileInView="visible"
@@ -805,7 +947,7 @@ export function Home() {
       >
         <div style={{ maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
           <SectionTag>What We Do</SectionTag>
-          <motion.h2 
+          <motion.h2
             style={{
               ...sora, color: C.dark,
               fontSize: "clamp(1.8rem, 4vw, 3rem)",
@@ -828,8 +970,8 @@ export function Home() {
               { Icon: Megaphone, n: "03", title: "DIGITAL MARKETING", desc: "Data-driven campaigns across all channels that maximize reach and return on investment." },
               { Icon: Monitor, n: "04", title: "BRAND IDENTITY", desc: "Distinctive brand identities that tell your story and set you apart from the competition." },
             ].map(({ Icon, n, title, desc }, i) => (
-              <motion.div 
-                key={i} 
+              <motion.div
+                key={i}
                 style={{
                   backgroundColor: "#FFFFFF",
                   padding: "48px 36px 44px",
@@ -887,7 +1029,7 @@ export function Home() {
       {/* ══════════════════════════════════════════
           SECTION 9 — TESTIMONIALS
       ══════════════════════════════════════════ */}
-      <motion.section 
+      <motion.section
         style={{ backgroundColor: C.secondary, padding: "110px 32px" }}
         initial="hidden"
         whileInView="visible"
@@ -896,7 +1038,7 @@ export function Home() {
       >
         <div style={{ maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
           <SectionTag>Client Love</SectionTag>
-          <motion.h2 
+          <motion.h2
             style={{
               ...sora, color: C.light,
               fontSize: "clamp(1.8rem, 4vw, 3rem)",
@@ -910,8 +1052,8 @@ export function Home() {
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 4 }}>
             {testimonials.map((t, i) => (
-              <motion.div 
-                key={i} 
+              <motion.div
+                key={i}
                 style={{
                   backgroundColor: C.dark,
                   padding: "44px 36px",
