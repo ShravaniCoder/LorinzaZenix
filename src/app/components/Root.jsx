@@ -93,13 +93,14 @@ function FloatingChat() {
 
 export function Root() {
   const { pathname } = useLocation();
+  const isAboutPage = pathname === "/about";
   useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
 
   return (
     <div style={{ backgroundColor: C.dark, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <CustomCursor />
       <Navigation />
-      <main style={{ flex: 1 }}>
+      <main style={isAboutPage ? undefined : { flex: 1 }}>
         <Outlet />
       </main>
       <Footer />

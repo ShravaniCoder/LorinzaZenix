@@ -75,21 +75,78 @@ const services = [
 ];
 
 export function Services() {
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } 
+  // Premium, luxury-style typography variants
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.08,
+      }
     }
   };
 
-  const staggerContainer = {
-    hidden: {},
+  const headingVariants = {
+    hidden: { opacity: 0, y: 20 },
     visible: {
-      transition: { staggerChildren: 0.08 }
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1.0,
+        ease: "easeOut",
+      }
     }
   };
+
+  const subheadingVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: "easeOut",
+      }
+    }
+  };
+
+  const paragraphVariants = {
+    hidden: { opacity: 0, y: 8 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      }
+    }
+  };
+
+  const buttonVariants = {
+    hidden: { opacity: 0, scale: 0.98 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.16, 1, 0.3, 1],
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1],
+      }
+    }
+  };
+
+  const fadeInUp = cardVariants;
+  const staggerContainer = containerVariants;
 
   return (
     <div style={{ backgroundColor: C.dark }}>
@@ -107,9 +164,9 @@ export function Services() {
           style={{ position: "relative", zIndex: 1, maxWidth: 800, margin: "0 auto" }}
           initial="hidden"
           animate="visible"
-          variants={staggerContainer}
+          variants={containerVariants}
         >
-          <motion.div variants={fadeInUp}>
+          <motion.div variants={subheadingVariants}>
             <SectionTag>What We Offer</SectionTag>
           </motion.div>
           <motion.h1 style={{
@@ -119,13 +176,13 @@ export function Services() {
             letterSpacing: "-0.02em", lineHeight: 1.1,
             marginBottom: 24,
           }}
-            variants={fadeInUp}
+            variants={headingVariants}
           >
             SERVICES ENGINEERED FOR IMPACT
             <span style={{ color: C.accent }}>.</span>
           </motion.h1>
           <motion.p style={{ color: C.support, fontSize: 17, lineHeight: 1.8, maxWidth: 580, margin: "0 auto" }}
-            variants={fadeInUp}
+            variants={paragraphVariants}
           >
             From concept to launch and beyond — end-to-end digital solutions that transform your vision into measurable business growth.
           </motion.p>
@@ -133,10 +190,16 @@ export function Services() {
       </section>
 
       {/* ── QUICK NAV PILLS ── */}
-      <section style={{ backgroundColor: C.light, padding: "48px 32px 32px", borderBottom: `1px solid rgba(13, 27, 42, 0.1)` }}>
+      <motion.section 
+        style={{ backgroundColor: C.light, padding: "48px 32px 32px", borderBottom: `1px solid rgba(13, 27, 42, 0.1)` }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={containerVariants}
+      >
         <div style={{ maxWidth: 1240, margin: "0 auto", display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center" }}>
           {services.map(({ Icon, title }, i) => (
-            <a key={i} href={`#s${i}`} style={{
+            <motion.a key={i} href={`#s${i}`} style={{
               display: "inline-flex", alignItems: "center", gap: 8,
               backgroundColor: "#FFFFFF",
               border: `1px solid rgba(13, 27, 42, 0.12)`,
@@ -145,23 +208,21 @@ export function Services() {
               fontFamily: "Sora, sans-serif",
               letterSpacing: "0.05em", textTransform: "uppercase",
               transition: "all 0.2s ease",
+              willChange: "transform, opacity",
             }}
-              onMouseEnter={e => {
-                e.currentTarget.style.backgroundColor = C.accent;
-                e.currentTarget.style.color = C.light;
-                e.currentTarget.style.borderColor = C.accent;
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.backgroundColor = "#FFFFFF";
-                e.currentTarget.style.color = C.dark;
-                e.currentTarget.style.borderColor = "rgba(13, 27, 42, 0.12)";
+              variants={buttonVariants}
+              whileHover={{
+                backgroundColor: C.accent,
+                color: C.light,
+                borderColor: C.accent,
+                scale: 1.03
               }}
             >
               <Icon size={13} /> {title}
-            </a>
+            </motion.a>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* ── SERVICE DETAIL SECTIONS ── */}
       {services.map(({ Icon, n, title, tagline, desc, deliverables, img }, i) => (
@@ -294,22 +355,26 @@ export function Services() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        variants={fadeInUp}
+        variants={containerVariants}
       >
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <h2 style={{
+          <motion.h2 style={{
             ...sora, color: C.light,
             fontSize: "clamp(1.8rem,4.5vw,3.2rem)",
             fontWeight: 800, textTransform: "uppercase",
             letterSpacing: "-0.02em", lineHeight: 1.15,
             marginBottom: 20,
-          }}>
+          }}
+            variants={headingVariants}
+          >
             EVERY SERVICE WE OFFER IS DESIGNED WITH ONE GOAL — YOUR GROWTH
             <span style={{ color: C.accent }}>.</span>
-          </h2>
-          <p style={{ color: C.support, fontSize: 15.5, lineHeight: 1.85, maxWidth: 620, margin: "0 auto 36px" }}>
+          </motion.h2>
+          <motion.p style={{ color: C.support, fontSize: 15.5, lineHeight: 1.85, maxWidth: 620, margin: "0 auto 36px" }}
+            variants={paragraphVariants}
+          >
             We combine strategy, design, and technology to deliver results that matter to your business.
-          </p>
+          </motion.p>
           <MotionLink to="/contact" style={{
             ...sora,
             display: "inline-flex", alignItems: "center", gap: 10,
@@ -319,6 +384,7 @@ export function Services() {
             letterSpacing: "0.1em", textTransform: "uppercase",
             border: `2px solid ${C.accent}`,
           }}
+            variants={buttonVariants}
             whileHover={{
               scale: 1.03,
               backgroundColor: "transparent",
@@ -337,10 +403,12 @@ export function Services() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
+        variants={containerVariants}
       >
         <div style={{ maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
-          <SectionTag>Our Process</SectionTag>
+          <motion.div variants={subheadingVariants}>
+            <SectionTag>Our Process</SectionTag>
+          </motion.div>
           <motion.h2 
             style={{
               ...sora, color: C.dark,
@@ -349,7 +417,7 @@ export function Services() {
               letterSpacing: "-0.02em", lineHeight: 1.15,
               marginBottom: 60,
             }}
-            variants={fadeInUp}
+            variants={headingVariants}
           >
             HOW WE MAKE IT HAPPEN
             <span style={{ color: C.accent }}>.</span>
@@ -372,8 +440,9 @@ export function Services() {
                   borderBottom: `1px solid rgba(13,27,42,0.12)`,
                   textAlign: "center",
                   cursor: "pointer",
+                  willChange: "transform, opacity",
                 }}
-                variants={fadeInUp}
+                variants={cardVariants}
                 whileHover={{
                   backgroundColor: "rgba(13,27,42,0.04)"
                 }}
@@ -394,23 +463,29 @@ export function Services() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        variants={fadeInUp}
+        variants={containerVariants}
       >
         <div style={{ maxWidth: 700, margin: "0 auto" }}>
-          <SectionTag>Ready to Start?</SectionTag>
-          <h2 style={{
+          <motion.div variants={subheadingVariants}>
+            <SectionTag>Ready to Start?</SectionTag>
+          </motion.div>
+          <motion.h2 style={{
             ...sora, color: C.light,
             fontSize: "clamp(1.8rem,4vw,2.8rem)",
             fontWeight: 800, textTransform: "uppercase",
             letterSpacing: "-0.02em", lineHeight: 1.15,
             marginBottom: 20,
-          }}>
+          }}
+            variants={headingVariants}
+          >
             LET'S DISCUSS YOUR PROJECT
             <span style={{ color: C.accent }}>.</span>
-          </h2>
-          <p style={{ C: C.support, fontSize: 15.5, lineHeight: 1.8, marginBottom: 40 }}>
+          </motion.h2>
+          <motion.p style={{ color: C.support, fontSize: 15.5, lineHeight: 1.8, marginBottom: 40 }}
+            variants={paragraphVariants}
+          >
             Book a free 30-minute strategy call and discover how LorinzaZenix can accelerate your digital growth.
-          </p>
+          </motion.p>
           <MotionLink to="/contact" style={{
             ...sora,
             display: "inline-flex", alignItems: "center", gap: 10,
@@ -420,6 +495,7 @@ export function Services() {
             letterSpacing: "0.1em", textTransform: "uppercase",
             border: `1.5px solid ${C.accent}`,
           }}
+            variants={buttonVariants}
             whileHover={{
               scale: 1.03,
               backgroundColor: "transparent",

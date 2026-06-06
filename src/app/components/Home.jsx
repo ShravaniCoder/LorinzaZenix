@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import {
   Search, Target, Rocket, Palette, Code2, Megaphone, Monitor, Star, ChevronRight,
   MonitorSmartphone,
@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Counter } from "./Counter";
+import heroImage from "../../assets/christopher-gower-m_HRfLhgABo-unsplash.jpg";
 
 import heroImage from "../../christopher-gower-m_HRfLhgABo-unsplash.jpg";
 const MotionLink = motion(Link);
@@ -54,31 +55,165 @@ const testimonials = [
   { name: "Priya Sharma", role: "Marketing Director, GreenLeaf", text: "Working with LorinzaZenix was a game-changer. They understand modern digital landscape and deliver real, measurable results.", stars: 5 },
 ];
 
-export function Home() {
-  const [formName, setFormName] = useState("");
-  const [formEmail, setFormEmail] = useState("");
-  const [formSent, setFormSent] = useState(false);
+const servicesList = [
+  { 
+    num: "01", 
+    title: "BRANDING", 
+    cat: "IDENTITY & VISION", 
+    desc: "Craft a powerful, cohesive visual and narrative identity system that sets your brand apart in modern markets.", 
+    link: "/services#s3", 
+    watermark: "IDENTITY", 
+    image: "https://images.unsplash.com/photo-1626469829581-73993eb86b02?auto=format&fit=crop&w=800&q=80" 
+  },
+  { 
+    num: "02", 
+    title: "UI / UX DESIGN", 
+    cat: "DIGITAL EXPERIENCE", 
+    desc: "Design intuitive, high-converting digital interfaces backed by user research and iterative testing.", 
+    link: "/services#s0", 
+    watermark: "INTERFACE", 
+    image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80" 
+  },
+  { 
+    num: "03", 
+    title: "SEO", 
+    cat: "GROWTH MARKETING", 
+    desc: "Boost organic ranking, build authority, and drive targeted high-intent traffic with custom strategies.", 
+    link: "/services#s4", 
+    watermark: "ORGANIC", 
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" 
+  },
+  { 
+    num: "04", 
+    title: "SOCIAL MEDIA", 
+    cat: "BRAND ENGAGEMENT", 
+    desc: "Build a community, run viral social campaigns, and drive conversions across all primary networks.", 
+    link: "/services#s5", 
+    watermark: "COMMUNITY", 
+    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80" 
+  },
+  { 
+    num: "05", 
+    title: "DEVELOPMENT", 
+    cat: "ENGINEERING", 
+    desc: "Engineered for speed, performance, and SEO optimization. Custom codebases designed to scale with ease.", 
+    link: "/services#s1", 
+    watermark: "CODEBASE", 
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" 
+  },
+  { 
+    num: "06", 
+    title: "STRATEGY", 
+    cat: "BUSINESS ROADMAP", 
+    desc: "Align your product development, marketing, and systems to a structured roadmap for long-term growth.", 
+    link: "/services", 
+    watermark: "GROWTH", 
+    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" 
+  }
+];
 
+export function Home() {
+  const [activeService, setActiveService] = useState(0);
   const { scrollY } = useScroll();
   const bgY = useTransform(scrollY, [0, 800], [0, 160]);
   const textY = useTransform(scrollY, [0, 800], [0, 60]);
+  const bgYImage = useTransform(scrollY, [0, 800], [0, 80]);
 
-  // Motion variants for luxury scroll reveals
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 35 },
+  // Parallax tilt motion values
+  const mouseX = useMotionValue(250);
+  const mouseY = useMotionValue(230);
+  
+  const springConfig = { damping: 30, stiffness: 220, mass: 0.5 };
+
+  // Parallax tilt transforms: subtle 2 degrees
+  const tiltX = useSpring(useTransform(mouseY, [0, 460], [2, -2]), springConfig);
+  const tiltY = useSpring(useTransform(mouseX, [0, 500], [-2, 2]), springConfig);
+
+  const handlePanelMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handlePanelMouseLeave = () => {
+    mouseX.set(250);
+    mouseY.set(230);
+  };
+
+  // Premium, luxury-style typography variants
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.08,
+      }
+    }
+  };
+
+  const headingVariants = {
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
+      transition: {
+        duration: 1.0,
+        ease: "easeOut",
+      }
     }
   };
 
-  const staggerContainer = {
-    hidden: {},
+  const subheadingVariants = {
+    hidden: { opacity: 0, y: 20 },
     visible: {
-      transition: { staggerChildren: 0.08 }
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: "easeOut",
+      }
     }
   };
+
+  const paragraphVariants = {
+    hidden: { opacity: 0, y: 8 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      }
+    }
+  };
+
+  const buttonVariants = {
+    hidden: { opacity: 0, scale: 0.98 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.16, 1, 0.3, 1],
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1],
+      }
+    }
+  };
+
+  const fadeInUp = cardVariants;
+  const staggerContainer = containerVariants;
 
   return (
     <div style={{ backgroundColor: C.dark }}>
@@ -100,6 +235,36 @@ export function Home() {
           backgroundColor: "#070B13", // Luxury dark deep blue-black base
         }}
       >
+        {/* Dedicated Background Image Layer */}
+        <motion.div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: `url(${heroImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            y: bgYImage,
+            zIndex: 0,
+            filter: "brightness(0.32) contrast(0.95)",
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Navy Overlay & Radial Vignette Layer */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: `
+              radial-gradient(circle at 50% 50%, rgba(3, 12, 35, 0.15) 0%, rgba(1, 8, 24, 0.82) 100%),
+              linear-gradient(180deg, rgba(2, 10, 28, 0.78) 0%, rgba(3, 12, 35, 0.85) 50%, rgba(1, 8, 24, 0.90) 100%)
+            `,
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        />
+
         {/* Volumetric background depth layers */}
 
         {/* Blurred glowing orb 1 (Cyan/Blue) */}
@@ -456,155 +621,333 @@ export function Home() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        variants={fadeInUp}
+        variants={containerVariants}
       >
         <div style={{ maxWidth: 1300, margin: "0 auto", textAlign: "center" }}>
-          <p className="font-playfair" style={{
+          <motion.h2 className="font-playfair" style={{
             color: C.dark,
             fontSize: "clamp(1.8rem, 4.2vw, 3.2rem)",
             fontWeight: 800, lineHeight: 1.15,
             textTransform: "uppercase", letterSpacing: "-0.02em",
             marginBottom: 24,
-          }}>
+          }}
+            variants={headingVariants}
+          >
             We Don't Just Deliver. We Build What Lasts —
-          </p>
-          <p style={{
+          </motion.h2>
+          <motion.p style={{
             ...sora,
             color: C.dark,
             fontSize: "clamp(1.8rem, 4.2vw, 2.2rem)",
             fontWeight: 400, lineHeight: 1.15,
             textTransform: " ", letterSpacing: "-0.02em",
             marginBottom: 24,
-          }}>Digital solutions that don't just look good, they perform</p>
-          <p className="font-roboto" style={{
+          }}
+            variants={subheadingVariants}
+          >
+            Digital solutions that don't just look good, they perform
+          </motion.p>
+          <motion.p className="font-roboto" style={{
             color: C.accent, fontSize: 20.5, lineHeight: 1.85,
             maxWidth: 680, margin: "0 auto",
-          }}>
+          }}
+            variants={paragraphVariants}
+          >
             LorinzaZenix partners with brands at every stage — shaping identity, designing experience, driving visibility, and building the digital infrastructure that turns ambition into momentum.
-          </p>
+          </motion.p>
         </div>
       </motion.section>
 
       {/* ══════════════════════════════════════════
-          SECTION 2 — PROCESS CARDS  (WokWok: 3 cols, first card accent bg)
+          SECTION 2 — DYNAMIC SERVICE SHOWCASE (Split Editorial Layout)
       ══════════════════════════════════════════ */}
       <motion.section
-        style={{
-          backgroundColor: "#071224",
-          padding: "100px 0",
-        }}
+        style={{ backgroundColor: "#070B13", padding: "120px 32px 140px", borderTop: "1px solid rgba(255, 255, 255, 0.05)" }}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
+        variants={containerVariants}
       >
-        <div
-          style={{
-            maxWidth: "1240px",
-            margin: "0 auto",
-            padding: "0 32px",
-          }}
-        >
-          <div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-            style={{
-              gap: "32px",
-            }}
-          >
-            {[
-              {
-                Icon: Palette,
-                title: "Branding",
-                desc: "Craft a powerful identity that resonates with your audience and sets you apart in the market.",
-              },
-              {
-                Icon: MonitorSmartphone,
-                title: "UI/UX Design",
-                desc: "Design intuitive, elegant experiences that delight users and drive engagement.",
-              },
-              {
-                Icon: Search,
-                title: "Search Engine Optimization",
-                desc: "Boost visibility and rankings with strategies that bring organic traffic and measurable results.",
-              },
-              {
-                Icon: Megaphone,
-                title: "Social Media Marketing",
-                desc: "Engage audiences across platforms with campaigns that build trust, loyalty, and conversions.",
-              },
-              {
-                Icon: Globe,
-                title: "Website Development",
-                desc: "Develop fast, scalable, and secure websites tailored to your brand’s goals.",
-              },
-              {
-                Icon: Lightbulb,
-                title: "Digital Strategy",
-                desc: "Align creativity and technology with a roadmap that ensures sustainable growth.",
-              },
-            ].map(({ Icon, title, desc }, i) => (
+        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "60px" }}>
+            <motion.div variants={subheadingVariants}>
+              <SectionTag>What We Do</SectionTag>
+            </motion.div>
+            <motion.h2
+              style={{
+                ...sora, color: C.light,
+                fontSize: "clamp(2rem, 4.5vw, 3.2rem)",
+                fontWeight: 800, textTransform: "uppercase",
+                letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 16,
+              }}
+              variants={headingVariants}
+            >
+              SERVICES THAT DRIVE REAL RESULTS
+              <AccentDot />
+            </motion.h2>
+            <motion.p style={{ color: C.support, fontSize: 14.5, lineHeight: 1.8, maxWidth: 600, margin: "0 auto" }}
+              variants={paragraphVariants}
+            >
+              End-to-end digital solutions crafted with precision to grow your business and elevate your brand in the digital space.
+            </motion.p>
+          </div>
+
+          {/* Large Split layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12" style={{ gap: "60px", alignItems: "start" }}>
+            {/* Left side: List of services */}
+            <div className="lg:col-span-7" style={{ display: "flex", flexDirection: "column" }}>
+              {servicesList.map(({ num, title, cat, desc, link }, idx) => {
+                const isActive = activeService === idx;
+                return (
+                  <div
+                    key={idx}
+                    onMouseEnter={() => setActiveService(idx)}
+                    onClick={() => setActiveService(idx)}
+                    style={{
+                      borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
+                      padding: "24px 0",
+                      cursor: "pointer",
+                      transition: "all 0.3s ease",
+                    }}
+                  >
+                    {/* Row Header */}
+                    <div style={{ display: "flex", alignItems: "baseline", gap: "20px" }}>
+                      <span style={{
+                        ...sora,
+                        color: isActive ? "#D4AF37" : "rgba(255, 255, 255, 0.25)",
+                        fontSize: "13px",
+                        fontWeight: 700,
+                        letterSpacing: "0.1em",
+                        transition: "color 0.3s ease",
+                      }}>
+                        {num}
+                      </span>
+                      <motion.h3
+                        style={{
+                          ...sora,
+                          color: isActive ? C.light : "rgba(255, 255, 255, 0.35)",
+                          fontSize: "clamp(1.5rem, 3.2vw, 2.3rem)",
+                          fontWeight: 800,
+                          textTransform: "uppercase",
+                          letterSpacing: "-0.02em",
+                          margin: 0,
+                          transition: "color 0.3s ease",
+                        }}
+                      >
+                        {title}
+                      </motion.h3>
+                    </div>
+
+                    {/* Expanding Description Panel */}
+                    <AnimatePresence initial={false}>
+                      {isActive && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.35, ease: "easeInOut" }}
+                          style={{ overflow: "hidden" }}
+                        >
+                          <div style={{ padding: "16px 0 8px 36px" }}>
+                            <p style={{
+                              ...sora,
+                              color: "#D4AF37",
+                              fontSize: "11px",
+                              fontWeight: 700,
+                              letterSpacing: "0.1em",
+                              textTransform: "uppercase",
+                              margin: 0,
+                            }}>
+                              {cat}
+                            </p>
+                            <p style={{
+                              color: C.support,
+                              fontSize: "14.5px",
+                              lineHeight: "1.7",
+                              margin: "12px 0 18px",
+                              maxWidth: "480px",
+                            }}>
+                              {desc}
+                            </p>
+                            <Link
+                              to={link}
+                              style={{
+                                ...sora,
+                                color: "#D4AF37",
+                                fontSize: "11px",
+                                fontWeight: 700,
+                                letterSpacing: "0.1em",
+                                textTransform: "uppercase",
+                                textDecoration: "none",
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: "6px",
+                                transition: "all 0.2s ease",
+                              }}
+                              onMouseEnter={e => e.currentTarget.style.color = C.light}
+                              onMouseLeave={e => e.currentTarget.style.color = "#D4AF37"}
+                            >
+                              VIEW DETAILS <ChevronRight size={12} />
+                            </Link>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Right side: Premium Image Showcase Panel */}
+            <div className="lg:col-span-5" style={{ position: "sticky", top: "120px" }}>
               <motion.div
-                key={i}
+                onMouseMove={handlePanelMouseMove}
+                onMouseLeave={handlePanelMouseLeave}
                 style={{
-                  background: "rgba(18, 28, 48, 0.9)",
-                  border: "1px solid rgba(59,130,246,0.25)",
-                  borderRadius: "18px",
-                  padding: "30px",
-                  cursor: "pointer",
-                  boxShadow: "0 0 20px rgba(59,130,246,0.08)",
+                  height: "460px",
+                  backgroundColor: "rgba(13, 27, 42, 0.4)",
+                  border: "1px solid rgba(212, 175, 55, 0.22)", // Thin gold accent border
+                  borderRadius: "28px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  position: "relative",
+                  overflow: "hidden",
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.55)", // Soft shadow
+                  backdropFilter: "blur(12px)",
+                  perspective: "1000px",
+                  willChange: "transform",
                 }}
-                variants={fadeInUp}
-                whileHover={{
-                  y: -8,
-                  borderColor: "rgba(96, 165, 250, 0.7)",
-                  boxShadow: "0 10px 30px rgba(96, 165, 250, 0.15)",
-                }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
+                variants={cardVariants}
               >
-                {/* Icon */}
-                <div
+                {/* 3D Tilt Wrapper */}
+                <motion.div
                   style={{
-                    width: "48px",
-                    height: "48px",
-                    borderRadius: "12px",
-                    background: "rgba(59,130,246,0.12)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginBottom: "20px",
+                    width: "100%",
+                    height: "100%",
+                    position: "relative",
+                    rotateX: tiltX,
+                    rotateY: tiltY,
+                    transformStyle: "preserve-3d",
                   }}
                 >
-                  <Icon
-                    size={22}
-                    color="#60A5FA"
-                    strokeWidth={2}
+                  {/* Glassmorphic border glow highlight */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      borderRadius: "28px",
+                      border: "1px solid rgba(255, 255, 255, 0.08)",
+                      pointerEvents: "none",
+                      zIndex: 5,
+                    }}
                   />
-                </div>
 
-                {/* Title */}
-                <h3
-                  style={{
-                    color: "#fff",
-                    fontSize: "20px",
-                    fontWeight: 700,
-                    marginBottom: "12px",
-                  }}
-                >
-                  {title}
-                </h3>
+                  {/* Luxury Corner Accents */}
+                  <div style={{ position: "absolute", top: 18, left: 18, width: 8, height: 8, borderTop: "1.5px solid rgba(212, 175, 55, 0.35)", borderLeft: "1.5px solid rgba(212, 175, 55, 0.35)", zIndex: 6, pointerEvents: "none" }} />
+                  <div style={{ position: "absolute", top: 18, right: 18, width: 8, height: 8, borderTop: "1.5px solid rgba(212, 175, 55, 0.35)", borderRight: "1.5px solid rgba(212, 175, 55, 0.35)", zIndex: 6, pointerEvents: "none" }} />
+                  <div style={{ position: "absolute", bottom: 18, left: 18, width: 8, height: 8, borderBottom: "1.5px solid rgba(212, 175, 55, 0.35)", borderLeft: "1.5px solid rgba(212, 175, 55, 0.35)", zIndex: 6, pointerEvents: "none" }} />
+                  <div style={{ position: "absolute", bottom: 18, right: 18, width: 8, height: 8, borderBottom: "1.5px solid rgba(212, 175, 55, 0.35)", borderRight: "1.5px solid rgba(212, 175, 55, 0.35)", zIndex: 6, pointerEvents: "none" }} />
 
-                {/* Description */}
-                <p
-                  style={{
-                    color: "rgba(255,255,255,0.75)",
-                    lineHeight: "1.8",
-                    fontSize: "15px",
-                  }}
-                >
-                  {desc}
-                </p>
+                  {/* Soft Editorial Watermark (Overlay) */}
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={`watermark-${activeService}`}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 0.025, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontFamily: "Sora, sans-serif",
+                        fontSize: "clamp(3.5rem, 5.5vw, 6rem)",
+                        fontWeight: 900,
+                        color: "#E0E1DD",
+                        pointerEvents: "none",
+                        userSelect: "none",
+                        zIndex: 3, // Over the image for subtle watermarking
+                        letterSpacing: "0.08em",
+                        textAlign: "center",
+                      }}
+                    >
+                      {servicesList[activeService].watermark}
+                    </motion.div>
+                  </AnimatePresence>
+
+                  {/* Image Gallery Showcase with Crossfade */}
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={`image-${activeService}`}
+                      initial={{ opacity: 0, scale: 1.015, filter: "blur(4px)" }}
+                      animate={{ opacity: 1, scale: 1.02, filter: "blur(0px)" }}
+                      exit={{ opacity: 0, scale: 1.0, filter: "blur(4px)" }}
+                      transition={{ duration: 0.35, ease: "easeOut" }}
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        zIndex: 2,
+                        borderRadius: "28px",
+                        overflow: "hidden",
+                        backgroundColor: "#070B13",
+                      }}
+                    >
+                      {/* Premium Crisp Image with Brightness and Contrast Enhancement */}
+                      <img
+                        src={servicesList[activeService].image}
+                        alt={servicesList[activeService].title}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          // Crisp colors, increased brightness (+8%) and contrast (+5%), no color grading tint
+                          filter: "brightness(1.08) contrast(1.05)",
+                          transformStyle: "preserve-3d",
+                        }}
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                </motion.div>
               </motion.div>
-            ))}
+
+              {/* Showcase CTA footer */}
+              <div style={{ marginTop: "32px", textAlign: "center" }}>
+                <MotionLink
+                  to="/services"
+                  style={{
+                    ...sora,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    backgroundColor: "transparent",
+                    color: C.light,
+                    padding: "13px 36px",
+                    borderRadius: 0,
+                    border: "2px solid rgba(255, 255, 255, 0.15)",
+                    textDecoration: "none",
+                    fontSize: "11.5px",
+                    fontWeight: 700,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                  }}
+                  variants={buttonVariants}
+                  whileHover={{
+                    backgroundColor: C.accent,
+                    color: C.light,
+                    borderColor: C.accent,
+                    scale: 1.03,
+                  }}
+                  transition={{ duration: 0.2 }}
+                >
+                  EXPLORE ALL SERVICES <ChevronRight size={14} />
+                </MotionLink>
+              </div>
+            </div>
           </div>
         </div>
       </motion.section>
@@ -612,7 +955,13 @@ export function Home() {
       {/* ══════════════════════════════════════════
           SECTION 3 — BOLD PHOTO STATEMENT  (WokWok: "ICONIC LOGO HOLDS YOUR VISUAL BRAND.")
       ══════════════════════════════════════════ */}
-      <section style={{ position: "relative", overflow: "hidden" }}>
+      <motion.section 
+        style={{ position: "relative", overflow: "hidden" }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={containerVariants}
+      >
         <div
           style={{
             position: "absolute",
@@ -638,24 +987,28 @@ export function Home() {
           textAlign: "center",
           maxWidth: 900, margin: "0 auto",
         }}>
-          <h2 style={{
+          <motion.h2 style={{
             ...sora,
             color: C.light,
             fontSize: "clamp(2rem, 4.5vw, 3.6rem)",
             fontWeight: 800, lineHeight: 1.15,
             textTransform: "uppercase", letterSpacing: "-0.02em",
             marginBottom: 24,
-          }}>
+          }}
+            variants={headingVariants}
+          >
             YOUR DIGITAL PRESENCE HOLDS YOUR BRAND'S FUTURE
             <AccentDot />
-          </h2>
-          <p style={{
+          </motion.h2>
+          <motion.p style={{
             color: C.support, fontSize: 15, lineHeight: 1.85,
             maxWidth: 620, margin: "0 auto 40px",
-          }}>
+          }}
+            variants={paragraphVariants}
+          >
             Our digital strategy process is methodical, with multiple rounds of research, innovation, and development. We'll partner with you to build a brand that represents you distinctively and connects with your audience.
-          </p>
-          <Link to="/about" style={{
+          </motion.p>
+          <MotionLink to="/about" style={{
             ...sora,
             display: "inline-block",
             backgroundColor: C.accent, color: C.light,
@@ -663,21 +1016,19 @@ export function Home() {
             textDecoration: "none", fontSize: 11.5, fontWeight: 700,
             letterSpacing: "0.1em", textTransform: "uppercase",
             border: `1.5px solid ${C.accent}`,
-            transition: "all 0.2s ease",
+            transition: "box-shadow 0.3s ease, border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease",
           }}
-            onMouseEnter={e => {
-              e.currentTarget.style.backgroundColor = "transparent";
-              e.currentTarget.style.borderColor = C.light;
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.backgroundColor = C.accent;
-              e.currentTarget.style.borderColor = C.accent;
+            variants={buttonVariants}
+            whileHover={{
+              scale: 1.03,
+              backgroundColor: "transparent",
+              borderColor: C.light,
             }}
           >
             LEARN MORE
-          </Link>
+          </MotionLink>
         </div>
-      </section>
+      </motion.section>
 
 
 
@@ -685,16 +1036,24 @@ export function Home() {
       {/* ══════════════════════════════════════════
           SECTION 5 — PORTFOLIO GRID  (WokWok: colored tiles, mixed sizes)
       ══════════════════════════════════════════ */}
-      <section style={{ backgroundColor: C.dark, padding: "0 32px 64px" }}>
+      <motion.section 
+        style={{ backgroundColor: C.dark, padding: "0 32px 80px" }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={containerVariants}
+      >
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           {/* Row 1 — 4 cols on desktop, collapses to 2 cols on tablet, 1 on mobile */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 4, marginBottom: 4 }}>
             {portfolio.slice(0, 4).map((p, i) => (
-              <div key={i} style={{
+              <motion.div key={i} style={{
                 position: "relative", overflow: "hidden",
                 backgroundColor: p.bg, cursor: "pointer",
                 aspectRatio: "4/3",
+                willChange: "transform, opacity",
               }}
+                variants={cardVariants}
                 onMouseEnter={e => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1.05)"; }}
                 onMouseLeave={e => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1)"; }}
               >
@@ -711,17 +1070,19 @@ export function Home() {
                   <span style={{ color: C.support, fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{p.cat}</span>
                   <span style={{ ...sora, color: C.light, fontSize: 13.5, fontWeight: 700, marginTop: 4 }}>{p.title}</span>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
           {/* Row 2 — 2 cols on desktop, collapses to 1 on mobile */}
           <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 4 }}>
             {portfolio.slice(4).map((p, i) => (
-              <div key={i} style={{
+              <motion.div key={i} style={{
                 position: "relative", overflow: "hidden",
                 backgroundColor: p.bg, cursor: "pointer",
                 aspectRatio: "16/7",
+                willChange: "transform, opacity",
               }}
+                variants={cardVariants}
                 onMouseEnter={e => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1.05)"; }}
                 onMouseLeave={e => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1)"; }}
               >
@@ -738,105 +1099,35 @@ export function Home() {
                   <span style={{ color: C.support, fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{p.cat}</span>
                   <span style={{ ...sora, color: C.light, fontSize: 14.5, fontWeight: 700, marginTop: 4 }}>{p.title}</span>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {/* LOAD MORE */}
           <div style={{ textAlign: "center", paddingTop: 44 }}>
-            <Link to="/services" style={{
+            <MotionLink to="/services" style={{
               ...sora,
               display: "inline-block",
               color: C.accent, fontSize: 11.5, fontWeight: 700,
               letterSpacing: "0.15em", textTransform: "uppercase",
               textDecoration: "none",
               borderBottom: `2px solid ${C.accent}`, paddingBottom: 3,
-              transition: "all 0.2s ease",
+              transition: "color 0.2s ease, border-color 0.2s ease, transform 0.2s ease",
             }}
-              onMouseEnter={e => {
-                e.currentTarget.style.color = C.light;
-                e.currentTarget.style.borderColor = C.light;
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.color = C.accent;
-                e.currentTarget.style.borderColor = C.accent;
+              variants={buttonVariants}
+              whileHover={{
+                color: C.light,
+                borderColor: C.light,
+                scale: 1.03
               }}
             >
               LOAD MORE
-            </Link>
+            </MotionLink>
           </div>
         </div>
-      </section>
-
-      {/* ── SECTION 6 ── */}
-      <motion.section
-        style={{ backgroundColor: C.light, padding: "80px 32px 96px", textAlign: "center", borderTop: `1px solid rgba(65,90,119,0.15)` }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={fadeInUp}
-      >
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <h2 style={{
-            ...sora,
-            color: C.dark,
-            fontSize: "clamp(1.6rem, 3.8vw, 2.8rem)",
-            fontWeight: 800, lineHeight: 1.15,
-            textTransform: "uppercase", letterSpacing: "-0.02em",
-            marginBottom: 36,
-          }}>
-            TAKE THE FIRST STEP TOWARD DIGITAL EXCELLENCE
-            <span style={{ color: C.accent }}>..</span>
-          </h2>
-          {formSent ? (
-            <div style={{ padding: "20px 32px", backgroundColor: C.secondary, borderRadius: 0, display: "inline-flex", gap: 12, alignItems: "center" }}>
-              <span style={{ color: "#4ade80", fontSize: 18 }}>✓</span>
-              <span style={{ ...sora, color: C.light, fontWeight: 700, fontSize: 13.5 }}>We'll be in touch within 24 hours!</span>
-            </div>
-          ) : (
-            <form onSubmit={e => { e.preventDefault(); setFormSent(true); }}
-              style={{ display: "flex", gap: 0, maxWidth: 700, margin: "0 auto", flexWrap: "wrap" }}>
-              <input
-                value={formName} onChange={e => setFormName(e.target.value)}
-                placeholder="Name *" required
-                style={{
-                  flex: 1, minWidth: 200,
-                  backgroundColor: "#fff", border: "1.5px solid rgba(65,90,119,0.35)",
-                  borderRight: "none", padding: "15px 18px",
-                  color: C.dark, fontSize: 13, outline: "none",
-                  fontFamily: "Inter, sans-serif",
-                  borderRadius: 0,
-                }}
-              />
-              <input
-                value={formEmail} onChange={e => setFormEmail(e.target.value)}
-                placeholder="Email *" type="email" required
-                style={{
-                  flex: 1, minWidth: 200,
-                  backgroundColor: "#fff", border: "1.5px solid rgba(65,90,119,0.35)",
-                  borderRight: "none", padding: "15px 18px",
-                  color: C.dark, fontSize: 13, outline: "none",
-                  fontFamily: "Inter, sans-serif",
-                  borderRadius: 0,
-                }}
-              />
-              <button type="submit" style={{
-                ...sora,
-                backgroundColor: C.accent, color: C.light,
-                padding: "15px 32px", border: "none", cursor: "pointer",
-                fontSize: 11.5, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
-                transition: "background-color 0.2s", whiteSpace: "nowrap",
-                borderRadius: 0,
-              }}
-                onMouseEnter={e => e.currentTarget.style.backgroundColor = C.dark}
-                onMouseLeave={e => e.currentTarget.style.backgroundColor = C.accent}
-              >
-                PLEASE CONTACT ME
-              </button>
-            </form>
-          )}
-        </div>
       </motion.section>
+
+
 
       {/* ══════════════════════════════════════════
           SECTION 7 — "WHAT ARE YOU WAITING FOR?"  (WokWok: dark bg, center text, 5 circles)
@@ -846,7 +1137,7 @@ export function Home() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
+        variants={containerVariants}
       >
         <div style={{ position: "absolute", inset: 0 }}>
           <ImageWithFallback
@@ -859,31 +1150,39 @@ export function Home() {
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1240, margin: "0 auto", padding: "100px 32px 0" }}>
 
           {/* Headline */}
-          <motion.div style={{ textAlign: "center", marginBottom: 24 }} variants={fadeInUp}>
-            <h2 style={{
+          <div style={{ textAlign: "center", marginBottom: 24 }}>
+            <motion.h2 style={{
               ...sora,
               color: C.light,
               fontSize: "clamp(2rem, 4.8vw, 3.5rem)",
               fontWeight: 800, lineHeight: 1.1,
               textTransform: "uppercase", letterSpacing: "-0.02em",
               marginBottom: 20,
-            }}>
+            }}
+              variants={headingVariants}
+            >
               WHAT ARE YOU WAITING FOR<span style={{ color: C.accent }}>?</span>
-            </h2>
-          </motion.div>
+            </motion.h2>
+          </div>
 
           {/* Description */}
-          <motion.div style={{ maxWidth: 640, margin: "0 auto 64px", textAlign: "center" }} variants={fadeInUp}>
-            <p style={{ color: C.support, fontSize: 14.5, lineHeight: 1.8, marginBottom: 12 }}>
+          <div style={{ maxWidth: 640, margin: "0 auto 64px", textAlign: "center" }}>
+            <motion.p style={{ color: C.support, fontSize: 14.5, lineHeight: 1.8, marginBottom: 12 }}
+              variants={paragraphVariants}
+            >
               To become a leading brand in the digital space, you need to understand yourself, your vision, and your audience. LorinzaZenix can help you discover your brand story, and the best way to communicate that to the world.
-            </p>
-            <p style={{ color: C.light, fontSize: 14.5, fontWeight: 600, letterSpacing: "0.05em" }}>GET STARTED TODAY!</p>
-          </motion.div>
+            </motion.p>
+            <motion.p style={{ color: C.light, fontSize: 14.5, fontWeight: 600, letterSpacing: "0.05em" }}
+              variants={paragraphVariants}
+            >
+              GET STARTED TODAY!
+            </motion.p>
+          </div>
 
           {/* 5 circular icons */}
           <motion.div
             style={{ display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center", marginBottom: 80 }}
-            variants={staggerContainer}
+            variants={containerVariants}
           >
             {[
               { Icon: Star, label: "100% SATISFACTION GUARANTEED" },
@@ -894,8 +1193,8 @@ export function Home() {
             ].map(({ Icon, label }, i) => (
               <motion.div
                 key={i}
-                variants={fadeInUp}
-                style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 14, width: 150 }}
+                variants={cardVariants}
+                style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 14, width: 150, willChange: "transform, opacity" }}
               >
                 <div style={{
                   width: 58, height: 58,
@@ -953,96 +1252,7 @@ export function Home() {
         </div>
       </motion.section>
 
-      {/* ══════════════════════════════════════════
-          SECTION 8 — SERVICES PREVIEW  (4 cards, clean WokWok style)
-      ══════════════════════════════════════════ */}
-      <motion.section
-        style={{ backgroundColor: C.light, padding: "110px 32px" }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        <div style={{ maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
-          <SectionTag>What We Do</SectionTag>
-          <motion.h2
-            style={{
-              ...sora, color: C.dark,
-              fontSize: "clamp(1.8rem, 4vw, 3rem)",
-              fontWeight: 800, textTransform: "uppercase",
-              letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 16,
-            }}
-            variants={fadeInUp}
-          >
-            SERVICES THAT DRIVE REAL RESULTS
-            <AccentDot />
-          </motion.h2>
-          <motion.p style={{ color: "rgba(13, 27, 42, 0.75)", fontSize: 14.5, lineHeight: 1.8, maxWidth: 600, margin: "0 auto 64px" }} variants={fadeInUp}>
-            End-to-end digital solutions crafted with precision to grow your business and elevate your brand in the digital space.
-          </motion.p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 4 }}>
-            {[
-              { Icon: Palette, n: "01", title: "UI/UX DESIGN", desc: "Intuitive, beautiful interfaces that delight users and convert visitors into loyal customers." },
-              { Icon: Code2, n: "02", title: "WEB DEVELOPMENT", desc: "Fast, scalable, pixel-perfect websites and apps built with modern technology stacks." },
-              { Icon: Megaphone, n: "03", title: "DIGITAL MARKETING", desc: "Data-driven campaigns across all channels that maximize reach and return on investment." },
-              { Icon: Monitor, n: "04", title: "BRAND IDENTITY", desc: "Distinctive brand identities that tell your story and set you apart from the competition." },
-            ].map(({ Icon, n, title, desc }, i) => (
-              <motion.div
-                key={i}
-                style={{
-                  backgroundColor: "#FFFFFF",
-                  padding: "48px 36px 44px",
-                  textAlign: "left",
-                  border: "1.5px solid rgba(13, 27, 42, 0.12)",
-                  cursor: "pointer",
-                }}
-                variants={fadeInUp}
-                whileHover={{
-                  y: -6,
-                  borderColor: C.accent,
-                  boxShadow: "0 10px 30px rgba(65, 90, 119, 0.08)",
-                }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-              >
-                <p style={{ color: "rgba(65,90,119,0.2)", fontSize: "2.4rem", fontWeight: 900, lineHeight: 1, marginBottom: 20, fontFamily: "Sora, sans-serif" }}>{n}</p>
-                <div style={{
-                  width: 48, height: 48, borderRadius: 0,
-                  backgroundColor: "rgba(65,90,119,0.1)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  marginBottom: 24,
-                }}>
-                  <Icon size={20} color={C.accent} strokeWidth={1.5} />
-                </div>
-                <h3 style={{ ...sora, color: C.dark, fontSize: "0.95rem", fontWeight: 800, letterSpacing: "0.06em", marginBottom: 12 }}>{title}</h3>
-                <p style={{ color: "rgba(13, 27, 42, 0.75)", fontSize: 13.5, lineHeight: 1.75 }}>{desc}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div style={{ marginTop: 48 }} variants={fadeInUp}>
-            <MotionLink to="/services" style={{
-              ...sora,
-              display: "inline-flex", alignItems: "center", gap: 8,
-              backgroundColor: "transparent", color: C.dark,
-              padding: "13px 32px", borderRadius: 0,
-              border: `2px solid ${C.accent}`,
-              textDecoration: "none", fontSize: 11.5, fontWeight: 700,
-              letterSpacing: "0.1em", textTransform: "uppercase",
-            }}
-              whileHover={{
-                backgroundColor: C.accent,
-                color: C.light,
-                borderColor: C.accent,
-                scale: 1.03
-              }}
-              transition={{ duration: 0.2 }}
-            >
-              VIEW ALL SERVICES <ChevronRight size={14} />
-            </MotionLink>
-          </motion.div>
-        </div>
-      </motion.section>
 
       {/* ══════════════════════════════════════════
           SECTION 9 — TESTIMONIALS
@@ -1052,10 +1262,12 @@ export function Home() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
+        variants={containerVariants}
       >
         <div style={{ maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
-          <SectionTag>Client Love</SectionTag>
+          <motion.div variants={subheadingVariants}>
+            <SectionTag>Client Love</SectionTag>
+          </motion.div>
           <motion.h2
             style={{
               ...sora, color: C.light,
@@ -1063,7 +1275,7 @@ export function Home() {
               fontWeight: 800, textTransform: "uppercase",
               letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 60,
             }}
-            variants={fadeInUp}
+            variants={headingVariants}
           >
             WHAT OUR CLIENTS SAY
             <AccentDot />
@@ -1079,8 +1291,9 @@ export function Home() {
                   position: "relative",
                   border: `1px solid rgba(65, 90, 119, 0.15)`,
                   cursor: "pointer",
+                  willChange: "transform, opacity",
                 }}
-                variants={fadeInUp}
+                variants={cardVariants}
                 whileHover={{
                   y: -5,
                   borderColor: C.accent,
