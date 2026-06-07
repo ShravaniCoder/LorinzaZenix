@@ -11,7 +11,6 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Counter } from "./Counter";
 import heroImage from "../../assets/christopher-gower-m_HRfLhgABo-unsplash.jpg";
 
-import heroImage from "../../christopher-gower-m_HRfLhgABo-unsplash.jpg";
 const MotionLink = motion(Link);
 
 const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD", blue: "#151922" };
@@ -1258,7 +1257,7 @@ export function Home() {
           SECTION 9 — TESTIMONIALS
       ══════════════════════════════════════════ */}
       <motion.section
-        style={{ backgroundColor: C.secondary, padding: "110px 32px" }}
+        style={{ backgroundColor: C.secondary, padding: "110px 32px 200px" }}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
