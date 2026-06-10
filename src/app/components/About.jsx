@@ -3,6 +3,7 @@ import { Target, Eye, Heart, Lightbulb, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Counter } from "./Counter";
+import { PageHero } from "./PageHero";
 
 const MotionLink = motion(Link);
 
@@ -23,13 +24,6 @@ function SectionTag({ children, dark = false }) {
     </p>
   );
 }
-
-const team = [
-  { name: "Carter Lorin", role: "Founder & Creative Director", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80" },
-  { name: "Okafor Zenith", role: "Head of Technology", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" },
-  { name: "Aria Patel", role: "Lead UI/UX Designer", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=80" },
-  { name: "Marcus Blake", role: "Digital Marketing Strategist", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80" },
-];
 
 export function About() {
   // Premium, luxury-style typography variants
@@ -108,49 +102,13 @@ export function About() {
   return (
     <div style={{ backgroundColor: C.dark }}>
 
-      {/* ── HERO ── */}
-      <section style={{
-        position: "relative", overflow: "hidden",
-        backgroundColor: C.secondary,
-        padding: "180px 32px 120px",
-        textAlign: "center",
-      }}>
-        <div style={{ position: "absolute", inset: 0 }}>
-          <ImageWithFallback
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80"
-            alt="About background"
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", opacity: 0.08 }}
-          />
-          <div style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse at 50% 50%, rgba(65,90,119,0.25) 0%, transparent 70%)` }} />
-        </div>
-        <motion.div 
-          style={{ position: "relative", zIndex: 1, maxWidth: 800, margin: "0 auto" }}
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-        >
-          <motion.div variants={subheadingVariants}>
-            <SectionTag>Our Story</SectionTag>
-          </motion.div>
-          <motion.h1 style={{
-            ...sora, color: C.light,
-            fontSize: "clamp(2.4rem,7vw,4.5rem)",
-            fontWeight: 800, textTransform: "uppercase",
-            letterSpacing: "-0.02em", lineHeight: 1.1,
-            marginBottom: 24,
-          }}
-            variants={headingVariants}
-          >
-            WE ARE LORINZA ZENIX
-            <span style={{ color: C.accent }}>.</span>
-          </motion.h1>
-          <motion.p style={{ color: C.support, fontSize: 17, lineHeight: 1.8, maxWidth: 580, margin: "0 auto" }}
-            variants={paragraphVariants}
-          >
-            A digital agency born from passion, driven by innovation, and committed to crafting exceptional digital experiences for businesses worldwide.
-          </motion.p>
-        </motion.div>
-      </section>
+      <PageHero
+        eyebrow="Our Story"
+        title="WE ARE LORINZA ZENIX"
+        description="A digital agency born from passion, driven by innovation, and committed to crafting exceptional digital experiences for businesses worldwide."
+        image="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1920&q=80"
+        alt="Creative workspace with strategy notes and digital design tools"
+      />
 
       {/* ── STAT ROW ── */}
       <motion.section 
@@ -356,72 +314,6 @@ export function About() {
                 </div>
                 <h3 style={{ ...sora, color: C.light, fontSize: "0.95rem", fontWeight: 800, letterSpacing: "0.06em", marginBottom: 12 }}>{title}</h3>
                 <p style={{ color: C.support, fontSize: 13.5, lineHeight: 1.75 }}>{desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* ── TEAM ── */}
-      <motion.section 
-        style={{ backgroundColor: C.light, padding: "110px 32px" }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={containerVariants}
-      >
-        <div style={{ maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
-          <motion.div variants={subheadingVariants}>
-            <SectionTag>The Team</SectionTag>
-          </motion.div>
-          <motion.h2 
-            style={{
-              ...sora, color: C.dark,
-              fontSize: "clamp(1.8rem,4vw,3rem)",
-              fontWeight: 800, textTransform: "uppercase",
-              letterSpacing: "-0.02em", lineHeight: 1.15,
-              marginBottom: 60,
-            }}
-            variants={headingVariants}
-          >
-            THE MINDS BEHIND THE MAGIC
-            <span style={{ color: C.accent }}>.</span>
-          </motion.h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 4 }}>
-            {team.map((m, i) => (
-              <motion.div 
-                key={i} 
-                style={{
-                  backgroundColor: "#FFFFFF",
-                  overflow: "hidden",
-                  cursor: "pointer",
-                  border: `1.5px solid rgba(13, 27, 42, 0.12)`,
-                  willChange: "transform, opacity",
-                }}
-                variants={cardVariants}
-                whileHover={{
-                  y: -6,
-                  boxShadow: "0 15px 35px rgba(13,27,42,0.1)",
-                }}
-                transition={{ duration: 0.3 }}
-              >
-                <div style={{ position: "relative", overflow: "hidden" }}>
-                  <motion.div
-                    whileHover={{ scale: 1.04 }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    <ImageWithFallback
-                      src={m.img}
-                      alt={m.name}
-                      style={{ width: "100%", height: 280, objectFit: "cover", objectPosition: "top", display: "block" }}
-                    />
-                  </motion.div>
-                  <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 90, background: "linear-gradient(0deg, #FFFFFF, transparent)", pointerEvents: "none" }} />
-                </div>
-                <div style={{ padding: "20px 24px", textAlign: "left" }}>
-                  <p style={{ ...sora, color: C.dark, fontSize: "1rem", fontWeight: 700 }}>{m.name}</p>
-                  <p style={{ color: C.accent, fontSize: 12, marginTop: 4, letterSpacing: "0.04em", textTransform: "uppercase" }}>{m.role}</p>
-                </div>
               </motion.div>
             ))}
           </div>

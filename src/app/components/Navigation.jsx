@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router";
 import { Menu, X } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../../assets/finalLogo.png";
 
 const MotionLink = motion(Link);
@@ -19,12 +19,48 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = menuOpen ? "hidden" : previousOverflow;
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen]);
+
   const links = [
     { label: "Home", to: "/" },
     { label: "About Us", to: "/about" },
     { label: "Services", to: "/services" },
     { label: "Contact Us", to: "/contact" },
   ];
+
+  const menuVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { duration: 0.28, ease: "easeOut", when: "beforeChildren", staggerChildren: 0.07, delayChildren: 0.08 },
+    },
+    exit: {
+      opacity: 0,
+      transition: { duration: 0.22, ease: "easeIn", when: "afterChildren", staggerChildren: 0.05, staggerDirection: -1 },
+    },
+  };
+
+  const panelVariants = {
+    hidden: { opacity: 0, y: 18 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
+    exit: { opacity: 0, y: 18, transition: { duration: 0.22, ease: "easeIn" } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 22 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.32, ease: [0.16, 1, 0.3, 1] } },
+    exit: { opacity: 0, y: 18, transition: { duration: 0.18, ease: "easeIn" } },
+  };
 
   const isActive = (to) => to === "/" ? location.pathname === "/" : location.pathname.startsWith(to);
 
@@ -39,17 +75,17 @@ export function Navigation() {
       <div style={{
         maxWidth: 1240, margin: "0 auto",
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        padding: "0 32px", 
+        padding: "0 32px",
         height: scrolled ? 68 : 88,
         transition: "height 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
       }}>
         {/* Logo */}
         <Link to="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
-           <img src={Logo} alt="Lorinza Zenix logo" className="w-22" />
+          <img src={Logo} alt="Lorinza Zenix logo" className="w-22" />
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden md:flex" style={{ display: "flex", alignItems: "center", gap: 36 }}>
+        <div className="hidden md:flex" style={{ alignItems: "center", gap: 36 }}>
           {links.map(l => {
             const active = isActive(l.to);
             return (
@@ -80,9 +116,9 @@ export function Navigation() {
         </div>
 
         {/* CTA */}
-        <MotionLink 
-          to="/contact" 
-          className="hidden md:inline-flex" 
+        <MotionLink
+          to="/contact"
+          className="hidden md:inline-flex"
           style={{
             backgroundColor: C.accent, color: C.light,
             padding: "10px 24px", borderRadius: 0,
@@ -104,35 +140,128 @@ export function Navigation() {
         </MotionLink>
 
         {/* Mobile toggle */}
-        <button onClick={() => setMenuOpen(!menuOpen)} className="flex md:hidden"
-          style={{ background: "none", border: "none", color: C.light, cursor: "pointer", padding: 6 }}>
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="flex md:hidden"
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={menuOpen}
+          style={{ background: "none", border: "none", color: C.light, cursor: "pointer", padding: 6 }}
+        >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div style={{
-          backgroundColor: C.secondary, borderTop: `1px solid rgba(65,90,119,0.25)`,
-          padding: "20px 32px 24px",
-        }} className="flex md:hidden flex-col gap-5">
-          {links.map(l => (
-            <Link key={l.to} to={l.to} onClick={() => setMenuOpen(false)} style={{
-              color: isActive(l.to) ? C.light : C.support,
-              textDecoration: "none", fontSize: 14, fontWeight: 600,
-              letterSpacing: "0.08em", textTransform: "uppercase",
-              fontFamily: "Inter, sans-serif",
-            }}>{l.label}</Link>
-          ))}
-          <Link to="/contact" onClick={() => setMenuOpen(false)} style={{
-            backgroundColor: C.accent, color: C.light, padding: "11px 20px",
-            borderRadius: 0, textDecoration: "none", fontSize: 11, fontWeight: 700,
-            letterSpacing: "0.1em", textTransform: "uppercase", width: "fit-content",
-            fontFamily: "Sora, sans-serif",
-            border: `1.5px solid ${C.accent}`,
-          }}>Get a Free Consultation</Link>
-        </div>
-      )}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="md:hidden"
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 999,
+              background: "rgba(7, 11, 19, 0.74)",
+              backdropFilter: "blur(18px)",
+              overflow: "hidden",
+            }}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={menuVariants}
+          >
+            <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 20% 18%, rgba(65, 90, 119, 0.26) 0%, transparent 24%), radial-gradient(circle at 82% 26%, rgba(212, 175, 55, 0.12) 0%, transparent 28%), linear-gradient(180deg, rgba(13, 27, 42, 0.98) 0%, rgba(7, 11, 19, 0.98) 100%)" }} />
+
+            <motion.div
+              style={{
+                position: "relative",
+                zIndex: 1,
+                minHeight: "100%",
+                padding: "24px 24px 28px",
+                display: "flex",
+                flexDirection: "column",
+              }}
+              variants={panelVariants}
+            >
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 36 }}>
+                <Link to="/" onClick={() => setMenuOpen(false)} style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+                  <img src={Logo} alt="Lorinza Zenix logo" className="w-22" />
+                </Link>
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  aria-label="Close navigation menu"
+                  style={{ background: "none", border: "none", color: C.light, cursor: "pointer", padding: 6 }}
+                >
+                  <X size={22} />
+                </button>
+              </div>
+
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", gap: 18 }}>
+                <motion.p
+                  style={{ ...sora, color: C.accent, fontSize: 11, fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 8 }}
+                  variants={itemVariants}
+                >
+                  Navigation
+                </motion.p>
+
+                {links.map((l) => (
+                  <motion.div key={l.to} variants={itemVariants}>
+                    <Link
+                      to={l.to}
+                      onClick={() => setMenuOpen(false)}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: 16,
+                        color: isActive(l.to) ? C.light : C.support,
+                        textDecoration: "none",
+                        fontSize: "clamp(1.9rem, 7vw, 3.2rem)",
+                        fontWeight: 700,
+                        letterSpacing: "-0.03em",
+                        lineHeight: 1.05,
+                        textTransform: "uppercase",
+                        fontFamily: "Sora, sans-serif",
+                        padding: "12px 0",
+                        borderBottom: `1px solid rgba(119, 141, 169, 0.16)`,
+                      }}
+                    >
+                      <span>{l.label}</span>
+                      <motion.span style={{ color: C.accent, fontSize: 14, letterSpacing: "0.2em" }} animate={{ x: [0, 4, 0] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}>
+                        →
+                      </motion.span>
+                    </Link>
+                  </motion.div>
+                ))}
+
+                <motion.div variants={itemVariants} style={{ marginTop: 10 }}>
+                  <Link
+                    to="/contact"
+                    onClick={() => setMenuOpen(false)}
+                    style={{
+                      ...sora,
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backgroundColor: C.accent,
+                      color: C.light,
+                      padding: "14px 22px",
+                      borderRadius: 0,
+                      textDecoration: "none",
+                      fontSize: 11,
+                      fontWeight: 700,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      border: `1.5px solid ${C.accent}`,
+                      boxShadow: "0 0 24px rgba(65, 90, 119, 0.2)",
+                    }}
+                  >
+                    Get A Free Consultation
+                  </Link>
+                </motion.div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

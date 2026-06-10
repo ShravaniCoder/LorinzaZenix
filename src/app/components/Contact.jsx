@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, CheckCircle, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { PageHero } from "./PageHero";
 
 const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD" };
 const sora = { fontFamily: "'Sora', sans-serif" };
@@ -143,6 +144,14 @@ export function Contact() {
 
   return (
     <div style={{ backgroundColor: C.dark }}>
+      <PageHero
+        eyebrow="Contact"
+        title="GET IN TOUCH"
+        description="Tell us about your goals and we’ll shape a focused response that feels tailored, clear, and distinctly LorinzaZenix."
+        image="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=1920&q=80"
+        alt="Modern agency collaboration environment"
+      />
+
       <motion.section
         style={{
           position: "relative",
