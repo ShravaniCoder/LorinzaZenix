@@ -10,6 +10,21 @@ import {
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Counter } from "./Counter";
 import heroImage from "../../assets/christopher-gower-m_HRfLhgABo-unsplash.jpg";
+import brandingImage from "../../images/Branding.png";
+import uiuxImage from "../../images/UI UX.png";
+import seoImage from "../../images/SEO.png";
+import socialImage from "../../images/Social media.png";
+import webDevImage from "../../images/WEB DEV.png";
+import strategyImage from "../../images/Strategy.png";
+
+const serviceImages = {
+  branding: brandingImage,
+  uiux: uiuxImage,
+  seo: seoImage,
+  social: socialImage,
+  webdev: webDevImage,
+  strategy: strategyImage
+};
 
 const MotionLink = motion(Link);
 
@@ -61,8 +76,7 @@ const servicesList = [
     cat: "IDENTITY & VISION", 
     desc: "Craft a powerful, cohesive visual and narrative identity system that sets your brand apart in modern markets.", 
     link: "/services#s3", 
-    watermark: "IDENTITY", 
-    image: "https://images.unsplash.com/photo-1626469829581-73993eb86b02?auto=format&fit=crop&w=800&q=80" 
+    key: "branding"
   },
   { 
     num: "02", 
@@ -70,8 +84,7 @@ const servicesList = [
     cat: "DIGITAL EXPERIENCE", 
     desc: "Design intuitive, high-converting digital interfaces backed by user research and iterative testing.", 
     link: "/services#s0", 
-    watermark: "INTERFACE", 
-    image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80" 
+    key: "uiux"
   },
   { 
     num: "03", 
@@ -79,8 +92,7 @@ const servicesList = [
     cat: "GROWTH MARKETING", 
     desc: "Boost organic ranking, build authority, and drive targeted high-intent traffic with custom strategies.", 
     link: "/services#s4", 
-    watermark: "ORGANIC", 
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" 
+    key: "seo"
   },
   { 
     num: "04", 
@@ -88,8 +100,7 @@ const servicesList = [
     cat: "BRAND ENGAGEMENT", 
     desc: "Build a community, run viral social campaigns, and drive conversions across all primary networks.", 
     link: "/services#s5", 
-    watermark: "COMMUNITY", 
-    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80" 
+    key: "social"
   },
   { 
     num: "05", 
@@ -97,8 +108,7 @@ const servicesList = [
     cat: "ENGINEERING", 
     desc: "Engineered for speed, performance, and SEO optimization. Custom codebases designed to scale with ease.", 
     link: "/services#s1", 
-    watermark: "CODEBASE", 
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" 
+    key: "webdev"
   },
   { 
     num: "06", 
@@ -106,8 +116,7 @@ const servicesList = [
     cat: "BUSINESS ROADMAP", 
     desc: "Align your product development, marketing, and systems to a structured roadmap for long-term growth.", 
     link: "/services", 
-    watermark: "GROWTH", 
-    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" 
+    key: "strategy"
   }
 ];
 
@@ -830,60 +839,25 @@ export function Home() {
                     transformStyle: "preserve-3d",
                   }}
                 >
-                  {/* Glassmorphic border glow highlight */}
+                  {/* Subtle border outline */}
                   <div
                     style={{
                       position: "absolute",
                       inset: 0,
                       borderRadius: "28px",
-                      border: "1px solid rgba(255, 255, 255, 0.08)",
+                      border: "1px solid rgba(255, 255, 255, 0.1)",
                       pointerEvents: "none",
                       zIndex: 5,
                     }}
                   />
 
-                  {/* Luxury Corner Accents */}
-                  <div style={{ position: "absolute", top: 18, left: 18, width: 8, height: 8, borderTop: "1.5px solid rgba(212, 175, 55, 0.35)", borderLeft: "1.5px solid rgba(212, 175, 55, 0.35)", zIndex: 6, pointerEvents: "none" }} />
-                  <div style={{ position: "absolute", top: 18, right: 18, width: 8, height: 8, borderTop: "1.5px solid rgba(212, 175, 55, 0.35)", borderRight: "1.5px solid rgba(212, 175, 55, 0.35)", zIndex: 6, pointerEvents: "none" }} />
-                  <div style={{ position: "absolute", bottom: 18, left: 18, width: 8, height: 8, borderBottom: "1.5px solid rgba(212, 175, 55, 0.35)", borderLeft: "1.5px solid rgba(212, 175, 55, 0.35)", zIndex: 6, pointerEvents: "none" }} />
-                  <div style={{ position: "absolute", bottom: 18, right: 18, width: 8, height: 8, borderBottom: "1.5px solid rgba(212, 175, 55, 0.35)", borderRight: "1.5px solid rgba(212, 175, 55, 0.35)", zIndex: 6, pointerEvents: "none" }} />
-
-                  {/* Soft Editorial Watermark (Overlay) */}
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={`watermark-${activeService}`}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 0.025, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.05 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontFamily: "Sora, sans-serif",
-                        fontSize: "clamp(3.5rem, 5.5vw, 6rem)",
-                        fontWeight: 900,
-                        color: "#E0E1DD",
-                        pointerEvents: "none",
-                        userSelect: "none",
-                        zIndex: 3, // Over the image for subtle watermarking
-                        letterSpacing: "0.08em",
-                        textAlign: "center",
-                      }}
-                    >
-                      {servicesList[activeService].watermark}
-                    </motion.div>
-                  </AnimatePresence>
-
                   {/* Image Gallery Showcase with Crossfade */}
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={`image-${activeService}`}
-                      initial={{ opacity: 0, scale: 1.015, filter: "blur(4px)" }}
-                      animate={{ opacity: 1, scale: 1.02, filter: "blur(0px)" }}
-                      exit={{ opacity: 0, scale: 1.0, filter: "blur(4px)" }}
+                      initial={{ opacity: 0, scale: 1.0 }}
+                      animate={{ opacity: 1, scale: 1.03 }}
+                      exit={{ opacity: 0, scale: 1.0 }}
                       transition={{ duration: 0.35, ease: "easeOut" }}
                       style={{
                         position: "absolute",
@@ -896,17 +870,24 @@ export function Home() {
                         backgroundColor: "#070B13",
                       }}
                     >
-                      {/* Premium Crisp Image with Brightness and Contrast Enhancement */}
                       <img
-                        src={servicesList[activeService].image}
+                        src={serviceImages[servicesList[activeService].key]}
                         alt={servicesList[activeService].title}
                         style={{
                           width: "100%",
                           height: "100%",
                           objectFit: "cover",
-                          // Crisp colors, increased brightness (+8%) and contrast (+5%), no color grading tint
-                          filter: "brightness(1.08) contrast(1.05)",
                           transformStyle: "preserve-3d",
+                        }}
+                      />
+                      {/* Subtle overlay (5%) */}
+                      <div
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          backgroundColor: "rgba(7, 11, 19, 0.05)",
+                          zIndex: 3,
+                          pointerEvents: "none",
                         }}
                       />
                     </motion.div>

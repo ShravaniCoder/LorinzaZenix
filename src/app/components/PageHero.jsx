@@ -66,7 +66,7 @@ export function PageHero({ eyebrow, title, description, image, alt }) {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          filter: "brightness(0.34) contrast(0.98) saturate(0.95)",
+          filter: "brightness(0.42) contrast(1.03) saturate(0.95)",
           transform: "scale(1.02)",
           pointerEvents: "none",
         }}
@@ -75,7 +75,7 @@ export function PageHero({ eyebrow, title, description, image, alt }) {
         style={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(180deg, rgba(3, 12, 35, 0.72) 0%, rgba(2, 10, 28, 0.8) 52%, rgba(1, 8, 24, 0.92) 100%), radial-gradient(circle at 50% 42%, rgba(65, 90, 119, 0.2) 0%, transparent 58%)",
+          background: "linear-gradient(180deg, rgba(3, 12, 35, 0.60) 0%, rgba(2, 10, 28, 0.68) 52%, rgba(1, 8, 24, 0.80) 100%), radial-gradient(circle at 50% 42%, rgba(65, 90, 119, 0.18) 0%, transparent 58%)",
           pointerEvents: "none",
         }}
       />
