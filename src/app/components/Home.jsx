@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Counter } from "./Counter";
-import heroImage from "../../assets/christopher-gower-m_HRfLhgABo-unsplash.jpg";
+import officeSpace from "../../images/Office space.png";
 import brandingImage from "../../images/Branding.png";
 import uiuxImage from "../../images/UI UX.png";
 import seoImage from "../../images/SEO.png";
@@ -248,13 +248,13 @@ export function Home() {
           style={{
             position: "absolute",
             inset: 0,
-            backgroundImage: `url(${heroImage})`,
+            backgroundImage: `url(${officeSpace})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             y: bgYImage,
             zIndex: 0,
-            filter: "brightness(0.32) contrast(0.95)",
+            filter: "brightness(0.37) contrast(0.98)",
             pointerEvents: "none",
           }}
         />
@@ -265,8 +265,8 @@ export function Home() {
             position: "absolute",
             inset: 0,
             background: `
-              radial-gradient(circle at 50% 50%, rgba(3, 12, 35, 0.15) 0%, rgba(1, 8, 24, 0.82) 100%),
-              linear-gradient(180deg, rgba(2, 10, 28, 0.78) 0%, rgba(3, 12, 35, 0.85) 50%, rgba(1, 8, 24, 0.90) 100%)
+              radial-gradient(circle at 50% 50%, rgba(3, 12, 35, 0.10) 0%, rgba(1, 8, 24, 0.65) 100%),
+              linear-gradient(180deg, rgba(2, 10, 28, 0.60) 0%, rgba(3, 12, 35, 0.65) 50%, rgba(1, 8, 24, 0.70) 100%)
             `,
             zIndex: 1,
             pointerEvents: "none",
@@ -402,7 +402,7 @@ export function Home() {
           style={{
             position: "absolute",
             inset: 0,
-            backgroundImage: `url(${heroImage})`,
+            backgroundImage: `url(${officeSpace})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             opacity: 0.22,
