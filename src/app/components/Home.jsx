@@ -9,7 +9,11 @@ import {
 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Counter } from "./Counter";
+<<<<<<< HEAD
 import officeSpace from "../../images/Office space.png";
+=======
+import heroImage from "../../assets/hero.png";
+>>>>>>> 976c3397 (hero image)
 import brandingImage from "../../images/Branding.png";
 import uiuxImage from "../../images/UI UX.png";
 import seoImage from "../../images/SEO.png";
@@ -443,11 +447,12 @@ export function Home() {
 
           {/* Headline (Word-by-word reveal) */}
           <h1
-            className="font-playfair"
+            className=""
             style={{
+               ...sora,
               color: C.light,
-              fontSize: "clamp(2rem, 5.2vw, 4.6rem)",
-              fontWeight: 800,
+              fontSize: "clamp(1rem, 4.2vw, 3.6rem)",
+              fontWeight: 700,
               lineHeight: 1.1,
               letterSpacing: "-0.03em",
               textTransform: "uppercase",
