@@ -9,11 +9,11 @@ import {
 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Counter } from "./Counter";
-<<<<<<< HEAD
+
 import officeSpace from "../../images/Office space.png";
-=======
+
 import heroImage from "../../assets/hero.png";
->>>>>>> 976c3397 (hero image)
+
 import brandingImage from "../../images/Branding.png";
 import uiuxImage from "../../images/UI UX.png";
 import seoImage from "../../images/SEO.png";
