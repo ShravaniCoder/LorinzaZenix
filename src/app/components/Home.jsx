@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Counter } from "./Counter";
-
+6
 import officeSpace from "../../images/Office space.png";
 
 import heroImage from "../../assets/hero.png";

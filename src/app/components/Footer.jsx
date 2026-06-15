@@ -49,15 +49,11 @@ export function Footer() {
   }, []);
 
   /* Prevent body scroll when footer is revealed */
-  useEffect(() => {
-    if (isRevealed) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
-  }, [isRevealed]);
-
+ useEffect(() => {
+  return () => {
+    document.body.style.overflow = "";
+  };
+}, []);
   return (
     <>
       {/* Full-screen footer slide */}
@@ -68,12 +64,10 @@ export function Footer() {
             initial={{ y: "100%" }}
             animate={{ y: "0%" }}
             exit={{ y: "100%" }}
-            transition={{
-              type: "spring",
-              damping: 32,
-              stiffness: 260,
-              mass: 0.9,
-            }}
+          transition={{
+  duration: 0.5,
+  ease: "easeOut",
+}}
             onWheel={handleWheel}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
