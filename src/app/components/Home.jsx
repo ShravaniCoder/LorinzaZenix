@@ -32,7 +32,7 @@ const serviceImages = {
 
 const MotionLink = motion(Link);
 
-const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD", blue: "#151922" };
+const C = { dark: "#1E3A56", secondary: "#2D4A6A", accent: "#7FA0C4", support: "#B0C4DA", light: "#E0E1DD", blue: "#253B55" };
 
 const sora = { fontFamily: "'Sora', sans-serif" };
 
@@ -60,10 +60,10 @@ function SectionTag({ children }) {
 const portfolio = [
   { title: "TechVault Brand Identity", cat: "Branding", bg: C.secondary, img: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=600&q=80" },
   { title: "NovaPay Finance App", cat: "UI/UX Design", bg: "#101D2C", img: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=600&q=80" },
-  { title: "GreenLeaf E-commerce", cat: "Web Dev", bg: "#1B263B", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" },
+  { title: "GreenLeaf E-commerce", cat: "Web Dev", bg: "#2D4A6A", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" },
   { title: "PulseMetrics Dashboard", cat: "Digital Marketing", bg: "#101D2C", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" },
   { title: "Luxara Fashion SEO", cat: "SEO Strategy", bg: C.secondary, img: "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&w=600&q=80" },
-  { title: "SocialBloom Campaign", cat: "Social Media", bg: "#1B263B", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=600&q=80" },
+  { title: "SocialBloom Campaign", cat: "Social Media", bg: "#2D4A6A", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=600&q=80" },
 ];
 
 /* ─── testimonials ─── */
@@ -244,7 +244,7 @@ export function Home() {
           overflow: "hidden",
           textAlign: "center",
           padding: "120px 24px 100px",
-          backgroundColor: "#070B13", // Luxury dark deep blue-black base
+          backgroundColor: "#162840", // Luxury dark deep blue-black base
         }}
       >
         {/* Dedicated Background Image Layer */}
@@ -288,7 +288,7 @@ export function Home() {
             width: "550px",
             height: "550px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(65, 90, 119, 0.22) 0%, rgba(13, 27, 42, 0) 70%)",
+            background: "radial-gradient(circle, rgba(127, 160, 196, 0.22) 0%, rgba(30, 58, 86, 0) 70%)",
             filter: "blur(110px)",
             zIndex: 1,
             y: bgY,
@@ -314,7 +314,7 @@ export function Home() {
             width: "600px",
             height: "600px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(13, 27, 42, 0) 70%)",
+            background: "radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(30, 58, 86, 0) 70%)",
             filter: "blur(130px)",
             zIndex: 1,
             y: bgY,
@@ -342,7 +342,7 @@ export function Home() {
             width: "750px",
             height: "450px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(65, 90, 119, 0.14) 0%, rgba(13, 27, 42, 0) 65%)",
+            background: "radial-gradient(circle, rgba(127, 160, 196, 0.14) 0%, rgba(30, 58, 86, 0) 65%)",
             filter: "blur(90px)",
             zIndex: 1,
             pointerEvents: "none",
@@ -384,8 +384,8 @@ export function Home() {
             width: "160px",
             height: "160px",
             borderRadius: "50%",
-            background: "rgba(65, 90, 119, 0.015)",
-            border: "1px solid rgba(65, 90, 119, 0.035)",
+            background: "rgba(127, 160, 196, 0.015)",
+            border: "1px solid rgba(127, 160, 196, 0.035)",
             backdropFilter: "blur(12px)",
             zIndex: 1,
             y: bgY,
@@ -675,7 +675,7 @@ export function Home() {
           SECTION 2 — DYNAMIC SERVICE SHOWCASE (Split Editorial Layout)
       ══════════════════════════════════════════ */}
       <motion.section
-        style={{ backgroundColor: "#070B13", padding: "120px 32px 140px", borderTop: "1px solid rgba(255, 255, 255, 0.05)" }}
+        style={{ backgroundColor: "#162840", padding: "120px 32px 140px", borderTop: "1px solid rgba(255, 255, 255, 0.05)" }}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -818,7 +818,7 @@ export function Home() {
                 onMouseLeave={handlePanelMouseLeave}
                 style={{
                   height: "460px",
-                  backgroundColor: "rgba(13, 27, 42, 0.4)",
+                  backgroundColor: "rgba(30, 58, 86, 0.4)",
                   border: "1px solid rgba(212, 175, 55, 0.22)", // Thin gold accent border
                   borderRadius: "28px",
                   display: "flex",
@@ -872,7 +872,7 @@ export function Home() {
                         zIndex: 2,
                         borderRadius: "28px",
                         overflow: "hidden",
-                        backgroundColor: "#070B13",
+                        backgroundColor: "#162840",
                       }}
                     >
                       <img
@@ -890,7 +890,7 @@ export function Home() {
                         style={{
                           position: "absolute",
                           inset: 0,
-                          backgroundColor: "rgba(7, 11, 19, 0.05)",
+                          backgroundColor: "rgba(22, 40, 64, 0.05)",
                           zIndex: 3,
                           pointerEvents: "none",
                         }}
@@ -962,7 +962,7 @@ export function Home() {
             style={{
               position: "absolute",
               inset: 0,
-              backgroundColor: "rgba(13,27,42,0.92)",
+              backgroundColor: "rgba(30, 58, 86,0.92)",
             }}
           />
         </div>
@@ -1049,7 +1049,7 @@ export function Home() {
                 />
                 <div style={{
                   position: "absolute", inset: 0,
-                  background: "linear-gradient(0deg, rgba(13,27,42,0.85) 0%, transparent 60%)",
+                  background: "linear-gradient(0deg, rgba(30, 58, 86,0.85) 0%, transparent 60%)",
                   display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "18px",
                 }}>
                   <span style={{ color: C.support, fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{p.cat}</span>
@@ -1078,7 +1078,7 @@ export function Home() {
                 />
                 <div style={{
                   position: "absolute", inset: 0,
-                  background: "linear-gradient(0deg, rgba(13,27,42,0.85) 0%, transparent 60%)",
+                  background: "linear-gradient(0deg, rgba(30, 58, 86,0.85) 0%, transparent 60%)",
                   display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "22px",
                 }}>
                   <span style={{ color: C.support, fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{p.cat}</span>
@@ -1130,7 +1130,7 @@ export function Home() {
             alt="Tech background"
             style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
           />
-          <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(13,27,42,0.92)" }} />
+          <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(30, 58, 86,0.92)" }} />
         </div>
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1240, margin: "0 auto", padding: "100px 32px 0" }}>
 
@@ -1184,7 +1184,7 @@ export function Home() {
                 <div style={{
                   width: 58, height: 58,
                   borderRadius: "50%",
-                  backgroundColor: "rgba(65,90,119,0.15)",
+                  backgroundColor: "rgba(127, 160, 196,0.15)",
                   border: `1.5px solid ${C.accent}`,
                   display: "flex", alignItems: "center", justifyContent: "center",
                   transition: "all 0.2s ease",
@@ -1194,7 +1194,7 @@ export function Home() {
                     e.currentTarget.style.borderColor = C.light;
                   }}
                   onMouseLeave={e => {
-                    e.currentTarget.style.backgroundColor = "rgba(65,90,119,0.15)";
+                    e.currentTarget.style.backgroundColor = "rgba(127, 160, 196,0.15)";
                     e.currentTarget.style.borderColor = C.accent;
                   }}
                 >
@@ -1214,7 +1214,7 @@ export function Home() {
         </div>
 
         {/* ── STATS BAR (WokWok: 3 dark boxes at bottom) ── */}
-        <div style={{ position: "relative", zIndex: 1, borderTop: `1px solid rgba(65,90,119,0.25)` }}>
+        <div style={{ position: "relative", zIndex: 1, borderTop: `1px solid rgba(127, 160, 196,0.25)` }}>
           <div style={{ maxWidth: 1240, margin: "0 auto" }} className="grid grid-cols-1 md:grid-cols-3">
             {[
               { value: "$999", label: "Starting Price" },
@@ -1223,9 +1223,9 @@ export function Home() {
             ].map(({ value, label }, i) => (
               <div key={i} style={{
                 padding: "44px 32px", textAlign: "center",
-                borderRight: i < 2 ? `1px solid rgba(65,90,119,0.2)` : "none",
-                borderBottom: `1px solid rgba(65,90,119,0.2)`,
-                backgroundColor: i === 1 ? "rgba(13, 27, 42, 0.85)" : "#0A141F",
+                borderRight: i < 2 ? `1px solid rgba(127, 160, 196,0.2)` : "none",
+                borderBottom: `1px solid rgba(127, 160, 196,0.2)`,
+                backgroundColor: i === 1 ? "rgba(30, 58, 86, 0.85)" : "#1A3048",
               }}>
                 <p style={{ ...sora, color: C.light, fontSize: "clamp(2rem, 3.8vw, 2.8rem)", fontWeight: 800, lineHeight: 1 }}>
                   <Counter value={value} />
@@ -1274,7 +1274,7 @@ export function Home() {
                   padding: "44px 36px",
                   textAlign: "left",
                   position: "relative",
-                  border: `1px solid rgba(65, 90, 119, 0.15)`,
+                  border: `1px solid rgba(127, 160, 196, 0.15)`,
                   cursor: "pointer",
                   willChange: "transform, opacity",
                 }}
@@ -1282,18 +1282,18 @@ export function Home() {
                 whileHover={{
                   y: -5,
                   borderColor: C.accent,
-                  boxShadow: "0 10px 30px rgba(65, 90, 119, 0.12)",
+                  boxShadow: "0 10px 30px rgba(127, 160, 196, 0.12)",
                 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
-                <div style={{ fontSize: "3.5rem", color: "rgba(65,90,119,0.18)", lineHeight: 1, position: "absolute", top: 20, right: 24, fontFamily: "Georgia, serif" }}>"</div>
+                <div style={{ fontSize: "3.5rem", color: "rgba(127, 160, 196,0.18)", lineHeight: 1, position: "absolute", top: 20, right: 24, fontFamily: "Georgia, serif" }}>"</div>
                 <div style={{ display: "flex", gap: 3, marginBottom: 24 }}>
                   {Array.from({ length: t.stars }).map((_, si) => (
                     <Star key={si} size={14} color={C.accent} fill={C.accent} />
                   ))}
                 </div>
                 <p style={{ color: C.support, fontSize: 14, lineHeight: 1.8, marginBottom: 28, fontStyle: "italic" }}>"{t.text}"</p>
-                <div style={{ borderTop: "1px solid rgba(65,90,119,0.2)", paddingTop: 20 }}>
+                <div style={{ borderTop: "1px solid rgba(127, 160, 196,0.2)", paddingTop: 20 }}>
                   <p style={{ ...sora, color: C.light, fontSize: 14, fontWeight: 700 }}>{t.name}</p>
                   <p style={{ color: C.accent, fontSize: 12, marginTop: 4, letterSpacing: "0.02em" }}>{t.role}</p>
                 </div>

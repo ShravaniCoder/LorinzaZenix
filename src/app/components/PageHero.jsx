@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
-const C = { dark: "#0D1B2A", accent: "#415A77", support: "#778DA9", light: "#E0E1DD" };
+const C = { dark: "#1E3A56", accent: "#7FA0C4", support: "#B0C4DA", light: "#E0E1DD" };
 const sora = { fontFamily: "'Sora', sans-serif" };
 
 export function PageHero({ eyebrow, title, description, image, alt }) {
@@ -75,7 +75,7 @@ export function PageHero({ eyebrow, title, description, image, alt }) {
         style={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(180deg, rgba(3, 12, 35, 0.60) 0%, rgba(2, 10, 28, 0.68) 52%, rgba(1, 8, 24, 0.80) 100%), radial-gradient(circle at 50% 42%, rgba(65, 90, 119, 0.18) 0%, transparent 58%)",
+          background: "linear-gradient(180deg, rgba(3, 12, 35, 0.60) 0%, rgba(2, 10, 28, 0.68) 52%, rgba(1, 8, 24, 0.80) 100%), radial-gradient(circle at 50% 42%, rgba(127, 160, 196, 0.18) 0%, transparent 58%)",
           pointerEvents: "none",
         }}
       />
@@ -87,7 +87,7 @@ export function PageHero({ eyebrow, title, description, image, alt }) {
           width: "460px",
           height: "460px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(65, 90, 119, 0.22) 0%, rgba(13, 27, 42, 0) 70%)",
+          background: "radial-gradient(circle, rgba(127, 160, 196, 0.22) 0%, rgba(30, 58, 86, 0) 70%)",
           filter: "blur(110px)",
           pointerEvents: "none",
         }}
@@ -102,7 +102,7 @@ export function PageHero({ eyebrow, title, description, image, alt }) {
           width: "520px",
           height: "520px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, rgba(13, 27, 42, 0) 70%)",
+          background: "radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, rgba(30, 58, 86, 0) 70%)",
           filter: "blur(120px)",
           pointerEvents: "none",
         }}

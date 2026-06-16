@@ -6,7 +6,7 @@ import { PageHero } from "./PageHero";
 
 const MotionLink = motion(Link);
 
-const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD" };
+const C = { dark: "#1E3A56", secondary: "#2D4A6A", accent: "#7FA0C4", support: "#B0C4DA", light: "#E0E1DD" };
 const sora = { fontFamily: "'Sora', sans-serif" };
 
 function SectionTag({ children }) {
@@ -162,7 +162,7 @@ export function Services() {
 
       {/* ── QUICK NAV PILLS ── */}
       <motion.section 
-        style={{ backgroundColor: C.light, padding: "48px 32px 32px", borderBottom: `1px solid rgba(13, 27, 42, 0.1)` }}
+        style={{ backgroundColor: C.light, padding: "48px 32px 32px", borderBottom: `1px solid rgba(30, 58, 86, 0.1)` }}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -173,7 +173,7 @@ export function Services() {
             <motion.a key={i} href={`#s${i}`} style={{
               display: "inline-flex", alignItems: "center", gap: 8,
               backgroundColor: "#FFFFFF",
-              border: `1px solid rgba(13, 27, 42, 0.12)`,
+              border: `1px solid rgba(30, 58, 86, 0.12)`,
               borderRadius: 0, padding: "10px 20px",
               color: C.dark, textDecoration: "none", fontSize: 12, fontWeight: 700,
               fontFamily: "Sora, sans-serif",
@@ -203,7 +203,7 @@ export function Services() {
           style={{
             backgroundColor: i % 2 === 0 ? C.dark : C.light,
             padding: "100px 32px",
-            borderBottom: `1px solid ${i % 2 === 0 ? "rgba(65,90,119,0.15)" : "rgba(13,27,42,0.1)"}`,
+            borderBottom: `1px solid ${i % 2 === 0 ? "rgba(127, 160, 196,0.15)" : "rgba(30, 58, 86,0.1)"}`,
           }}
         >
           <div style={{ maxWidth: 1240, margin: "0 auto" }}>
@@ -228,7 +228,7 @@ export function Services() {
                 </p>
                 <div style={{
                   width: 52, height: 52, borderRadius: 0,
-                  backgroundColor: i % 2 === 0 ? "rgba(65,90,119,0.18)" : "rgba(65,90,119,0.1)",
+                  backgroundColor: i % 2 === 0 ? "rgba(127, 160, 196,0.18)" : "rgba(127, 160, 196,0.1)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   marginBottom: 24,
                 }}>
@@ -244,7 +244,7 @@ export function Services() {
                   {title}
                 </h2>
                 <p style={{ color: i % 2 === 0 ? C.support : C.accent, fontSize: 14.5, fontStyle: "italic", marginBottom: 20 }}>{tagline}</p>
-                <p style={{ color: i % 2 === 0 ? C.support : "rgba(13, 27, 42, 0.75)", fontSize: 14.5, lineHeight: 1.85, marginBottom: 32 }}>{desc}</p>
+                <p style={{ color: i % 2 === 0 ? C.support : "rgba(30, 58, 86, 0.75)", fontSize: 14.5, lineHeight: 1.85, marginBottom: 32 }}>{desc}</p>
 
                 <motion.div style={{ marginBottom: 36 }} variants={staggerContainer}>
                   <p style={{ ...sora, color: i % 2 === 0 ? C.light : C.dark, fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 16 }}>
@@ -255,7 +255,7 @@ export function Services() {
                       variants={fadeInUp}
                     >
                       <CheckCircle size={15} color={C.accent} style={{ flexShrink: 0, marginTop: 3 }} />
-                      <span style={{ color: i % 2 === 0 ? C.support : "rgba(13, 27, 42, 0.75)", fontSize: 14 }}>{d}</span>
+                      <span style={{ color: i % 2 === 0 ? C.support : "rgba(30, 58, 86, 0.75)", fontSize: 14 }}>{d}</span>
                     </motion.div>
                   ))}
                 </motion.div>
@@ -301,10 +301,10 @@ export function Services() {
                   top: -16, left: i % 2 === 0 ? -16 : "auto",
                   right: i % 2 !== 0 ? -16 : "auto",
                   width: "100%", height: "100%",
-                  border: `1px solid ${i % 2 === 0 ? "rgba(65,90,119,0.3)" : "rgba(13,27,42,0.12)"}`, borderRadius: 0, zIndex: 0,
+                  border: `1px solid ${i % 2 === 0 ? "rgba(127, 160, 196,0.3)" : "rgba(30, 58, 86,0.12)"}`, borderRadius: 0, zIndex: 0,
                 }} />
                 <motion.div
-                  style={{ width: "100%", borderRadius: 0, overflow: "hidden", position: "relative", zIndex: 1, border: `1px solid ${i % 2 === 0 ? "rgba(65,90,119,0.2)" : "rgba(13,27,42,0.1)"}` }}
+                  style={{ width: "100%", borderRadius: 0, overflow: "hidden", position: "relative", zIndex: 1, border: `1px solid ${i % 2 === 0 ? "rgba(127, 160, 196,0.2)" : "rgba(30, 58, 86,0.1)"}` }}
                   whileHover={{ scale: 1.03 }}
                   transition={{ duration: 0.4 }}
                 >
@@ -407,21 +407,21 @@ export function Services() {
                 style={{
                   backgroundColor: "#FFFFFF",
                   padding: "36px 20px",
-                  borderRight: i < 5 ? `1px solid rgba(13,27,42,0.12)` : "none",
-                  borderBottom: `1px solid rgba(13,27,42,0.12)`,
+                  borderRight: i < 5 ? `1px solid rgba(30, 58, 86,0.12)` : "none",
+                  borderBottom: `1px solid rgba(30, 58, 86,0.12)`,
                   textAlign: "center",
                   cursor: "pointer",
                   willChange: "transform, opacity",
                 }}
                 variants={cardVariants}
                 whileHover={{
-                  backgroundColor: "rgba(13,27,42,0.04)"
+                  backgroundColor: "rgba(30, 58, 86,0.04)"
                 }}
                 transition={{ duration: 0.2 }}
               >
-                <p style={{ color: "rgba(65,90,119,0.2)", fontSize: "2.2rem", fontWeight: 900, lineHeight: 1, marginBottom: 14, fontFamily: "Sora, sans-serif" }}>{n}</p>
+                <p style={{ color: "rgba(127, 160, 196,0.2)", fontSize: "2.2rem", fontWeight: 900, lineHeight: 1, marginBottom: 14, fontFamily: "Sora, sans-serif" }}>{n}</p>
                 <p style={{ ...sora, color: C.dark, fontSize: "0.85rem", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 10 }}>{t}</p>
-                <p style={{ color: "rgba(13, 27, 42, 0.75)", fontSize: 13, lineHeight: 1.7 }}>{d}</p>
+                <p style={{ color: "rgba(30, 58, 86, 0.75)", fontSize: 13, lineHeight: 1.7 }}>{d}</p>
               </motion.div>
             ))}
           </div>

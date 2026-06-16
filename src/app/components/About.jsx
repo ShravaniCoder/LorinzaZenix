@@ -7,7 +7,7 @@ import { PageHero } from "./PageHero";
 
 const MotionLink = motion(Link);
 
-const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD" };
+const C = { dark: "#1E3A56", secondary: "#2D4A6A", accent: "#7FA0C4", support: "#B0C4DA", light: "#E0E1DD" };
 const sora = { fontFamily: "'Sora', sans-serif" };
 
 function SectionTag({ children, dark = false }) {
@@ -127,15 +127,15 @@ export function About() {
           ].map(({ n, l }, i) => (
             <motion.div key={i} style={{
               padding: "36px 24px", textAlign: "center",
-              borderRight: i < 3 ? "1px solid rgba(13, 27, 42, 0.12)" : "none",
-              borderBottom: "1px solid rgba(13, 27, 42, 0.12)",
+              borderRight: i < 3 ? "1px solid rgba(30, 58, 86, 0.12)" : "none",
+              borderBottom: "1px solid rgba(30, 58, 86, 0.12)",
             }}
               variants={fadeInUp}
             >
               <p style={{ ...sora, color: C.dark, fontSize: "2.4rem", fontWeight: 800, lineHeight: 1 }}>
                 <Counter value={n} />
               </p>
-              <p style={{ color: "rgba(13, 27, 42, 0.75)", fontSize: 11, marginTop: 10, letterSpacing: "0.08em", textTransform: "uppercase" }}>{l}</p>
+              <p style={{ color: "rgba(30, 58, 86, 0.75)", fontSize: 11, marginTop: 10, letterSpacing: "0.08em", textTransform: "uppercase" }}>{l}</p>
             </motion.div>
           ))}
         </div>
@@ -156,13 +156,13 @@ export function About() {
               <div style={{
                 position: "absolute", top: -16, left: -16,
                 width: "100%", height: "100%",
-                border: `1px solid rgba(65,90,119,0.3)`,
+                border: `1px solid rgba(127, 160, 196,0.3)`,
                 borderRadius: 0, zIndex: 0,
               }} />
               <ImageWithFallback
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80"
                 alt="LorinzaZenix team"
-                style={{ width: "100%", borderRadius: 0, display: "block", position: "relative", zIndex: 1, border: `1px solid rgba(65,90,119,0.2)` }}
+                style={{ width: "100%", borderRadius: 0, display: "block", position: "relative", zIndex: 1, border: `1px solid rgba(127, 160, 196,0.2)` }}
               />
               <div style={{
                 position: "absolute", bottom: -24, right: -24,
@@ -306,7 +306,7 @@ export function About() {
               >
                 <div style={{
                   width: 52, height: 52, borderRadius: 0,
-                  backgroundColor: "rgba(65,90,119,0.18)",
+                  backgroundColor: "rgba(127, 160, 196,0.18)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   marginBottom: 24,
                 }}>
@@ -331,7 +331,7 @@ export function About() {
         viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
       >
-        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center, rgba(65, 90, 119, 0.15) 0%, transparent 70%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center, rgba(127, 160, 196, 0.15) 0%, transparent 70%)" }} />
         <div style={{ position: "relative", zIndex: 1, maxWidth: 700, margin: "0 auto" }}>
           <motion.h2 style={{
             ...sora, color: C.light,

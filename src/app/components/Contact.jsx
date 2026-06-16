@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Send, CheckCircle, ArrowRight } from "lucide-react
 import { motion } from "framer-motion";
 import { PageHero } from "./PageHero";
 
-const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD" };
+const C = { dark: "#1E3A56", secondary: "#2D4A6A", accent: "#7FA0C4", support: "#B0C4DA", light: "#E0E1DD" };
 const sora = { fontFamily: "'Sora', sans-serif" };
 
 function SectionTag({ children }) {
@@ -36,11 +36,11 @@ function ContactCard({ icon: Icon, label, value, meta }) {
         alignItems: "flex-start",
         gap: 16,
         backgroundColor: C.secondary,
-        border: `1px solid rgba(65, 90, 119, 0.28)`,
+        border: `1px solid rgba(127, 160, 196, 0.28)`,
         padding: "20px 20px",
         willChange: "transform, opacity",
       }}
-      whileHover={{ y: -4, borderColor: C.accent, boxShadow: "0 12px 30px rgba(13, 27, 42, 0.16)" }}
+      whileHover={{ y: -4, borderColor: C.accent, boxShadow: "0 12px 30px rgba(30, 58, 86, 0.16)" }}
       transition={{ duration: 0.22, ease: "easeOut" }}
     >
       <div
@@ -51,8 +51,8 @@ function ContactCard({ icon: Icon, label, value, meta }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "rgba(65, 90, 119, 0.14)",
-          border: `1px solid rgba(65, 90, 119, 0.2)`,
+          backgroundColor: "rgba(127, 160, 196, 0.14)",
+          border: `1px solid rgba(127, 160, 196, 0.2)`,
         }}
       >
         <Icon size={18} color={C.light} strokeWidth={1.6} />
@@ -123,8 +123,8 @@ export function Contact() {
   const inputStyle = (name, isTextArea = false) => ({
     width: "100%",
     boxSizing: "border-box",
-    backgroundColor: focused === name ? "#0F2038" : "#0B1728",
-    border: `1.5px solid ${focused === name ? C.accent : "rgba(119, 141, 169, 0.16)"}`,
+    backgroundColor: focused === name ? "#15304A" : "#122840",
+    border: `1.5px solid ${focused === name ? C.accent : "rgba(176, 196, 218, 0.16)"}`,
     borderRadius: 0,
     padding: isTextArea ? "16px 18px" : "15px 18px",
     color: C.light,
@@ -133,7 +133,7 @@ export function Contact() {
     outline: "none",
     fontFamily: "Inter, sans-serif",
     transition: "border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease",
-    boxShadow: focused === name ? "0 0 0 4px rgba(65, 90, 119, 0.08)" : "none",
+    boxShadow: focused === name ? "0 0 0 4px rgba(127, 160, 196, 0.08)" : "none",
   });
 
   const cards = [
@@ -168,7 +168,7 @@ export function Contact() {
             position: "absolute",
             inset: 0,
             pointerEvents: "none",
-            background: `radial-gradient(circle at 50% 38%, rgba(65, 90, 119, 0.24) 0%, transparent 34%), radial-gradient(circle at 18% 16%, rgba(65, 90, 119, 0.18) 0%, transparent 26%), radial-gradient(circle at 80% 18%, rgba(65, 90, 119, 0.12) 0%, transparent 22%)`,
+            background: `radial-gradient(circle at 50% 38%, rgba(127, 160, 196, 0.24) 0%, transparent 34%), radial-gradient(circle at 18% 16%, rgba(127, 160, 196, 0.18) 0%, transparent 26%), radial-gradient(circle at 80% 18%, rgba(127, 160, 196, 0.12) 0%, transparent 22%)`,
           }}
         />
         <div
@@ -192,7 +192,7 @@ export function Contact() {
         </div>
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1240, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 56, alignItems: "center" }} className="lg:grid-cols-[0.4fr_0.6fr]">
+          <div style={{ gap: 56, alignItems: "flex-start" }} className="grid grid-cols-1 lg:grid-cols-[0.4fr_0.6fr]">
             <motion.div variants={blockVariants}>
               <SectionTag>Contact</SectionTag>
               <motion.h1
@@ -232,14 +232,14 @@ export function Contact() {
               style={{
                 position: "relative",
                 backgroundColor: C.secondary,
-                border: `1px solid rgba(65, 90, 119, 0.24)`,
+                border: `1px solid rgba(127, 160, 196, 0.24)`,
                 padding: "30px 30px",
-                boxShadow: "0 16px 36px rgba(13, 27, 42, 0.12)",
+                boxShadow: "0 16px 36px rgba(30, 58, 86, 0.12)",
               }}
             >
               <div style={{ position: "relative", zIndex: 1 }}>
                 {submitted ? (
-                  <motion.div style={{ display: "flex", alignItems: "center", gap: 14, padding: "22px 24px", border: `1px solid rgba(65, 90, 119, 0.22)` }} variants={blockVariants}>
+                  <motion.div style={{ display: "flex", alignItems: "center", gap: 14, padding: "22px 24px", border: `1px solid rgba(127, 160, 196, 0.22)` }} variants={blockVariants}>
                     <CheckCircle size={22} color={C.accent} />
                     <div>
                       <p style={{ ...sora, color: C.light, fontSize: 14, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 4 }}>

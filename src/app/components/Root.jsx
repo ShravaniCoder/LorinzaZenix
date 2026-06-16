@@ -5,7 +5,7 @@ import { Footer } from "./Footer";
 import { MessageCircle, X, Phone, Mail } from "lucide-react";
 import { CustomCursor } from "./CustomCursor";
 
-const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD" };
+const C = { dark: "#1E3A56", secondary: "#2D4A6A", accent: "#7FA0C4", support: "#B0C4DA", light: "#E0E1DD" };
 const sora = { fontFamily: "'Sora', sans-serif" };
 
 function FloatingChat() {
@@ -15,7 +15,7 @@ function FloatingChat() {
       {open && (
         <div style={{
           backgroundColor: C.secondary,
-          border: `1px solid rgba(65,90,119,0.4)`,
+          border: `1px solid rgba(127, 160, 196,0.4)`,
           borderRadius: 6, padding: "22px",
           width: 272, boxShadow: "0 20px 60px rgba(0,0,0,0.55)",
         }}>
@@ -76,10 +76,10 @@ function FloatingChat() {
       <button onClick={() => setOpen(!open)} style={{
         width: 52, height: 52, borderRadius: "50%",
         backgroundColor: C.accent,
-        border: `2px solid rgba(119,141,169,0.35)`,
+        border: `2px solid rgba(176, 196, 218,0.35)`,
         display: "flex", alignItems: "center", justifyContent: "center",
         cursor: "pointer",
-        boxShadow: "0 6px 28px rgba(65,90,119,0.45)",
+        boxShadow: "0 6px 28px rgba(127, 160, 196,0.45)",
         transition: "background-color 0.2s, transform 0.2s",
       }}
         onMouseEnter={e => { e.currentTarget.style.backgroundColor = C.support; e.currentTarget.style.transform = "scale(1.05)"; }}

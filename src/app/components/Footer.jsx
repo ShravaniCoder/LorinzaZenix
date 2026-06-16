@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { Facebook, Instagram, Twitter, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD" };
+const C = { dark: "#1E3A56", secondary: "#2D4A6A", accent: "#7FA0C4", support: "#B0C4DA", light: "#E0E1DD" };
 const sora = { fontFamily: "'Sora', sans-serif" };
 
 export function Footer() {
@@ -118,7 +118,8 @@ export function Footer() {
             {/* Footer content — vertically centered */}
             <div style={{
               flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
-              padding: "80px 32px 20px", boxSizing: "border-box", width: "100%",
+              padding: "80px 32px 40px", boxSizing: "border-box", width: "100%",
+              overflowY: "auto",
             }}>
               <motion.div
                 style={{ width: "100%", maxWidth: 1240, margin: "0 auto" }}
@@ -126,7 +127,7 @@ export function Footer() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1.2fr", gap: 52 }}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-[52px]">
                   {/* Brand */}
                   <div>
                     <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
@@ -141,13 +142,13 @@ export function Footer() {
                       {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (
                         <a key={i} href="#" style={{
                           width: 34, height: 34, borderRadius: 0,
-                          border: "1px solid rgba(65,90,119,0.4)",
+                          border: "1px solid rgba(127, 160, 196,0.4)",
                           display: "flex", alignItems: "center", justifyContent: "center",
                           color: C.support, transition: "all 0.2s",
                           textDecoration: "none",
                         }}
                           onMouseEnter={e => { e.currentTarget.style.backgroundColor = C.accent; e.currentTarget.style.color = C.light; e.currentTarget.style.borderColor = C.accent; }}
-                          onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = C.support; e.currentTarget.style.borderColor = "rgba(65,90,119,0.4)"; }}
+                          onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = C.support; e.currentTarget.style.borderColor = "rgba(127, 160, 196,0.4)"; }}
                         >
                           <Icon size={14} />
                         </a>
@@ -217,7 +218,7 @@ export function Footer() {
                         <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
                           <div style={{
                             width: 30, height: 30, borderRadius: 0,
-                            backgroundColor: "rgba(65,90,119,0.2)",
+                            backgroundColor: "rgba(127, 160, 196,0.2)",
                             display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
                           }}>
                             <Icon size={13} color={C.support} />
@@ -233,16 +234,16 @@ export function Footer() {
 
             {/* Bottom bar */}
             <motion.div
-              style={{ borderTop: "1px solid rgba(65,90,119,0.15)", padding: "22px 32px" }}
+              style={{ borderTop: "1px solid rgba(127, 160, 196,0.15)", padding: "22px 32px" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              <div style={{ maxWidth: 1240, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-                <p style={{ color: "rgba(119,141,169,0.6)", fontSize: 12.5 }}>
+              <div style={{ maxWidth: 1240, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
+                <p style={{ color: "rgba(176, 196, 218,0.6)", fontSize: 12.5, textAlign: "center", width: "100%", "@media (min-width: 768px)": { width: "auto", textAlign: "left" } }} className="md:w-auto text-center md:text-left w-full">
                   © {new Date().getFullYear()} LorinzaZenix Digital Agency. All rights reserved.
                 </p>
-                <p style={{ color: "rgba(119,141,169,0.6)", fontSize: 12.5 }}>
+                <p style={{ color: "rgba(176, 196, 218,0.6)", fontSize: 12.5, textAlign: "center", width: "100%", "@media (min-width: 768px)": { width: "auto", textAlign: "right" } }} className="md:w-auto text-center md:text-right w-full">
                   Crafted with <span style={{ color: C.accent }}>♥</span> for excellence
                 </p>
               </div>
