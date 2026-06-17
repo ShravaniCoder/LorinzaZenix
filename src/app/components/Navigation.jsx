@@ -6,8 +6,8 @@ import Logo from "../../assets/finalLogo.png";
 
 const MotionLink = motion(Link);
 
-const C = { dark: "#1E3A56", secondary: "#2D4A6A", accent: "#7FA0C4", support: "#B0C4DA", light: "#E0E1DD" };
-const sora = { fontFamily: "Sora, sans-serif" };
+const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD" };
+const sora = { fontFamily: "'Sora', sans-serif" };
 
 export function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -67,9 +67,10 @@ export function Navigation() {
 
   return (
     <nav style={{
-      position: "fixed", top: 0, left: 0, right: 0, zIndex: 99999,
-      backgroundColor: scrolled ? "rgba(30, 58, 86, 0.88)" : "transparent",
-      borderBottom: scrolled ? `1px solid rgba(127, 160, 196, 0.25)` : "none",
+      position: "fixed", top: 0, left: 0, right: 0, zIndex: 50000,
+      bottom: menuOpen ? 0 : "auto",
+      backgroundColor: scrolled ? "rgba(13, 27, 42, 0.88)" : "transparent",
+      borderBottom: scrolled ? `1px solid rgba(65, 90, 119, 0.25)` : "none",
       backdropFilter: scrolled ? "blur(16px)" : "none",
       transition: "background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.4s",
     }}>
@@ -159,8 +160,8 @@ export function Navigation() {
             style={{
               position: "fixed",
               inset: 0,
-              zIndex: 99999,
-              background: "rgba(22, 40, 64, 0.74)",
+              zIndex: 50000,
+              background: "rgba(7, 11, 19, 0.74)",
               backdropFilter: "blur(18px)",
               overflow: "hidden",
             }}
@@ -169,7 +170,7 @@ export function Navigation() {
             exit="exit"
             variants={menuVariants}
           >
-            <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 20% 18%, rgba(127, 160, 196, 0.26) 0%, transparent 24%), radial-gradient(circle at 82% 26%, rgba(212, 175, 55, 0.12) 0%, transparent 28%), linear-gradient(180deg, rgba(30, 58, 86, 0.98) 0%, rgba(22, 40, 64, 0.98) 100%)" }} />
+            <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 20% 18%, rgba(65, 90, 119, 0.26) 0%, transparent 24%), radial-gradient(circle at 82% 26%, rgba(212, 175, 55, 0.12) 0%, transparent 28%), linear-gradient(180deg, rgba(13, 27, 42, 0.98) 0%, rgba(7, 11, 19, 0.98) 100%)" }} />
 
             <motion.div
               style={{
@@ -222,7 +223,7 @@ export function Navigation() {
                         textTransform: "uppercase",
                         fontFamily: "Sora, sans-serif",
                         padding: "12px 0",
-                        borderBottom: `1px solid rgba(176, 196, 218, 0.16)`,
+                        borderBottom: `1px solid rgba(119, 141, 169, 0.16)`,
                       }}
                     >
                       <span>{l.label}</span>
@@ -252,7 +253,7 @@ export function Navigation() {
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
                       border: `1.5px solid ${C.accent}`,
-                      boxShadow: "0 0 24px rgba(127, 160, 196, 0.2)",
+                      boxShadow: "0 0 24px rgba(65, 90, 119, 0.2)",
                     }}
                   >
                     Get A Free Consultation

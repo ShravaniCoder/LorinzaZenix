@@ -10,13 +10,12 @@ import {
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Counter } from "./Counter";
 import officeSpace from "../../images/Office space.png";
-import heroImage from "../../assets/hero.png";
-import brandingImage from "../../images/Branding new.png";
-import uiuxImage from "../../images/UI UX new.png";
-import seoImage from "../../images/SEO new.png";
-import socialImage from "../../images/Social media new.png";
-import webDevImage from "../../images/WEB DEV new.png";
-import strategyImage from "../../images/Strategy new.png";
+import brandingImage from "../../images/Branding.png";
+import uiuxImage from "../../images/UI UX.png";
+import seoImage from "../../images/SEO.png";
+import socialImage from "../../images/Social media.png";
+import webDevImage from "../../images/WEB DEV.png";
+import strategyImage from "../../images/Strategy.png";
 
 const serviceImages = {
   branding: brandingImage,
@@ -29,7 +28,7 @@ const serviceImages = {
 
 const MotionLink = motion(Link);
 
-const C = { dark: "#1E3A56", secondary: "#2D4A6A", accent: "#7FA0C4", support: "#B0C4DA", light: "#E0E1DD", blue: "#253B55" };
+const C = { dark: "#0D1B2A", secondary: "#1B263B", accent: "#415A77", support: "#778DA9", light: "#E0E1DD", blue: "#151922" };
 
 const sora = { fontFamily: "'Sora', sans-serif" };
 
@@ -57,10 +56,10 @@ function SectionTag({ children }) {
 const portfolio = [
   { title: "TechVault Brand Identity", cat: "Branding", bg: C.secondary, img: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=600&q=80" },
   { title: "NovaPay Finance App", cat: "UI/UX Design", bg: "#101D2C", img: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=600&q=80" },
-  { title: "GreenLeaf E-commerce", cat: "Web Dev", bg: "#2D4A6A", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" },
+  { title: "GreenLeaf E-commerce", cat: "Web Dev", bg: "#1B263B", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" },
   { title: "PulseMetrics Dashboard", cat: "Digital Marketing", bg: "#101D2C", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" },
   { title: "Luxara Fashion SEO", cat: "SEO Strategy", bg: C.secondary, img: "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&w=600&q=80" },
-  { title: "SocialBloom Campaign", cat: "Social Media", bg: "#2D4A6A", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=600&q=80" },
+  { title: "SocialBloom Campaign", cat: "Social Media", bg: "#1B263B", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=600&q=80" },
 ];
 
 /* ─── testimonials ─── */
@@ -71,52 +70,52 @@ const testimonials = [
 ];
 
 const servicesList = [
-  { 
-    num: "01", 
-    title: "BRANDING", 
-    cat: "IDENTITY & VISION", 
-    desc: "Craft a powerful, cohesive visual and narrative identity system that sets your brand apart in modern markets.", 
-    link: "/services#s3", 
+  {
+    num: "01",
+    title: "BRANDING",
+    cat: "IDENTITY & VISION",
+    desc: "Craft a powerful, cohesive visual and narrative identity system that sets your brand apart in modern markets.",
+    link: "/services#s3",
     key: "branding"
   },
-  { 
-    num: "02", 
-    title: "UI / UX DESIGN", 
-    cat: "DIGITAL EXPERIENCE", 
-    desc: "Design intuitive, high-converting digital interfaces backed by user research and iterative testing.", 
-    link: "/services#s0", 
+  {
+    num: "02",
+    title: "UI / UX DESIGN",
+    cat: "DIGITAL EXPERIENCE",
+    desc: "Design intuitive, high-converting digital interfaces backed by user research and iterative testing.",
+    link: "/services#s0",
     key: "uiux"
   },
-  { 
-    num: "03", 
-    title: "SEO", 
-    cat: "GROWTH MARKETING", 
-    desc: "Boost organic ranking, build authority, and drive targeted high-intent traffic with custom strategies.", 
-    link: "/services#s4", 
+  {
+    num: "03",
+    title: "SEO",
+    cat: "GROWTH MARKETING",
+    desc: "Boost organic ranking, build authority, and drive targeted high-intent traffic with custom strategies.",
+    link: "/services#s4",
     key: "seo"
   },
-  { 
-    num: "04", 
-    title: "SOCIAL MEDIA", 
-    cat: "BRAND ENGAGEMENT", 
-    desc: "Build a community, run viral social campaigns, and drive conversions across all primary networks.", 
-    link: "/services#s5", 
+  {
+    num: "04",
+    title: "SOCIAL MEDIA",
+    cat: "BRAND ENGAGEMENT",
+    desc: "Build a community, run viral social campaigns, and drive conversions across all primary networks.",
+    link: "/services#s5",
     key: "social"
   },
-  { 
-    num: "05", 
-    title: "DEVELOPMENT", 
-    cat: "ENGINEERING", 
-    desc: "Engineered for speed, performance, and SEO optimization. Custom codebases designed to scale with ease.", 
-    link: "/services#s1", 
+  {
+    num: "05",
+    title: "DEVELOPMENT",
+    cat: "ENGINEERING",
+    desc: "Engineered for speed, performance, and SEO optimization. Custom codebases designed to scale with ease.",
+    link: "/services#s1",
     key: "webdev"
   },
-  { 
-    num: "06", 
-    title: "STRATEGY", 
-    cat: "BUSINESS ROADMAP", 
-    desc: "Align your product development, marketing, and systems to a structured roadmap for long-term growth.", 
-    link: "/services", 
+  {
+    num: "06",
+    title: "STRATEGY",
+    cat: "BUSINESS ROADMAP",
+    desc: "Align your product development, marketing, and systems to a structured roadmap for long-term growth.",
+    link: "/services",
     key: "strategy"
   }
 ];
@@ -131,7 +130,7 @@ export function Home() {
   // Parallax tilt motion values
   const mouseX = useMotionValue(250);
   const mouseY = useMotionValue(230);
-  
+
   const springConfig = { damping: 30, stiffness: 220, mass: 0.5 };
 
   // Parallax tilt transforms: subtle 2 degrees
@@ -241,7 +240,7 @@ export function Home() {
           overflow: "hidden",
           textAlign: "center",
           padding: "120px 24px 100px",
-          backgroundColor: "#162840", // Luxury dark deep blue-black base
+          backgroundColor: "#070B13", // Luxury dark deep blue-black base
         }}
       >
         {/* Dedicated Background Image Layer */}
@@ -285,7 +284,7 @@ export function Home() {
             width: "550px",
             height: "550px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(127, 160, 196, 0.22) 0%, rgba(30, 58, 86, 0) 70%)",
+            background: "radial-gradient(circle, rgba(65, 90, 119, 0.22) 0%, rgba(13, 27, 42, 0) 70%)",
             filter: "blur(110px)",
             zIndex: 1,
             y: bgY,
@@ -311,7 +310,7 @@ export function Home() {
             width: "600px",
             height: "600px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(30, 58, 86, 0) 70%)",
+            background: "radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(13, 27, 42, 0) 70%)",
             filter: "blur(130px)",
             zIndex: 1,
             y: bgY,
@@ -339,7 +338,7 @@ export function Home() {
             width: "750px",
             height: "450px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(127, 160, 196, 0.14) 0%, rgba(30, 58, 86, 0) 65%)",
+            background: "radial-gradient(circle, rgba(65, 90, 119, 0.14) 0%, rgba(13, 27, 42, 0) 65%)",
             filter: "blur(90px)",
             zIndex: 1,
             pointerEvents: "none",
@@ -381,8 +380,8 @@ export function Home() {
             width: "160px",
             height: "160px",
             borderRadius: "50%",
-            background: "rgba(127, 160, 196, 0.015)",
-            border: "1px solid rgba(127, 160, 196, 0.035)",
+            background: "rgba(65, 90, 119, 0.015)",
+            border: "1px solid rgba(65, 90, 119, 0.035)",
             backdropFilter: "blur(12px)",
             zIndex: 1,
             y: bgY,
@@ -444,12 +443,11 @@ export function Home() {
 
           {/* Headline (Word-by-word reveal) */}
           <h1
-            className=""
+            className="font-playfair"
             style={{
-               ...sora,
               color: C.light,
-              fontSize: "clamp(1rem, 4.2vw, 3.6rem)",
-              fontWeight: 700,
+              fontSize: "clamp(2rem, 5.2vw, 4.6rem)",
+              fontWeight: 800,
               lineHeight: 1.1,
               letterSpacing: "-0.03em",
               textTransform: "uppercase",
@@ -672,7 +670,7 @@ export function Home() {
           SECTION 2 — DYNAMIC SERVICE SHOWCASE (Split Editorial Layout)
       ══════════════════════════════════════════ */}
       <motion.section
-        style={{ backgroundColor: "#162840", padding: "120px 32px 140px", borderTop: "1px solid rgba(255, 255, 255, 0.05)" }}
+        style={{ backgroundColor: "#070B13", padding: "120px 32px 140px", borderTop: "1px solid rgba(255, 255, 255, 0.05)" }}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -703,9 +701,9 @@ export function Home() {
           </div>
 
           {/* Large Split layout */}
-          <div className="grid grid-cols-[5.5fr_4.5fr] lg:grid-cols-12" style={{ gap: "clamp(12px, 3vw, 60px)", alignItems: "start" }}>
+          <div className="grid grid-cols-1 lg:grid-cols-12" style={{ gap: "60px", alignItems: "start" }}>
             {/* Left side: List of services */}
-            <div className="col-span-1 lg:col-span-7" style={{ display: "flex", flexDirection: "column" }}>
+            <div className="lg:col-span-7" style={{ display: "flex", flexDirection: "column" }}>
               {servicesList.map(({ num, title, cat, desc, link }, idx) => {
                 const isActive = activeService === idx;
                 return (
@@ -715,17 +713,17 @@ export function Home() {
                     onClick={() => setActiveService(idx)}
                     style={{
                       borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
-                      padding: "clamp(12px, 2.2vw, 24px) 0",
+                      padding: "24px 0",
                       cursor: "pointer",
                       transition: "all 0.3s ease",
                     }}
                   >
                     {/* Row Header */}
-                    <div style={{ display: "flex", alignItems: "baseline", gap: "clamp(10px, 2vw, 20px)" }}>
+                    <div style={{ display: "flex", alignItems: "baseline", gap: "20px" }}>
                       <span style={{
                         ...sora,
                         color: isActive ? "#D4AF37" : "rgba(255, 255, 255, 0.25)",
-                        fontSize: "clamp(11px, 1.2vw, 13px)",
+                        fontSize: "13px",
                         fontWeight: 700,
                         letterSpacing: "0.1em",
                         transition: "color 0.3s ease",
@@ -736,7 +734,7 @@ export function Home() {
                         style={{
                           ...sora,
                           color: isActive ? C.light : "rgba(255, 255, 255, 0.35)",
-                          fontSize: "clamp(1.1rem, 2.8vw, 2.3rem)",
+                          fontSize: "clamp(1.5rem, 3.2vw, 2.3rem)",
                           fontWeight: 800,
                           textTransform: "uppercase",
                           letterSpacing: "-0.02em",
@@ -758,11 +756,11 @@ export function Home() {
                           transition={{ duration: 0.35, ease: "easeInOut" }}
                           style={{ overflow: "hidden" }}
                         >
-                          <div style={{ padding: "clamp(8px, 1.5vw, 16px) 0 clamp(4px, 1vw, 8px) clamp(16px, 3.2vw, 36px)" }}>
+                          <div style={{ padding: "16px 0 8px 36px" }}>
                             <p style={{
                               ...sora,
                               color: "#D4AF37",
-                              fontSize: "clamp(9px, 1.1vw, 11px)",
+                              fontSize: "11px",
                               fontWeight: 700,
                               letterSpacing: "0.1em",
                               textTransform: "uppercase",
@@ -772,9 +770,9 @@ export function Home() {
                             </p>
                             <p style={{
                               color: C.support,
-                              fontSize: "clamp(12px, 1.35vw, 14.5px)",
+                              fontSize: "14.5px",
                               lineHeight: "1.7",
-                              margin: "clamp(6px, 1.2vw, 12px) 0 clamp(10px, 1.8vw, 18px)",
+                              margin: "12px 0 18px",
                               maxWidth: "480px",
                             }}>
                               {desc}
@@ -784,7 +782,7 @@ export function Home() {
                               style={{
                                 ...sora,
                                 color: "#D4AF37",
-                                fontSize: "clamp(9px, 1.1vw, 11px)",
+                                fontSize: "11px",
                                 fontWeight: 700,
                                 letterSpacing: "0.1em",
                                 textTransform: "uppercase",
@@ -809,13 +807,13 @@ export function Home() {
             </div>
 
             {/* Right side: Premium Image Showcase Panel */}
-            <div className="col-span-1 lg:col-span-5 self-center lg:self-start" style={{ position: "sticky", top: "120px" }}>
+            <div className="lg:col-span-5" style={{ position: "sticky", top: "120px" }}>
               <motion.div
                 onMouseMove={handlePanelMouseMove}
                 onMouseLeave={handlePanelMouseLeave}
                 style={{
-                  height: "clamp(180px, 38vw, 460px)",
-                  backgroundColor: "rgba(30, 58, 86, 0.4)",
+                  height: "460px",
+                  backgroundColor: "rgba(13, 27, 42, 0.4)",
                   border: "1px solid rgba(212, 175, 55, 0.22)", // Thin gold accent border
                   borderRadius: "28px",
                   display: "flex",
@@ -854,13 +852,13 @@ export function Home() {
                   />
 
                   {/* Image Gallery Showcase with Crossfade */}
-                  <AnimatePresence>
+                  <AnimatePresence mode="wait">
                     <motion.div
                       key={`image-${activeService}`}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      initial={{ opacity: 0, scale: 1.0 }}
+                      animate={{ opacity: 1, scale: 1.03 }}
+                      exit={{ opacity: 0, scale: 1.0 }}
+                      transition={{ duration: 0.35, ease: "easeOut" }}
                       style={{
                         position: "absolute",
                         inset: 0,
@@ -869,7 +867,7 @@ export function Home() {
                         zIndex: 2,
                         borderRadius: "28px",
                         overflow: "hidden",
-                        backgroundColor: "#162840",
+                        backgroundColor: "#070B13",
                       }}
                     >
                       <img
@@ -879,18 +877,26 @@ export function Home() {
                           width: "100%",
                           height: "100%",
                           objectFit: "cover",
-                          objectPosition: "center",
                           transformStyle: "preserve-3d",
                         }}
                       />
-
+                      {/* Subtle overlay (5%) */}
+                      <div
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          backgroundColor: "rgba(7, 11, 19, 0.05)",
+                          zIndex: 3,
+                          pointerEvents: "none",
+                        }}
+                      />
                     </motion.div>
                   </AnimatePresence>
                 </motion.div>
               </motion.div>
 
-              {/* Showcase CTA footer - Desktop Only */}
-              <div className="hidden lg:block" style={{ marginTop: "clamp(16px, 2.5vw, 32px)", textAlign: "center" }}>
+              {/* Showcase CTA footer */}
+              <div style={{ marginTop: "32px", textAlign: "center" }}>
                 <MotionLink
                   to="/services"
                   style={{
@@ -923,47 +929,13 @@ export function Home() {
               </div>
             </div>
           </div>
-
-          {/* Showcase CTA footer - Mobile/Tablet Only */}
-          <div className="block lg:hidden" style={{ marginTop: "clamp(24px, 5vw, 40px)", textAlign: "center", width: "100%" }}>
-            <MotionLink
-              to="/services"
-              style={{
-                ...sora,
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                backgroundColor: "transparent",
-                color: C.light,
-                padding: "14px 40px",
-                borderRadius: 0,
-                border: "2px solid rgba(255, 255, 255, 0.15)",
-                textDecoration: "none",
-                fontSize: "11.5px",
-                fontWeight: 700,
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-                whiteSpace: "nowrap",
-              }}
-              variants={buttonVariants}
-              whileHover={{
-                backgroundColor: C.accent,
-                color: C.light,
-                borderColor: C.accent,
-                scale: 1.03,
-              }}
-              transition={{ duration: 0.2 }}
-            >
-              EXPLORE ALL SERVICES <ChevronRight size={14} />
-            </MotionLink>
-          </div>
         </div>
       </motion.section>
 
       {/* ══════════════════════════════════════════
           SECTION 3 — BOLD PHOTO STATEMENT  (WokWok: "ICONIC LOGO HOLDS YOUR VISUAL BRAND.")
       ══════════════════════════════════════════ */}
-      <motion.section 
+      <motion.section
         style={{ position: "relative", overflow: "hidden" }}
         initial="hidden"
         whileInView="visible"
@@ -985,7 +957,7 @@ export function Home() {
             style={{
               position: "absolute",
               inset: 0,
-              backgroundColor: "rgba(30, 58, 86,0.92)",
+              backgroundColor: "rgba(13,27,42,0.92)",
             }}
           />
         </div>
@@ -1044,7 +1016,7 @@ export function Home() {
       {/* ══════════════════════════════════════════
           SECTION 5 — PORTFOLIO GRID  (WokWok: colored tiles, mixed sizes)
       ══════════════════════════════════════════ */}
-      <motion.section 
+      <motion.section
         style={{ backgroundColor: C.dark, padding: "0 32px 80px" }}
         initial="hidden"
         whileInView="visible"
@@ -1072,7 +1044,7 @@ export function Home() {
                 />
                 <div style={{
                   position: "absolute", inset: 0,
-                  background: "linear-gradient(0deg, rgba(30, 58, 86,0.85) 0%, transparent 60%)",
+                  background: "linear-gradient(0deg, rgba(13,27,42,0.85) 0%, transparent 60%)",
                   display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "18px",
                 }}>
                   <span style={{ color: C.support, fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{p.cat}</span>
@@ -1101,7 +1073,7 @@ export function Home() {
                 />
                 <div style={{
                   position: "absolute", inset: 0,
-                  background: "linear-gradient(0deg, rgba(30, 58, 86,0.85) 0%, transparent 60%)",
+                  background: "linear-gradient(0deg, rgba(13,27,42,0.85) 0%, transparent 60%)",
                   display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "22px",
                 }}>
                   <span style={{ color: C.support, fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{p.cat}</span>
@@ -1153,7 +1125,7 @@ export function Home() {
             alt="Tech background"
             style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
           />
-          <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(30, 58, 86,0.92)" }} />
+          <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(13,27,42,0.92)" }} />
         </div>
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1240, margin: "0 auto", padding: "100px 32px 0" }}>
 
@@ -1207,7 +1179,7 @@ export function Home() {
                 <div style={{
                   width: 58, height: 58,
                   borderRadius: "50%",
-                  backgroundColor: "rgba(127, 160, 196,0.15)",
+                  backgroundColor: "rgba(65,90,119,0.15)",
                   border: `1.5px solid ${C.accent}`,
                   display: "flex", alignItems: "center", justifyContent: "center",
                   transition: "all 0.2s ease",
@@ -1217,7 +1189,7 @@ export function Home() {
                     e.currentTarget.style.borderColor = C.light;
                   }}
                   onMouseLeave={e => {
-                    e.currentTarget.style.backgroundColor = "rgba(127, 160, 196,0.15)";
+                    e.currentTarget.style.backgroundColor = "rgba(65,90,119,0.15)";
                     e.currentTarget.style.borderColor = C.accent;
                   }}
                 >
@@ -1237,7 +1209,7 @@ export function Home() {
         </div>
 
         {/* ── STATS BAR (WokWok: 3 dark boxes at bottom) ── */}
-        <div style={{ position: "relative", zIndex: 1, borderTop: `1px solid rgba(127, 160, 196,0.25)` }}>
+        <div style={{ position: "relative", zIndex: 1, borderTop: `1px solid rgba(65,90,119,0.25)` }}>
           <div style={{ maxWidth: 1240, margin: "0 auto" }} className="grid grid-cols-1 md:grid-cols-3">
             {[
               { value: "$999", label: "Starting Price" },
@@ -1246,9 +1218,9 @@ export function Home() {
             ].map(({ value, label }, i) => (
               <div key={i} style={{
                 padding: "44px 32px", textAlign: "center",
-                borderRight: i < 2 ? `1px solid rgba(127, 160, 196,0.2)` : "none",
-                borderBottom: `1px solid rgba(127, 160, 196,0.2)`,
-                backgroundColor: i === 1 ? "rgba(30, 58, 86, 0.85)" : "#1A3048",
+                borderRight: i < 2 ? `1px solid rgba(65,90,119,0.2)` : "none",
+                borderBottom: `1px solid rgba(65,90,119,0.2)`,
+                backgroundColor: i === 1 ? "rgba(13, 27, 42, 0.85)" : "#0A141F",
               }}>
                 <p style={{ ...sora, color: C.light, fontSize: "clamp(2rem, 3.8vw, 2.8rem)", fontWeight: 800, lineHeight: 1 }}>
                   <Counter value={value} />
@@ -1297,7 +1269,7 @@ export function Home() {
                   padding: "44px 36px",
                   textAlign: "left",
                   position: "relative",
-                  border: `1px solid rgba(127, 160, 196, 0.15)`,
+                  border: `1px solid rgba(65, 90, 119, 0.15)`,
                   cursor: "pointer",
                   willChange: "transform, opacity",
                 }}
@@ -1305,18 +1277,18 @@ export function Home() {
                 whileHover={{
                   y: -5,
                   borderColor: C.accent,
-                  boxShadow: "0 10px 30px rgba(127, 160, 196, 0.12)",
+                  boxShadow: "0 10px 30px rgba(65, 90, 119, 0.12)",
                 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
-                <div style={{ fontSize: "3.5rem", color: "rgba(127, 160, 196,0.18)", lineHeight: 1, position: "absolute", top: 20, right: 24, fontFamily: "Georgia, serif" }}>"</div>
+                <div style={{ fontSize: "3.5rem", color: "rgba(65,90,119,0.18)", lineHeight: 1, position: "absolute", top: 20, right: 24, fontFamily: "Georgia, serif" }}>"</div>
                 <div style={{ display: "flex", gap: 3, marginBottom: 24 }}>
                   {Array.from({ length: t.stars }).map((_, si) => (
                     <Star key={si} size={14} color={C.accent} fill={C.accent} />
                   ))}
                 </div>
                 <p style={{ color: C.support, fontSize: 14, lineHeight: 1.8, marginBottom: 28, fontStyle: "italic" }}>"{t.text}"</p>
-                <div style={{ borderTop: "1px solid rgba(127, 160, 196,0.2)", paddingTop: 20 }}>
+                <div style={{ borderTop: "1px solid rgba(65,90,119,0.2)", paddingTop: 20 }}>
                   <p style={{ ...sora, color: C.light, fontSize: 14, fontWeight: 700 }}>{t.name}</p>
                   <p style={{ color: C.accent, fontSize: 12, marginTop: 4, letterSpacing: "0.02em" }}>{t.role}</p>
                 </div>
