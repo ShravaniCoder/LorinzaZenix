@@ -67,7 +67,7 @@ export function Navigation() {
 
   return (
     <nav style={{
-      position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
+      position: "fixed", top: 0, left: 0, right: 0, zIndex: 99999,
       backgroundColor: scrolled ? "rgba(30, 58, 86, 0.88)" : "transparent",
       borderBottom: scrolled ? `1px solid rgba(127, 160, 196, 0.25)` : "none",
       backdropFilter: scrolled ? "blur(16px)" : "none",
@@ -159,7 +159,7 @@ export function Navigation() {
             style={{
               position: "fixed",
               inset: 0,
-              zIndex: 999,
+              zIndex: 99999,
               background: "rgba(22, 40, 64, 0.74)",
               backdropFilter: "blur(18px)",
               overflow: "hidden",
