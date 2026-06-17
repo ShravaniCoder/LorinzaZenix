@@ -9,17 +9,14 @@ import {
 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Counter } from "./Counter";
-6
 import officeSpace from "../../images/Office space.png";
-
 import heroImage from "../../assets/hero.png";
-
-import brandingImage from "../../images/Branding.png";
-import uiuxImage from "../../images/UI UX.png";
-import seoImage from "../../images/SEO.png";
-import socialImage from "../../images/Social media.png";
-import webDevImage from "../../images/WEB DEV.png";
-import strategyImage from "../../images/Strategy.png";
+import brandingImage from "../../images/Branding new.png";
+import uiuxImage from "../../images/UI UX new.png";
+import seoImage from "../../images/SEO new.png";
+import socialImage from "../../images/Social media new.png";
+import webDevImage from "../../images/WEB DEV new.png";
+import strategyImage from "../../images/Strategy new.png";
 
 const serviceImages = {
   branding: brandingImage,
@@ -706,9 +703,9 @@ export function Home() {
           </div>
 
           {/* Large Split layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-12" style={{ gap: "60px", alignItems: "start" }}>
+          <div className="grid grid-cols-[5.5fr_4.5fr] lg:grid-cols-12" style={{ gap: "clamp(12px, 3vw, 60px)", alignItems: "start" }}>
             {/* Left side: List of services */}
-            <div className="lg:col-span-7" style={{ display: "flex", flexDirection: "column" }}>
+            <div className="col-span-1 lg:col-span-7" style={{ display: "flex", flexDirection: "column" }}>
               {servicesList.map(({ num, title, cat, desc, link }, idx) => {
                 const isActive = activeService === idx;
                 return (
@@ -718,17 +715,17 @@ export function Home() {
                     onClick={() => setActiveService(idx)}
                     style={{
                       borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
-                      padding: "24px 0",
+                      padding: "clamp(12px, 2.2vw, 24px) 0",
                       cursor: "pointer",
                       transition: "all 0.3s ease",
                     }}
                   >
                     {/* Row Header */}
-                    <div style={{ display: "flex", alignItems: "baseline", gap: "20px" }}>
+                    <div style={{ display: "flex", alignItems: "baseline", gap: "clamp(10px, 2vw, 20px)" }}>
                       <span style={{
                         ...sora,
                         color: isActive ? "#D4AF37" : "rgba(255, 255, 255, 0.25)",
-                        fontSize: "13px",
+                        fontSize: "clamp(11px, 1.2vw, 13px)",
                         fontWeight: 700,
                         letterSpacing: "0.1em",
                         transition: "color 0.3s ease",
@@ -739,7 +736,7 @@ export function Home() {
                         style={{
                           ...sora,
                           color: isActive ? C.light : "rgba(255, 255, 255, 0.35)",
-                          fontSize: "clamp(1.5rem, 3.2vw, 2.3rem)",
+                          fontSize: "clamp(1.1rem, 2.8vw, 2.3rem)",
                           fontWeight: 800,
                           textTransform: "uppercase",
                           letterSpacing: "-0.02em",
@@ -761,11 +758,11 @@ export function Home() {
                           transition={{ duration: 0.35, ease: "easeInOut" }}
                           style={{ overflow: "hidden" }}
                         >
-                          <div style={{ padding: "16px 0 8px 36px" }}>
+                          <div style={{ padding: "clamp(8px, 1.5vw, 16px) 0 clamp(4px, 1vw, 8px) clamp(16px, 3.2vw, 36px)" }}>
                             <p style={{
                               ...sora,
                               color: "#D4AF37",
-                              fontSize: "11px",
+                              fontSize: "clamp(9px, 1.1vw, 11px)",
                               fontWeight: 700,
                               letterSpacing: "0.1em",
                               textTransform: "uppercase",
@@ -775,9 +772,9 @@ export function Home() {
                             </p>
                             <p style={{
                               color: C.support,
-                              fontSize: "14.5px",
+                              fontSize: "clamp(12px, 1.35vw, 14.5px)",
                               lineHeight: "1.7",
-                              margin: "12px 0 18px",
+                              margin: "clamp(6px, 1.2vw, 12px) 0 clamp(10px, 1.8vw, 18px)",
                               maxWidth: "480px",
                             }}>
                               {desc}
@@ -787,7 +784,7 @@ export function Home() {
                               style={{
                                 ...sora,
                                 color: "#D4AF37",
-                                fontSize: "11px",
+                                fontSize: "clamp(9px, 1.1vw, 11px)",
                                 fontWeight: 700,
                                 letterSpacing: "0.1em",
                                 textTransform: "uppercase",
@@ -812,12 +809,12 @@ export function Home() {
             </div>
 
             {/* Right side: Premium Image Showcase Panel */}
-            <div className="lg:col-span-5" style={{ position: "sticky", top: "120px" }}>
+            <div className="col-span-1 lg:col-span-5 self-center lg:self-start" style={{ position: "sticky", top: "120px" }}>
               <motion.div
                 onMouseMove={handlePanelMouseMove}
                 onMouseLeave={handlePanelMouseLeave}
                 style={{
-                  height: "460px",
+                  height: "clamp(180px, 38vw, 460px)",
                   backgroundColor: "rgba(30, 58, 86, 0.4)",
                   border: "1px solid rgba(212, 175, 55, 0.22)", // Thin gold accent border
                   borderRadius: "28px",
@@ -857,13 +854,13 @@ export function Home() {
                   />
 
                   {/* Image Gallery Showcase with Crossfade */}
-                  <AnimatePresence mode="wait">
+                  <AnimatePresence>
                     <motion.div
                       key={`image-${activeService}`}
-                      initial={{ opacity: 0, scale: 1.0 }}
-                      animate={{ opacity: 1, scale: 1.03 }}
-                      exit={{ opacity: 0, scale: 1.0 }}
-                      transition={{ duration: 0.35, ease: "easeOut" }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
                       style={{
                         position: "absolute",
                         inset: 0,
@@ -882,26 +879,18 @@ export function Home() {
                           width: "100%",
                           height: "100%",
                           objectFit: "cover",
+                          objectPosition: "center",
                           transformStyle: "preserve-3d",
                         }}
                       />
-                      {/* Subtle overlay (5%) */}
-                      <div
-                        style={{
-                          position: "absolute",
-                          inset: 0,
-                          backgroundColor: "rgba(22, 40, 64, 0.05)",
-                          zIndex: 3,
-                          pointerEvents: "none",
-                        }}
-                      />
+
                     </motion.div>
                   </AnimatePresence>
                 </motion.div>
               </motion.div>
 
-              {/* Showcase CTA footer */}
-              <div style={{ marginTop: "32px", textAlign: "center" }}>
+              {/* Showcase CTA footer - Desktop Only */}
+              <div className="hidden lg:block" style={{ marginTop: "clamp(16px, 2.5vw, 32px)", textAlign: "center" }}>
                 <MotionLink
                   to="/services"
                   style={{
@@ -933,6 +922,40 @@ export function Home() {
                 </MotionLink>
               </div>
             </div>
+          </div>
+
+          {/* Showcase CTA footer - Mobile/Tablet Only */}
+          <div className="block lg:hidden" style={{ marginTop: "clamp(24px, 5vw, 40px)", textAlign: "center", width: "100%" }}>
+            <MotionLink
+              to="/services"
+              style={{
+                ...sora,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                backgroundColor: "transparent",
+                color: C.light,
+                padding: "14px 40px",
+                borderRadius: 0,
+                border: "2px solid rgba(255, 255, 255, 0.15)",
+                textDecoration: "none",
+                fontSize: "11.5px",
+                fontWeight: 700,
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                whiteSpace: "nowrap",
+              }}
+              variants={buttonVariants}
+              whileHover={{
+                backgroundColor: C.accent,
+                color: C.light,
+                borderColor: C.accent,
+                scale: 1.03,
+              }}
+              transition={{ duration: 0.2 }}
+            >
+              EXPLORE ALL SERVICES <ChevronRight size={14} />
+            </MotionLink>
           </div>
         </div>
       </motion.section>
