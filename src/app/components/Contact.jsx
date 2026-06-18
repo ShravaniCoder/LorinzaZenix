@@ -34,19 +34,16 @@ function ContactCard({ icon: Icon, label, value, meta }) {
       style={{
         display: "flex",
         alignItems: "flex-start",
-        gap: 16,
         backgroundColor: C.secondary,
         border: `1px solid rgba(127, 160, 196, 0.28)`,
-        padding: "20px 20px",
         willChange: "transform, opacity",
       }}
+      className="p-4 sm:p-5 gap-3.5 sm:gap-4"
       whileHover={{ y: -4, borderColor: C.accent, boxShadow: "0 12px 30px rgba(30, 58, 86, 0.16)" }}
       transition={{ duration: 0.22, ease: "easeOut" }}
     >
       <div
         style={{
-          width: 48,
-          height: 48,
           flexShrink: 0,
           display: "flex",
           alignItems: "center",
@@ -54,27 +51,28 @@ function ContactCard({ icon: Icon, label, value, meta }) {
           backgroundColor: "rgba(127, 160, 196, 0.14)",
           border: `1px solid rgba(127, 160, 196, 0.2)`,
         }}
+        className="w-10 h-10 sm:w-12 sm:h-12"
       >
-        <Icon size={18} color={C.light} strokeWidth={1.6} />
+        <Icon size={18} color={C.light} strokeWidth={1.6} className="w-[18px] h-[18px] sm:w-5 sm:h-5" />
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
         <p
           style={{
             ...sora,
             color: C.light,
-            fontSize: 11,
             fontWeight: 700,
             letterSpacing: "0.1em",
             textTransform: "uppercase",
             marginBottom: 6,
           }}
+          className="text-[10px] sm:text-xs"
         >
           {label}
         </p>
-        <p style={{ color: C.light, fontSize: 15, fontWeight: 600, lineHeight: 1.45 }}>{value}</p>
-        <p style={{ color: C.support, fontSize: 12.5, lineHeight: 1.6, marginTop: 4 }}>{meta}</p>
+        <p style={{ color: C.light, fontWeight: 600, lineHeight: 1.45, overflowWrap: "anywhere" }} className="text-sm sm:text-base">{value}</p>
+        <p style={{ color: C.support, lineHeight: 1.6, marginTop: 4 }} className="text-xs sm:text-[13px]">{meta}</p>
       </div>
-      <motion.span style={{ marginTop: 2, color: C.accent }} whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+      <motion.span style={{ marginTop: 2, color: C.accent }} whileHover={{ x: 4 }} transition={{ duration: 0.2 }} className="flex-shrink-0">
         <ArrowRight size={16} />
       </motion.span>
     </motion.div>
@@ -143,7 +141,7 @@ export function Contact() {
   ];
 
   return (
-    <div style={{ backgroundColor: C.dark }}>
+    <div style={{ backgroundColor: C.dark, overflow: "hidden" }}>
       <PageHero
         eyebrow="Contact"
         title="GET IN TOUCH"
@@ -157,8 +155,8 @@ export function Contact() {
           position: "relative",
           overflow: "hidden",
           background: `linear-gradient(180deg, ${C.dark} 0%, ${C.secondary} 100%)`,
-          padding: "104px 32px",
         }}
+        className="px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-26"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
@@ -192,7 +190,7 @@ export function Contact() {
         </div>
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1240, margin: "0 auto" }}>
-          <div style={{ gap: 56, alignItems: "flex-start" }} className="grid grid-cols-1 lg:grid-cols-[0.4fr_0.6fr]">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.4fr_0.6fr] gap-10 lg:gap-14 items-start">
             <motion.div variants={blockVariants}>
               <SectionTag>Contact</SectionTag>
               <motion.h1
@@ -233,9 +231,9 @@ export function Contact() {
                 position: "relative",
                 backgroundColor: C.secondary,
                 border: `1px solid rgba(127, 160, 196, 0.24)`,
-                padding: "30px 30px",
                 boxShadow: "0 16px 36px rgba(30, 58, 86, 0.12)",
               }}
+              className="p-5 sm:p-8"
             >
               <div style={{ position: "relative", zIndex: 1 }}>
                 {submitted ? (
@@ -256,10 +254,11 @@ export function Contact() {
                       e.preventDefault();
                       setSubmitted(true);
                     }}
-                    style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16 }}
+                    style={{ display: "grid", gap: 16 }}
+                    className="grid grid-cols-1"
                     variants={containerVariants}
                   >
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16 }} className="sm:grid-cols-2">
+                    <div style={{ display: "grid", gap: 16 }} className="grid grid-cols-1 sm:grid-cols-2">
                       <div>
                         <label style={{ ...sora, display: "block", color: C.support, fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>
                           Name

@@ -54,12 +54,12 @@ function SectionTag({ children }) {
 
 /* ─── portfolio items ─── */
 const portfolio = [
-  { title: "TechVault Brand Identity", cat: "Branding", bg: C.secondary, img: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=600&q=80" },
-  { title: "NovaPay Finance App", cat: "UI/UX Design", bg: "#101D2C", img: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=600&q=80" },
-  { title: "GreenLeaf E-commerce", cat: "Web Dev", bg: "#1B263B", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" },
-  { title: "PulseMetrics Dashboard", cat: "Digital Marketing", bg: "#101D2C", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" },
-  { title: "Luxara Fashion SEO", cat: "SEO Strategy", bg: C.secondary, img: "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&w=600&q=80" },
-  { title: "SocialBloom Campaign", cat: "Social Media", bg: "#1B263B", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=600&q=80" },
+  { title: "TechVault Brand Identity", cat: "Branding", bg: C.secondary, img: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=800&q=80" },
+  { title: "NovaPay Finance App", cat: "UI/UX Design", bg: "#101D2C", img: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80" },
+  { title: "GreenLeaf E-commerce", cat: "Web Dev", bg: "#1B263B", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" },
+  { title: "PulseMetrics Dashboard", cat: "Digital Marketing", bg: "#101D2C", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" },
+  { title: "Luxara Fashion SEO", cat: "SEO Strategy", bg: C.secondary, img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" },
+  { title: "SocialBloom Campaign", cat: "Social Media", bg: "#1B263B", img: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=800&q=80" },
 ];
 
 /* ─── testimonials ─── */
@@ -1067,7 +1067,7 @@ export function Home() {
                 />
                 <div style={{
                   position: "absolute", inset: 0,
-                  background: "linear-gradient(0deg, rgba(13,27,42,0.85) 0%, transparent 60%)",
+                  background: "linear-gradient(0deg, rgba(13, 27, 42, 0.5) 0%, rgba(13, 27, 42, 0.1) 40%, transparent 70%)",
                   display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "18px",
                 }}>
                   <span style={{ color: C.support, fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{p.cat}</span>
@@ -1096,7 +1096,7 @@ export function Home() {
                 />
                 <div style={{
                   position: "absolute", inset: 0,
-                  background: "linear-gradient(0deg, rgba(13,27,42,0.85) 0%, transparent 60%)",
+                  background: "linear-gradient(0deg, rgba(13, 27, 42, 0.5) 0%, rgba(13, 27, 42, 0.1) 40%, transparent 70%)",
                   display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "22px",
                 }}>
                   <span style={{ color: C.support, fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{p.cat}</span>

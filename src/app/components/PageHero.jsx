@@ -46,14 +46,13 @@ export function PageHero({ eyebrow, title, description, image, alt }) {
       style={{
         position: "relative",
         overflow: "hidden",
-        minHeight: "clamp(520px, 74vh, 760px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "160px 32px 120px",
         textAlign: "center",
         backgroundColor: C.dark,
       }}
+      className="min-h-[420px] sm:min-h-[520px] lg:min-h-[clamp(520px,74vh,760px)] px-4 py-24 sm:px-8 sm:py-32 md:py-40"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
