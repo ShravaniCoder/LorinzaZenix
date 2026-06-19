@@ -446,8 +446,9 @@ export function Home() {
             className="font-playfair"
             style={{
               color: C.light,
-              fontSize: "clamp(2rem, 5.2vw, 4.6rem)",
-              fontWeight: 800,
+              ...sora,
+              fontSize: "clamp(2rem, 4.2vw, 3.6rem)",
+              fontWeight: 900,
               lineHeight: 1.1,
               letterSpacing: "-0.03em",
               textTransform: "uppercase",
@@ -670,7 +671,7 @@ export function Home() {
           SECTION 2 — DYNAMIC SERVICE SHOWCASE (Split Editorial Layout)
       ══════════════════════════════════════════ */}
       <motion.section
-        style={{ backgroundColor: "#070B13", padding: "120px 32px 140px", borderTop: "1px solid rgba(255, 255, 255, 0.05)" }}
+        style={{ backgroundColor: C.secondary, padding: "120px 32px 140px", borderTop: "1px solid rgba(255, 255, 255, 0.05)" }}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -1040,7 +1041,7 @@ export function Home() {
           SECTION 5 — PORTFOLIO GRID  (WokWok: colored tiles, mixed sizes)
       ══════════════════════════════════════════ */}
       <motion.section
-        style={{ backgroundColor: C.dark, padding: "0 32px 80px" }}
+        style={{ backgroundColor: C.secondary, padding: "0 32px 80px" }}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
