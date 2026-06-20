@@ -147,7 +147,7 @@ export function Contact() {
       <PageHero
         eyebrow="Contact"
         title="GET IN TOUCH"
-        description="Tell us about your goals and we’ll shape a focused response that feels tailored, clear, and distinctly LorinzaZenix."
+        description="Starting fresh or scaling something that already works — we're ready when you are."
         image="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=1920&q=80"
         alt="Modern agency collaboration environment"
       />
@@ -194,7 +194,7 @@ export function Contact() {
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1240, margin: "0 auto" }}>
           <div style={{ gap: 56, alignItems: "flex-start" }} className="grid grid-cols-1 lg:grid-cols-[0.4fr_0.6fr]">
             <motion.div variants={blockVariants}>
-              <SectionTag>Contact</SectionTag>
+           
               <motion.h1
                 style={{
                   ...sora,
@@ -208,14 +208,14 @@ export function Contact() {
                 }}
                 variants={headingVariants}
               >
-                GET IN TOUCH
+                LET'S BUILD SOMETHING TOGETHER.
                 <span style={{ color: C.accent }}>.</span>
               </motion.h1>
               <motion.p
                 style={{ color: C.support, fontSize: 16, lineHeight: 1.85, maxWidth: 540, marginBottom: 34 }}
                 variants={paragraphVariants}
               >
-                Tell us about your goals and we’ll shape a focused response that feels tailored, clear, and distinctly LorinzaZenix.
+               One conversation. That's where it starts.
               </motion.p>
 
               <motion.div style={{ display: "flex", flexDirection: "column", gap: 16 }} variants={containerVariants}>
