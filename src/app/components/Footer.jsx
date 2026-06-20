@@ -216,9 +216,9 @@ export function Footer() {
                 </h4>
                 <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                   {[
-                    { Icon: Mail, text: "hello@lorinzazenix.com" },
+                    { Icon: Mail, text: "contact@lorinzazenix.com" },
                     { Icon: Phone, text: "+1 (555) 123-4567" },
-                    { Icon: MapPin, text: "123 Digital Avenue, Tech City, TC 10001" },
+                    { Icon: MapPin, text: "1311, Marathon Millenium, LBS Road, Beside Nirmal Lifestyle Mall, Mulund West, Mumbai (400080)" },
                   ].map(({ Icon, text }, i) => (
                     <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
                       <div style={{
@@ -234,7 +234,7 @@ export function Footer() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </motion.div> 
         </div>
 
         {/* Bottom bar */}

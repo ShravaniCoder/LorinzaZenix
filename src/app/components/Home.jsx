@@ -16,6 +16,12 @@ import seoImage from "../../images/SEO new.png";
 import socialImage from "../../images/Social media new.png";
 import webDevImage from "../../images/WEB DEV new.png";
 import strategyImage from "../../images/Strategy new.png";
+import Img1 from "../../images/Img1.png";
+import Img2 from "../../images/Img2.png";
+import Img3 from "../../images/Img3.png";
+import Img4 from "../../images/Img4.png";
+import Img5 from "../../images/Img5.png";
+import Img6 from "../../images/Img6.png";
 
 const serviceImages = {
   branding: brandingImage,
@@ -54,12 +60,12 @@ function SectionTag({ children }) {
 
 /* ─── portfolio items ─── */
 const portfolio = [
-  { title: "TechVault Brand Identity", cat: "Branding", bg: C.secondary, img: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=800&q=80" },
-  { title: "NovaPay Finance App", cat: "UI/UX Design", bg: "#101D2C", img: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80" },
-  { title: "GreenLeaf E-commerce", cat: "Web Dev", bg: "#1B263B", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" },
-  { title: "PulseMetrics Dashboard", cat: "Digital Marketing", bg: "#101D2C", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" },
-  { title: "Luxara Fashion SEO", cat: "SEO Strategy", bg: C.secondary, img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" },
-  { title: "SocialBloom Campaign", cat: "Social Media", bg: "#1B263B", img: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=800&q=80" },
+  {   bg: C.secondary, img: Img1 },
+  {   bg: "#101D2C", img: Img2 },
+  {  bg: "#1B263B", img: Img3 },
+  {  bg: "#101D2C", img: Img4 },
+  {  bg: C.secondary, img: Img5 },
+  {  bg: "#1B263B", img: Img6 },
 ];
 
 /* ─── testimonials ─── */
@@ -74,7 +80,7 @@ const servicesList = [
     num: "01",
     title: "BRANDING",
     cat: "IDENTITY & VISION",
-    desc: "Craft a powerful, cohesive visual and narrative identity system that sets your brand apart in modern markets.",
+    desc: "Identity, tone, positioning — built to be remembered.",
     link: "/services#s3",
     key: "branding"
   },
@@ -82,7 +88,7 @@ const servicesList = [
     num: "02",
     title: "UI / UX DESIGN",
     cat: "DIGITAL EXPERIENCE",
-    desc: "Design intuitive, high-converting digital interfaces backed by user research and iterative testing.",
+    desc: "Interfaces that remove friction and earn trust.",
     link: "/services#s0",
     key: "uiux"
   },
@@ -90,7 +96,7 @@ const servicesList = [
     num: "03",
     title: "SEO",
     cat: "GROWTH MARKETING",
-    desc: "Boost organic ranking, build authority, and drive targeted high-intent traffic with custom strategies.",
+    desc: "Visibility that grows steadily, without overspending.",
     link: "/services#s4",
     key: "seo"
   },
@@ -98,7 +104,7 @@ const servicesList = [
     num: "04",
     title: "SOCIAL MEDIA",
     cat: "BRAND ENGAGEMENT",
-    desc: "Build a community, run viral social campaigns, and drive conversions across all primary networks.",
+    desc: "Content that shows up consistently and means something.",
     link: "/services#s5",
     key: "social"
   },
@@ -106,7 +112,7 @@ const servicesList = [
     num: "05",
     title: "DEVELOPMENT",
     cat: "ENGINEERING",
-    desc: "Engineered for speed, performance, and SEO optimization. Custom codebases designed to scale with ease.",
+    desc: "Websites built fast, built clean, built to perform.",
     link: "/services#s1",
     key: "webdev"
   },
@@ -114,7 +120,7 @@ const servicesList = [
     num: "06",
     title: "STRATEGY",
     cat: "BUSINESS ROADMAP",
-    desc: "Align your product development, marketing, and systems to a structured roadmap for long-term growth.",
+    desc: "A clear direction before any execution begins.",
     link: "/services",
     key: "strategy"
   }
@@ -442,48 +448,59 @@ export function Home() {
           </motion.p>
 
           {/* Headline (Word-by-word reveal) */}
-          <h1
-            className="font-playfair"
-            style={{
-              color: C.light,
-              ...sora,
-              fontSize: "clamp(2rem, 4.2vw, 3.6rem)",
-              fontWeight: 900,
-              lineHeight: 1.1,
-              letterSpacing: "-0.03em",
-              textTransform: "uppercase",
-              marginBottom: "28px",
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              rowGap: "0.15em",
-              columnGap: "0.22em",
+       <h1
+  className="font-playfair"
+  style={{
+    color: C.light,
+    ...sora,
+    fontSize: "clamp(2rem, 4.2vw, 3.6rem)",
+    fontWeight: 900,
+    lineHeight: 1.1,
+    letterSpacing: "-0.03em",
+    textTransform: "uppercase",
+    marginBottom: "28px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "0.15em",
+  }}
+>
+  {["WE BUILD BRANDS", "THAT MOVE PEOPLE"].map((line, lineIndex) => (
+    <div key={lineIndex} style={{ display: "flex", gap: "0.22em", flexWrap: "wrap" }}>
+      {line.split(" ").map((word, idx) => (
+        <span
+          key={idx}
+          style={{
+            display: "inline-block",
+            overflow: "hidden",
+            paddingBottom: "0.05em",
+          }}
+        >
+          <motion.span
+            style={{ display: "inline-block" }}
+            initial={{ y: "100%", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{
+              duration: 1,
+              delay: (lineIndex * 3 + idx) * 0.05,
+              ease: [0.16, 1, 0.3, 1],
             }}
           >
-            {"WE BUILD BRANDS THAT MOVE PEOPLE AND MARKETS".split(" ").map((word, idx) => (
-              <span key={idx} style={{ display: "inline-block", overflow: "hidden", paddingBottom: "0.05em" }}>
-                <motion.span
-                  style={{ display: "inline-block" }}
-                  initial={{ y: "100%", opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{
-                    duration: 1.0,
-                    delay: idx * 0.05, // 50ms stagger
-                    ease: [0.16, 1, 0.3, 1], // easeOutExpo
-                  }}
-                >
-                  {word}
-                </motion.span>
-              </span>
-            ))}
-            <motion.span
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.4, delay: 9 * 0.05 + 0.4 }}
-            >
-              <AccentDot />
-            </motion.span>
-          </h1>
+            {word}
+          </motion.span>
+        </span>
+      ))}
+    </div>
+  ))}
+
+  <motion.span
+    initial={{ scale: 0, opacity: 0 }}
+    animate={{ scale: 1, opacity: 1 }}
+    transition={{ duration: 0.4, delay: 0.8 }}
+  >
+    <AccentDot />
+  </motion.span>
+</h1>
 
           {/* Subheadline (Fade-in after headline completion) */}
           <motion.p
@@ -503,10 +520,7 @@ export function Home() {
               ease: "easeOut",
             }}
           >
-            At LorinzaZenix, we don't just design—we define. We blend
-            creativity, technology, and strategy to build powerful identities
-            that inspire trust, spark engagement, and drive measurable business
-            growth.
+          Branding, design, development, strategy. One team, one direction — built around what your business actually needs.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -551,7 +565,7 @@ export function Home() {
               }}
               transition={{ duration: 0.2 }}
             >
-              GIVE IT A TRY NOW
+             START A PROJECT
             </MotionLink>
 
             {/* Secondary Button */}
@@ -579,7 +593,7 @@ export function Home() {
               }}
               transition={{ duration: 0.2 }}
             >
-              OUR SERVICES
+             SEE OUR WORK
             </MotionLink>
           </motion.div>
         </motion.div>
@@ -642,7 +656,7 @@ export function Home() {
           }}
             variants={headingVariants}
           >
-            We Don't Just Deliver. We Build What Lasts —
+           WE BUILD WHAT LASTS.
           </motion.h2>
           <motion.p style={{
             ...sora,
@@ -654,7 +668,7 @@ export function Home() {
           }}
             variants={subheadingVariants}
           >
-            Digital solutions that don't just look good, they perform
+           Strategy first. Design always.
           </motion.p>
           <motion.p className="font-roboto" style={{
             color: C.accent, fontSize: 20.5, lineHeight: 1.85,
@@ -662,7 +676,7 @@ export function Home() {
           }}
             variants={paragraphVariants}
           >
-            LorinzaZenix partners with brands at every stage — shaping identity, designing experience, driving visibility, and building the digital infrastructure that turns ambition into momentum.
+            Trends change. Good thinking doesn't. We partner with businesses that want a digital presence built to hold up, not just launch well.
           </motion.p>
         </div>
       </motion.section>
@@ -691,13 +705,13 @@ export function Home() {
               }}
               variants={headingVariants}
             >
-              SERVICES THAT DRIVE REAL RESULTS
+             SIX DISCIPLINES. ONE DIRECTION.
               <AccentDot />
             </motion.h2>
             <motion.p style={{ color: C.support, fontSize: 14.5, lineHeight: 1.8, maxWidth: 600, margin: "0 auto" }}
               variants={paragraphVariants}
             >
-              End-to-end digital solutions crafted with precision to grow your business and elevate your brand in the digital space.
+            Everything your brand needs, under one roof.
             </motion.p>
           </div>
 
@@ -1001,7 +1015,7 @@ export function Home() {
           }}
             variants={headingVariants}
           >
-            YOUR DIGITAL PRESENCE HOLDS YOUR BRAND'S FUTURE
+            YOUR DIGITAL PRESENCE IS YOUR FIRST IMPRESSION
             <AccentDot />
           </motion.h2>
           <motion.p style={{
@@ -1010,7 +1024,7 @@ export function Home() {
           }}
             variants={paragraphVariants}
           >
-            Our digital strategy process is methodical, with multiple rounds of research, innovation, and development. We'll partner with you to build a brand that represents you distinctively and connects with your audience.
+          Every touchpoint shapes how people see you. We make sure yours says the right thing, to the right people, at the right time.
           </motion.p>
           <MotionLink to="/about" style={{
             ...sora,
@@ -1029,7 +1043,7 @@ export function Home() {
               borderColor: C.light,
             }}
           >
-            LEARN MORE
+           SEE HOW WE DO IT
           </MotionLink>
         </div>
       </motion.section>
@@ -1174,12 +1188,12 @@ export function Home() {
             <motion.p style={{ color: C.support, fontSize: 14.5, lineHeight: 1.8, marginBottom: 12 }}
               variants={paragraphVariants}
             >
-              To become a leading brand in the digital space, you need to understand yourself, your vision, and your audience. LorinzaZenix can help you discover your brand story, and the best way to communicate that to the world.
+              Every day without direction is a day someone else moves ahead. We help you close that gap.
             </motion.p>
             <motion.p style={{ color: C.light, fontSize: 14.5, fontWeight: 600, letterSpacing: "0.05em" }}
               variants={paragraphVariants}
             >
-              GET STARTED TODAY!
+            GET STARTED TODAY!
             </motion.p>
           </div>
 
@@ -1190,10 +1204,10 @@ export function Home() {
           >
             {[
               { Icon: Star, label: "100% SATISFACTION GUARANTEED" },
-              { Icon: Monitor, label: "10+ YEARS EXPERIENCE" },
+         
               { Icon: Palette, label: "CUSTOM DIGITAL SOLUTIONS" },
               { Icon: Code2, label: "PRICING TRANSPARENCY" },
-              { Icon: Megaphone, label: "BUILDING BRANDS" },
+              { Icon: Megaphone, label: "BUILT TO LAST, NOT JUST LAUNCH" },
             ].map(({ Icon, label }, i) => (
               <motion.div
                 key={i}
@@ -1236,9 +1250,9 @@ export function Home() {
         <div style={{ position: "relative", zIndex: 1, borderTop: `1px solid rgba(65,90,119,0.25)` }}>
           <div style={{ maxWidth: 1240, margin: "0 auto" }} className="grid grid-cols-1 md:grid-cols-3">
             {[
-              { value: "$999", label: "Starting Price" },
-              { value: "14 Days", label: "Avg. Delivery Time" },
-              { value: "98%", label: "Satisfaction Guaranteed" },
+              { value: "24 HRS", label: "AVG. RESPONSE TIME" },
+              { value: "6", label: "DISCIPLINES UNDER ONE ROOF" },
+              { value: "1", label: "TEAM, FULL OWNERSHIP" },
             ].map(({ value, label }, i) => (
               <div key={i} style={{
                 padding: "44px 32px", textAlign: "center",

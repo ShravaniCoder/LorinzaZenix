@@ -103,9 +103,9 @@ export function About() {
     <div style={{ backgroundColor: C.dark }}>
 
       <PageHero
-        eyebrow="Our Story"
-        title="WE ARE LORINZA ZENIX"
-        description="A digital agency born from passion, driven by innovation, and committed to crafting exceptional digital experiences for businesses worldwide."
+        eyebrow="WHO WE ARE"
+        title="BEYOND GROWTH. INTO GREATNESS"
+        description="We build for what comes after launch."
         image="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1920&q=80"
         alt="Creative workspace with strategy notes and digital design tools"
       />

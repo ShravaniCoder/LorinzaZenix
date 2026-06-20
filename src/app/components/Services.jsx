@@ -26,52 +26,99 @@ function SectionTag({ children }) {
 
 const services = [
   {
-    Icon: Palette, n: "01",
-    title: "UI/UX DESIGN",
-    tagline: "Experiences that captivate and convert.",
-    desc: "We create intuitive, user-centered digital experiences rooted in research and refined through testing. Every interface is a balance of beauty and function — designed to guide users naturally toward action.",
-    deliverables: ["User Research & Persona Development", "Wireframes & Interactive Prototypes", "Visual Design & Design Systems", "Usability Testing & Iteration"],
-    img: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    Icon: Code2, n: "02",
-    title: "WEBSITE DEVELOPMENT",
-    tagline: "Built for performance, engineered for growth.",
-    desc: "Our development team crafts fast, scalable, and maintainable web solutions using modern technology stacks. From sleek marketing sites to complex web applications, we build with precision and care.",
-    deliverables: ["Custom Website Development", "E-commerce Solutions", "CMS Integration (WordPress, Webflow)", "Performance Optimization & SEO Tech"],
-    img: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    Icon: Megaphone, n: "03",
-    title: "DIGITAL MARKETING",
-    tagline: "Campaigns that reach, engage, and convert.",
-    desc: "We craft data-driven digital marketing strategies that maximize your ROI. From paid search to content marketing, every campaign is built with clear KPIs and optimized continuously for peak performance.",
-    deliverables: ["PPC & Paid Social Advertising", "Content Strategy & Marketing", "Email Marketing Automation", "Analytics & Performance Reporting"],
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    Icon: Monitor, n: "04",
-    title: "BRAND IDENTITY",
-    tagline: "Brands that people remember and trust.",
-    desc: "Your brand is more than a logo — it's the total impression you make on the world. We develop comprehensive brand identities that embody your values, differentiate you from competitors, and build lasting connections.",
-    deliverables: ["Logo & Visual Identity Design", "Brand Guidelines & Style Guide", "Brand Messaging & Voice", "Stationery & Collateral Design"],
+    Icon: Monitor,
+    n: "01",
+    title: "BRANDING",
+    tagline: "A BRAND THEY REMEMBER.",
+    desc: "Your brand is the feeling people carry after every interaction. We build that — visual identity, tone, positioning — with care, not templates.",
+    deliverables: [
+      "Logo Design",
+      "Brand Guidelines",
+      "Typography & Color Systems",
+      "Messaging",
+      "Positioning",
+    ],
     img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80",
   },
+
   {
-    Icon: Search, n: "05",
+    Icon: Palette,
+    n: "02",
+    title: "UI / UX DESIGN",
+    tagline: "DESIGN THAT GUIDES.",
+    desc: "Every interaction is a small decision your user makes about you. We design experiences that make those decisions easy.",
+    deliverables: [
+      "User Research",
+      "Wireframing",
+      "Prototyping",
+      "Mobile & Desktop UI",
+      "Usability Testing",
+    ],
+    img: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=800&q=80",
+  },
+
+  {
+    Icon: Search,
+    n: "03",
     title: "SEO OPTIMIZATION",
-    tagline: "Rank higher. Get found. Grow faster.",
-    desc: "Our SEO specialists implement proven strategies that improve your organic rankings and drive qualified traffic. We focus on sustainable, white-hat techniques that deliver long-term results.",
-    deliverables: ["Technical SEO Audit & Fixes", "Keyword Research & Strategy", "On-Page & Off-Page Optimization", "Local SEO & Google Business Profile"],
+    tagline: "GET FOUND. STAY FOUND.",
+    desc: "Sustainable growth in search visibility — built on real strategy, not shortcuts.",
+    deliverables: [
+      "Technical Audit",
+      "Keyword Research",
+      "On-Page Optimisation",
+      "Search Console Setup",
+      "Monthly Reporting",
+    ],
     img: "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&w=800&q=80",
   },
+
   {
-    Icon: Share2, n: "06",
-    title: "SOCIAL MEDIA MANAGEMENT",
-    tagline: "Build community. Drive loyalty. Grow revenue.",
-    desc: "We manage your social media presence with strategic content creation, community management, and paid social campaigns that turn followers into fans and fans into paying customers.",
-    deliverables: ["Social Media Strategy & Audit", "Content Creation & Calendar", "Community Management", "Paid Social Campaigns (Meta, LinkedIn)"],
+    Icon: Share2,
+    n: "04",
+    title: "SOCIAL MEDIA",
+    tagline: "SHOW UP. STAY RELEVANT.",
+    desc: "Consistent, considered content that builds your audience over time.",
+    deliverables: [
+      "Platform Strategy",
+      "Content Creation",
+      "Scheduling",
+      "Community Management",
+      "Analytics",
+    ],
     img: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=800&q=80",
+  },
+
+  {
+    Icon: Code2,
+    n: "05",
+    title: "DEVELOPMENT",
+    tagline: "WEBSITES THAT WORK.",
+    desc: "Fast, secure, built to handle real traffic and real growth.",
+    deliverables: [
+      "Website Design & Development",
+      "E-commerce",
+      "CMS Integration",
+      "Speed Optimisation",
+      "Maintenance",
+    ],
+    img: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80",
+  },
+
+  {
+    Icon: Megaphone,
+    n: "06",
+    title: "STRATEGY",
+    tagline: "CLARITY BEFORE EXECUTION.",
+    desc: "We start with research, not assumptions — then build a roadmap that aligns every channel toward one goal.",
+    deliverables: [
+      "Market Research",
+      "Competitor Analysis",
+      "Digital Roadmap",
+      "Channel Strategy",
+      "Growth Planning",
+    ],
+    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
@@ -154,8 +201,8 @@ export function Services() {
 
       <PageHero
         eyebrow="What We Offer"
-        title="SERVICES ENGINEERED FOR IMPACT"
-        description="From concept to launch and beyond — end-to-end digital solutions that transform your vision into measurable business growth."
+        title="STRATEGY TO EXECUTION. ONE ROOF"
+        description="Digital solutions, built with intent."
         image="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=1920&q=80"
         alt="Digital product design and development workspace"
       />
@@ -438,7 +485,7 @@ export function Services() {
       >
         <div style={{ maxWidth: 700, margin: "0 auto" }}>
           <motion.div variants={subheadingVariants}>
-            <SectionTag>Ready to Start?</SectionTag>
+            <SectionTag>READY TO BUILD SOMETHING THAT LASTS?</SectionTag>
           </motion.div>
           <motion.h2 style={{
             ...sora, color: C.light,
@@ -449,14 +496,10 @@ export function Services() {
           }}
             variants={headingVariants}
           >
-            LET'S DISCUSS YOUR PROJECT
+Every brand starts with one conversation
             <span style={{ color: C.accent }}>.</span>
           </motion.h2>
-          <motion.p style={{ color: C.support, fontSize: 15.5, lineHeight: 1.8, marginBottom: 40 }}
-            variants={paragraphVariants}
-          >
-            Book a free 30-minute strategy call and discover how LorinzaZenix can accelerate your digital growth.
-          </motion.p>
+         
           <MotionLink to="/contact" style={{
             ...sora,
             display: "inline-flex", alignItems: "center", gap: 10,
