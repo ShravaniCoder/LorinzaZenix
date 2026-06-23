@@ -120,10 +120,10 @@ export function About() {
       >
         <div style={{ maxWidth: 1240, margin: "0 auto" }} className="grid grid-cols-2 md:grid-cols-4">
           {[
-            { n: "10+", l: "Years of Excellence" },
-            { n: "200+", l: "Projects Delivered" },
-            { n: "150+", l: "Happy Clients" },
-            { n: "98%", l: "Satisfaction Rate" },
+            { n: "100%", l: "SATISFACTION GUARANTEED" },
+            { n: "24 HRS", l: "AVG. RESPONSE TIME" },
+            { n: "6", l: "DISCIPLINES UNDER ONE ROOF" },
+            { n: "1", l: "TEAM, FULL OWNERSHIP" },
           ].map(({ n, l }, i) => (
             <motion.div key={i} style={{
               padding: "36px 24px", textAlign: "center",
@@ -174,13 +174,13 @@ export function About() {
               <motion.h2 style={{
                 ...sora, color: C.light,
                 fontSize: "clamp(1.6rem,3.5vw,2.6rem)",
-                fontWeight: 800, textTransform: "uppercase",
+                fontWeight: 700, textTransform: "uppercase",
                 letterSpacing: "-0.02em", lineHeight: 1.15,
                 marginBottom: 24, textAlign: "center",
               }}
                 variants={headingVariants}
               >
-                MORE THAN AN AGENCY — YOUR DIGITAL GROWTH PARTNER
+                MORE THAN AN AGENCY, YOUR DIGITAL GROWTH PARTNER
                 <span style={{ color: C.accent }}>.</span>
               </motion.h2>
               <motion.p style={{ color: C.support, fontSize: 14.5, lineHeight: 1.85, marginBottom: 18, textAlign: "center" }}
@@ -230,8 +230,8 @@ export function About() {
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <motion.h2 style={{
             ...sora, color: C.dark,
-            fontSize: "clamp(1.8rem,4.5vw,3.2rem)",
-            fontWeight: 800, textTransform: "uppercase",
+            fontSize: "clamp(1.8rem,3.5vw,2.2rem)",
+            fontWeight: 700, textTransform: "uppercase",
             letterSpacing: "-0.02em", lineHeight: 1.15,
             marginBottom: 20,
           }}
@@ -240,7 +240,7 @@ export function About() {
             YOU AREN'T JUST HIRING AN AGENCY — YOU'RE CHOOSING A PARTNER IN YOUR SUCCESS
             <span style={{ color: C.accent }}>.</span>
           </motion.h2>
-          <motion.p style={{ color: C.accent, fontSize: 15.5, lineHeight: 1.85, maxWidth: 620, margin: "0 auto" }}
+          <motion.p style={{ color: C.accent,  fontWeight: 700, fontSize: 17.5, lineHeight: 1.85, maxWidth: 720, margin: "0 auto" }}
             variants={paragraphVariants}
           >
             We genuinely invest in your success at every stage. Every project is personal to us, and we measure our success by the growth we drive for you.
@@ -263,8 +263,8 @@ export function About() {
           <motion.h2 
             style={{
               ...sora, color: C.light,
-              fontSize: "clamp(1.8rem,4vw,3rem)",
-              fontWeight: 800, textTransform: "uppercase",
+              fontSize: "clamp(1.8rem,4vw,2rem)",
+              fontWeight: 700, textTransform: "uppercase",
               letterSpacing: "-0.02em", lineHeight: 1.15,
               marginBottom: 60,
             }}
@@ -328,8 +328,8 @@ export function About() {
         <div style={{ position: "relative", zIndex: 1, maxWidth: 700, margin: "0 auto" }}>
           <motion.h2 style={{
             ...sora, color: C.light,
-            fontSize: "clamp(1.8rem,4vw,2.8rem)",
-            fontWeight: 800, textTransform: "uppercase",
+            fontSize: "clamp(1.8rem,4vw,2.4rem)",
+            fontWeight: 700, textTransform: "uppercase",
             letterSpacing: "-0.02em", lineHeight: 1.15,
             marginBottom: 20,
           }}

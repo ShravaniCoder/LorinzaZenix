@@ -129,8 +129,8 @@ export function PageHero({ eyebrow, title, description, image, alt }) {
           style={{
             ...sora,
             color: C.light,
-            fontSize: "clamp(2.2rem, 5.6vw, 4.6rem)",
-            fontWeight: 800,
+            fontSize: "clamp(2.2rem, 5.6vw, 3.6rem)",
+            fontWeight: 700,
             textTransform: "uppercase",
             letterSpacing: "-0.03em",
             lineHeight: 1.08,
