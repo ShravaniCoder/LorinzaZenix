@@ -137,9 +137,9 @@ export function Contact() {
   });
 
   const cards = [
-    { icon: Mail, label: "Email", value: "hello@lorinzazenix.com", meta: "Reply within 24 business hours" },
+    { icon: Mail, label: "Email", value: "contact@lorinzazenix.com", meta: "Reply within 24 business hours" },
     { icon: Phone, label: "Phone", value: "+1 (555) 123-4567", meta: "Mon to Fri, 9am to 6pm EST" },
-    { icon: MapPin, label: "Location", value: "123 Digital Avenue, Tech City", meta: "Remote-first, global client base" },
+    { icon: MapPin, label: "Location", value: "1311, MARATHON MILLENIUM, LBS ROAD, BESIDE NIRMAL LIFESTYLE MALL, MULUND WEST, Mumbai(400080).", meta: "Remote-first, global client base" },
   ];
 
   return (
@@ -147,7 +147,7 @@ export function Contact() {
       <PageHero
         eyebrow="Contact"
         title="GET IN TOUCH"
-        description="Starting fresh or scaling something that already works — we're ready when you are."
+        description="Starting fresh or scaling something that already works, we're ready when you are."
         image="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=1920&q=80"
         alt="Modern agency collaboration environment"
       />

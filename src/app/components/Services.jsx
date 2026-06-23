@@ -3,6 +3,11 @@ import { Palette, Code2, Megaphone, Monitor, Search, Share2, ArrowRight, CheckCi
 import { motion } from "framer-motion";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { PageHero } from "./PageHero";
+import Branding from "../../images/branding.webp";
+import UIUX from "../../images/website.webp";
+import SEO from "../../images/seo.webp";
+import Media from "../../images/social-media.webp";
+import Website from "../../images/websiteI.jpg"
 
 const MotionLink = motion(Link);
 
@@ -12,8 +17,8 @@ const sora = { fontFamily: "'Sora', sans-serif" };
 function SectionTag({ children }) {
   return (
     <p style={{
-      ...sora, color: C.support, fontSize: 11, fontWeight: 700,
-      letterSpacing: "0.18em", textTransform: "uppercase",
+      ...sora, color: C.accent, fontSize: 13, fontWeight: 900,
+      letterSpacing: "0.19em", textTransform: "uppercase",
       display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
       marginBottom: 20,
     }}>
@@ -38,7 +43,7 @@ const services = [
       "Messaging",
       "Positioning",
     ],
-    img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80",
+    img: Branding,
   },
 
   {
@@ -54,7 +59,7 @@ const services = [
       "Mobile & Desktop UI",
       "Usability Testing",
     ],
-    img: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=800&q=80",
+    img: UIUX,
   },
 
   {
@@ -70,7 +75,7 @@ const services = [
       "Search Console Setup",
       "Monthly Reporting",
     ],
-    img: "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&w=800&q=80",
+    img: SEO
   },
 
   {
@@ -86,7 +91,7 @@ const services = [
       "Community Management",
       "Analytics",
     ],
-    img: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=800&q=80",
+    img: Media
   },
 
   {
@@ -102,7 +107,7 @@ const services = [
       "Speed Optimisation",
       "Maintenance",
     ],
-    img: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80",
+    img: Website
   },
 
   {
@@ -201,7 +206,15 @@ export function Services() {
 
       <PageHero
         eyebrow="What We Offer"
-        title="STRATEGY TO EXECUTION. ONE ROOF"
+        title={
+  <>
+    <span style={{ whiteSpace: "nowrap" }}>
+      STRATEGY TO EXECUTION
+    </span>
+    <br />
+    ONE ROOF
+  </>
+}
         description="Digital solutions, built with intent."
         image="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=1920&q=80"
         alt="Digital product design and development workspace"
@@ -270,7 +283,7 @@ export function Services() {
                   }
                 }}
               >
-                <p style={{ color: C.accent, fontSize: 11, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16, fontFamily: "Sora, sans-serif" }}>
+                <p style={{ color: C.accent, fontSize: 14, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16, fontFamily: "Sora, sans-serif" }}>
                   {n} — SERVICE
                 </p>
                 <div style={{
@@ -290,11 +303,11 @@ export function Services() {
                 }}>
                   {title}
                 </h2>
-                <p style={{ color: i % 2 === 0 ? C.support : C.accent, fontSize: 14.5, fontStyle: "italic", marginBottom: 20 }}>{tagline}</p>
-                <p style={{ color: i % 2 === 0 ? C.support : "rgba(30, 58, 86, 0.75)", fontSize: 14.5, lineHeight: 1.85, marginBottom: 32 }}>{desc}</p>
+                <p style={{ color: i % 2 === 0 ? C.support : C.accent, fontSize: 16.5, fontStyle: "italic", marginBottom: 20 }}>{tagline}</p>
+                <p style={{ color: i % 2 === 0 ? C.support : "rgba(30, 58, 86, 0.75)", fontSize: 15.5, lineHeight: 1.85, marginBottom: 32 }}>{desc}</p>
 
                 <motion.div style={{ marginBottom: 36 }} variants={staggerContainer}>
-                  <p style={{ ...sora, color: i % 2 === 0 ? C.light : C.dark, fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 16 }}>
+                  <p style={{ ...sora, color: i % 2 === 0 ? C.light : C.dark, fontSize: 13, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 16 }}>
                     What's Included:
                   </p>
                   {deliverables.map((d, di) => (
@@ -302,7 +315,7 @@ export function Services() {
                       variants={fadeInUp}
                     >
                       <CheckCircle size={15} color={C.accent} style={{ flexShrink: 0, marginTop: 3 }} />
-                      <span style={{ color: i % 2 === 0 ? C.support : "rgba(30, 58, 86, 0.75)", fontSize: 14 }}>{d}</span>
+                      <span style={{ color: i % 2 === 0 ? C.support : "rgba(30, 58, 86, 0.75)", fontSize: 15 }}>{d}</span>
                     </motion.div>
                   ))}
                 </motion.div>

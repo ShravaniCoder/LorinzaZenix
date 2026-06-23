@@ -104,7 +104,7 @@ export function About() {
 
       <PageHero
         eyebrow="WHO WE ARE"
-        title="BEYOND GROWTH. INTO GREATNESS"
+        title="BEYOND GROWTH INTO GREATNESS"
         description="We build for what comes after launch."
         image="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1920&q=80"
         alt="Creative workspace with strategy notes and digital design tools"
@@ -164,14 +164,7 @@ export function About() {
                 alt="LorinzaZenix team"
                 style={{ width: "100%", borderRadius: 0, display: "block", position: "relative", zIndex: 1, border: `1px solid rgba(127, 160, 196,0.2)` }}
               />
-              <div style={{
-                position: "absolute", bottom: -24, right: -24,
-                backgroundColor: C.accent, borderRadius: 0,
-                padding: "20px 28px", zIndex: 2, textAlign: "center",
-              }}>
-                <p style={{ ...sora, color: C.light, fontSize: "1.8rem", fontWeight: 800, lineHeight: 1 }}>2014</p>
-                <p style={{ color: "rgba(224,225,221,0.8)", fontSize: 11, marginTop: 4, letterSpacing: "0.05em" }}>FOUNDED</p>
-              </div>
+            
             </motion.div>
             {/* Text */}
             <div>

@@ -114,7 +114,7 @@ export function PageHero({ eyebrow, title, description, image, alt }) {
           style={{
             ...sora,
             color: C.accent,
-            fontSize: 12,
+            fontSize: 14,
             fontWeight: 700,
             letterSpacing: "0.25em",
             textTransform: "uppercase",
@@ -145,9 +145,9 @@ export function PageHero({ eyebrow, title, description, image, alt }) {
         <motion.p
           style={{
             color: C.support,
-            fontSize: 17,
-            lineHeight: 1.85,
-            maxWidth: 640,
+            fontSize: 20,
+            lineHeight: 1.95,
+            maxWidth: 660,
             margin: "0 auto",
           }}
           variants={paragraphVariants}

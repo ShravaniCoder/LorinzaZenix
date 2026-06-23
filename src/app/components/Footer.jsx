@@ -245,9 +245,9 @@ export function Footer() {
                     </h4>
                     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                       {[
-                        { Icon: Mail, text: "hello@lorinzazenix.com" },
+                        { Icon: Mail, text: "contact@lorinzazenix.com" },
                         { Icon: Phone, text: "+1 (555) 123-4567" },
-                        { Icon: MapPin, text: "123 Digital Avenue, Tech City, TC 10001" },
+                        { Icon: MapPin, text: "1311, MARATHON MILLENIUM, LBS ROAD, BESIDE NIRMAL LIFESTYLE MALL, MULUND WEST, Mumbai(400080)." },
                       ].map(({ Icon, text }, i) => (
                         <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
                           <div style={{
@@ -277,9 +277,7 @@ export function Footer() {
                 <p style={{ color: "rgba(176, 196, 218,0.6)", fontSize: 12.5, textAlign: "center", width: "100%", "@media (min-width: 768px)": { width: "auto", textAlign: "left" } }} className="md:w-auto text-center md:text-left w-full">
                   © {new Date().getFullYear()} LorinzaZenix Digital Agency. All rights reserved.
                 </p>
-                <p style={{ color: "rgba(176, 196, 218,0.6)", fontSize: 12.5, textAlign: "center", width: "100%", "@media (min-width: 768px)": { width: "auto", textAlign: "right" } }} className="md:w-auto text-center md:text-right w-full">
-                  Crafted with <span style={{ color: C.accent }}>♥</span> for excellence
-                </p>
+               
               </div>
             </motion.div>
           </motion.footer>
