@@ -85,6 +85,47 @@ export function Contact() {
   const [focused, setFocused] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [result, setResult] = useState("");
+
+const onSubmit = async (event) => {
+  event.preventDefault();
+
+  setResult("Sending...");
+
+  const formData = new FormData(event.target);
+
+  formData.append(
+    "access_key",
+    "57f9ca46-b522-419d-80b6-e4470e41e115"
+  );
+
+  const response = await fetch(
+    "https://api.web3forms.com/submit",
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
+
+  const data = await response.json();
+
+  if (data.success) {
+    setSubmitted(true);
+    setResult("Message Sent Successfully!");
+
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
+
+    event.target.reset();
+  } else {
+    console.log("Error", data);
+    setResult("Something went wrong!");
+  }
+};
 
   const containerVariants = {
     hidden: {},
@@ -252,10 +293,7 @@ export function Contact() {
                   </motion.div>
                 ) : (
                   <motion.form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      setSubmitted(true);
-                    }}
+                     onSubmit={onSubmit}
                     style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16 }}
                     variants={containerVariants}
                   >
@@ -360,6 +398,18 @@ export function Contact() {
                     >
                       SEND MESSAGE <Send size={14} />
                     </button>
+
+                    {result && (
+  <p
+    style={{
+      color: C.light,
+      textAlign: "center",
+      marginTop: "10px",
+    }}
+  >
+    {result}
+  </p>
+)}
                   </motion.form>
                 )}
               </div>
