@@ -433,18 +433,18 @@ export function Home() {
           <motion.p
             style={{
               ...sora,
-              color: C.accent,
-              fontSize: "12px",
-              fontWeight: 700,
+              color: C.support,
+              fontSize: "15px",
+              fontWeight: 800,
               letterSpacing: "0.25em",
               textTransform: "uppercase",
-              marginBottom: "24px",
+              marginBottom: "28px",
             }}
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            GET FREE CONSULTATION
+            LORINZAZENIX
           </motion.p>
 
           {/* Headline (Word-by-word reveal) */}
@@ -458,7 +458,7 @@ export function Home() {
     lineHeight: 1.1,
     letterSpacing: "-0.03em",
     textTransform: "uppercase",
-    marginBottom: "28px",
+    marginBottom: "10px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -498,7 +498,7 @@ export function Home() {
     animate={{ scale: 1, opacity: 1 }}
     transition={{ duration: 0.4, delay: 0.8 }}
   >
-    <AccentDot />
+  
   </motion.span>
 </h1>
 
@@ -520,7 +520,7 @@ export function Home() {
               ease: "easeOut",
             }}
           >
-          Branding, design, development, strategy. One team, one direction — built around what your business actually needs.
+         One team, one direction, built around what your business actually needs.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -668,7 +668,7 @@ export function Home() {
           }}
             variants={subheadingVariants}
           >
-           Strategy first. Design always.
+           Strategy first, Design always.
           </motion.p>
           <motion.p className="font-roboto" style={{
             color: C.accent, fontSize: 20.5, lineHeight: 1.85,
@@ -699,13 +699,13 @@ export function Home() {
             <motion.h2
               style={{
                 ...sora, color: C.light,
-                fontSize: "clamp(2rem, 4.5vw, 3.2rem)",
+                fontSize: "clamp(2rem, 3.5vw, 2.2rem)",
                 fontWeight: 800, textTransform: "uppercase",
                 letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 16,
               }}
               variants={headingVariants}
             >
-             SIX DISCIPLINES. ONE DIRECTION.
+             SIX DISCIPLINES. ONE DIRECTION
               <AccentDot />
             </motion.h2>
             <motion.p style={{ color: C.support, fontSize: 14.5, lineHeight: 1.8, maxWidth: 600, margin: "0 auto" }}
@@ -750,7 +750,7 @@ export function Home() {
                           ...sora,
                           color: isActive ? C.light : "rgba(255, 255, 255, 0.35)",
                           fontSize: "clamp(1.05rem, 2.5vw, 2.3rem)",
-                          fontWeight: 800,
+                          fontWeight: 700,
                           textTransform: "uppercase",
                           letterSpacing: "-0.02em",
                           margin: 0,
@@ -1008,8 +1008,8 @@ export function Home() {
           <motion.h2 style={{
             ...sora,
             color: C.light,
-            fontSize: "clamp(2rem, 4.5vw, 3.6rem)",
-            fontWeight: 800, lineHeight: 1.15,
+            fontSize: "clamp(2rem, 3.5vw, 2.6rem)",
+            fontWeight: 700, lineHeight: 1.15,
             textTransform: "uppercase", letterSpacing: "-0.02em",
             marginBottom: 24,
           }}
@@ -1019,7 +1019,7 @@ export function Home() {
             <AccentDot />
           </motion.h2>
           <motion.p style={{
-            color: C.support, fontSize: 15, lineHeight: 1.85,
+            color: C.support, fontSize: 17, lineHeight: 1.85, fontWeight: 700,
             maxWidth: 620, margin: "0 auto 40px",
           }}
             variants={paragraphVariants}
@@ -1172,8 +1172,8 @@ export function Home() {
             <motion.h2 style={{
               ...sora,
               color: C.light,
-              fontSize: "clamp(2rem, 4.8vw, 3.5rem)",
-              fontWeight: 800, lineHeight: 1.1,
+              fontSize: "clamp(2rem, 3.8vw, 2.5rem)",
+              fontWeight: 700, lineHeight: 1.1,
               textTransform: "uppercase", letterSpacing: "-0.02em",
               marginBottom: 20,
             }}
@@ -1184,17 +1184,13 @@ export function Home() {
           </div>
 
           {/* Description */}
-          <div style={{ maxWidth: 640, margin: "0 auto 64px", textAlign: "center" }}>
-            <motion.p style={{ color: C.support, fontSize: 14.5, lineHeight: 1.8, marginBottom: 12 }}
+          <div style={{ maxWidth: 640, margin: "0 auto 40px", textAlign: "center" }}>
+            <motion.p style={{ color: C.support, fontSize: 16.5,  fontWeight: 700, lineHeight: 1.8, marginBottom: 12 }}
               variants={paragraphVariants}
             >
               Every day without direction is a day someone else moves ahead. We help you close that gap.
             </motion.p>
-            <motion.p style={{ color: C.light, fontSize: 14.5, fontWeight: 600, letterSpacing: "0.05em" }}
-              variants={paragraphVariants}
-            >
-            GET STARTED TODAY!
-            </motion.p>
+          
           </div>
 
           {/* 5 circular icons */}
@@ -1235,7 +1231,7 @@ export function Home() {
                 </div>
                 <p style={{
                   ...sora,
-                  color: C.support, fontSize: 10, fontWeight: 700,
+                  color: C.support, fontSize: 11, fontWeight: 700,
                   letterSpacing: "0.1em", textTransform: "uppercase",
                   textAlign: "center", lineHeight: 1.5,
                 }}>
@@ -1260,7 +1256,7 @@ export function Home() {
                 borderBottom: `1px solid rgba(65,90,119,0.2)`,
                 backgroundColor: i === 1 ? "rgba(13, 27, 42, 0.85)" : "#0A141F",
               }}>
-                <p style={{ ...sora, color: C.light, fontSize: "clamp(2rem, 3.8vw, 2.8rem)", fontWeight: 800, lineHeight: 1 }}>
+                <p style={{ ...sora, color: C.light, fontSize: "clamp(2rem, 3.8vw, 2.8rem)", fontWeight: 700, lineHeight: 1 }}>
                   <Counter value={value} />
                 </p>
                 <p style={{ color: C.support, fontSize: 12, marginTop: 10, letterSpacing: "0.08em", textTransform: "uppercase" }}>{label}</p>
@@ -1289,8 +1285,8 @@ export function Home() {
           <motion.h2
             style={{
               ...sora, color: C.light,
-              fontSize: "clamp(1.8rem, 4vw, 3rem)",
-              fontWeight: 800, textTransform: "uppercase",
+              fontSize: "clamp(1.8rem, 3vw, 2rem)",
+              fontWeight: 700, textTransform: "uppercase",
               letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 60,
             }}
             variants={headingVariants}

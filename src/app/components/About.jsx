@@ -180,18 +180,19 @@ export function About() {
               }}
                 variants={headingVariants}
               >
-                MORE THAN AN AGENCY, YOUR DIGITAL GROWTH PARTNER
+               NOT JUST AN AGENCY
                 <span style={{ color: C.accent }}>.</span>
               </motion.h2>
               <motion.p style={{ color: C.support, fontSize: 14.5, lineHeight: 1.85, marginBottom: 18, textAlign: "center" }}
                 variants={paragraphVariants}
               >
-                Founded in 2014, LorinzaZenix emerged from a simple belief: every business deserves world-class digital experiences, regardless of size. We've spent over a decade perfecting the art of digital transformation.
+                LorinzaZenix was built on one belief, that good digital work should be precise, purposeful, and built to last. We don't take briefs and disappear. We stay invested until the work is right.
+
               </motion.p>
               <motion.p style={{ color: C.support, fontSize: 14.5, lineHeight: 1.85, marginBottom: 36, textAlign: "center" }}
                 variants={paragraphVariants}
               >
-                Today, we're a full-service digital agency with a team of passionate designers, developers, and strategists working together to build brands that resonate, websites that convert, and campaigns that deliver real ROI.
+               Today, we bring together branding, design, SEO, social media, and development as one unified force, not five separate tasks handed to five separate people.
               </motion.p>
               <div style={{ textAlign: "center" }}>
                 <MotionLink to="/contact" style={{
@@ -237,10 +238,10 @@ export function About() {
           }}
             variants={headingVariants}
           >
-            YOU AREN'T JUST HIRING AN AGENCY — YOU'RE CHOOSING A PARTNER IN YOUR SUCCESS
+            YOU AREN'T JUST HIRING AN AGENCY, YOU'RE CHOOSING A PARTNER IN YOUR SUCCESS
             <span style={{ color: C.accent }}>.</span>
           </motion.h2>
-          <motion.p style={{ color: C.accent,  fontWeight: 700, fontSize: 17.5, lineHeight: 1.85, maxWidth: 720, margin: "0 auto" }}
+          <motion.p style={{ color: C.accent,  fontWeight: 500, fontSize: 17.5, lineHeight: 1.85, maxWidth: 720, margin: "0 auto" }}
             variants={paragraphVariants}
           >
             We genuinely invest in your success at every stage. Every project is personal to us, and we measure our success by the growth we drive for you.
@@ -328,7 +329,7 @@ export function About() {
         <div style={{ position: "relative", zIndex: 1, maxWidth: 700, margin: "0 auto" }}>
           <motion.h2 style={{
             ...sora, color: C.light,
-            fontSize: "clamp(1.8rem,4vw,2.4rem)",
+            fontSize: "clamp(1.8rem,3vw,1.4rem)",
             fontWeight: 700, textTransform: "uppercase",
             letterSpacing: "-0.02em", lineHeight: 1.15,
             marginBottom: 20,
@@ -338,7 +339,7 @@ export function About() {
             LET'S BUILD SOMETHING GREAT TOGETHER
             <span style={{ color: C.accent }}>.</span>
           </motion.h2>
-          <motion.p style={{ color: C.support, fontSize: 15.5, lineHeight: 1.8, marginBottom: 36 }}
+          <motion.p style={{ color: C.support,  fontWeight: 500, fontSize: 15.5, lineHeight: 1.8, marginBottom: 36 }}
             variants={paragraphVariants}
           >
             Ready to take your brand to the next level? We'd love to hear about your project.

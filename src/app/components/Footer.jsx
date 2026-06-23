@@ -274,7 +274,7 @@ export function Footer() {
               transition={{ delay: 0.3, duration: 0.5 }}
             >
               <div style={{ maxWidth: 1240, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
-                <p style={{ color: "rgba(176, 196, 218,0.6)", fontSize: 12.5, textAlign: "center", width: "100%", "@media (min-width: 768px)": { width: "auto", textAlign: "left" } }} className="md:w-auto text-center md:text-left w-full">
+                <p style={{ color: "rgba(176, 196, 218,0.6)", fontSize: 13.5, textAlign: "center", width: "100%", "@media (min-width: 768px)": { width: "auto", textAlign: "left" } }} className="md:w-auto text-center md:text-left w-full">
                   © {new Date().getFullYear()} LorinzaZenix Digital Agency. All rights reserved.
                 </p>
                
