@@ -240,8 +240,8 @@ const onSubmit = async (event) => {
                 style={{
                   ...sora,
                   color: C.light,
-                  fontSize: "clamp(2.2rem, 5vw, 4.2rem)",
-                  fontWeight: 800,
+                  fontSize: "clamp(2.2rem, 4vw, 3.2rem)",
+                  fontWeight: 700,
                   textTransform: "uppercase",
                   letterSpacing: "-0.03em",
                   lineHeight: 1.05,
@@ -249,7 +249,7 @@ const onSubmit = async (event) => {
                 }}
                 variants={headingVariants}
               >
-                LET'S BUILD SOMETHING TOGETHER.
+                LET'S BUILD SOMETHING TOGETHER
                 <span style={{ color: C.accent }}>.</span>
               </motion.h1>
               <motion.p

@@ -391,17 +391,17 @@ export function Services() {
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <motion.h2 style={{
             ...sora, color: C.light,
-            fontSize: "clamp(1.8rem,4.5vw,3.2rem)",
-            fontWeight: 800, textTransform: "uppercase",
+            fontSize: "clamp(1.8rem,3.5vw,2.2rem)",
+            fontWeight: 700, textTransform: "uppercase",
             letterSpacing: "-0.02em", lineHeight: 1.15,
             marginBottom: 20,
           }}
             variants={headingVariants}
           >
-            EVERY SERVICE WE OFFER IS DESIGNED WITH ONE GOAL — YOUR GROWTH
+            EVERY SERVICE WE OFFER IS DESIGNED WITH ONE GOAL, YOUR GROWTH
             <span style={{ color: C.accent }}>.</span>
           </motion.h2>
-          <motion.p style={{ color: C.support, fontSize: 15.5, lineHeight: 1.85, maxWidth: 620, margin: "0 auto 36px" }}
+          <motion.p style={{ color: C.support, fontSize: 16.5, fontWeight: 500, lineHeight: 1.85, maxWidth: 620, margin: "0 auto 36px" }}
             variants={paragraphVariants}
           >
             We combine strategy, design, and technology to deliver results that matter to your business.
@@ -443,8 +443,8 @@ export function Services() {
           <motion.h2 
             style={{
               ...sora, color: C.dark,
-              fontSize: "clamp(1.8rem,4vw,3rem)",
-              fontWeight: 800, textTransform: "uppercase",
+              fontSize: "clamp(1.8rem,2vw,2rem)",
+              fontWeight: 700, textTransform: "uppercase",
               letterSpacing: "-0.02em", lineHeight: 1.15,
               marginBottom: 60,
             }}
@@ -502,8 +502,8 @@ export function Services() {
           </motion.div>
           <motion.h2 style={{
             ...sora, color: C.light,
-            fontSize: "clamp(1.8rem,4vw,2.8rem)",
-            fontWeight: 800, textTransform: "uppercase",
+            fontSize: "clamp(1.8rem,3vw,1.8rem)",
+            fontWeight: 700, textTransform: "uppercase",
             letterSpacing: "-0.02em", lineHeight: 1.15,
             marginBottom: 20,
           }}
