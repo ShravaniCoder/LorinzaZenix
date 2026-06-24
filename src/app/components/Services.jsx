@@ -1,6 +1,10 @@
+import { useRef, useEffect, useState, useCallback, memo } from "react";
 import { Link } from "react-router";
 import { Palette, Code2, Megaphone, Monitor, Search, Share2, ArrowRight, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { PageHero } from "./PageHero";
 import Branding from "../../images/branding.webp";
@@ -8,6 +12,8 @@ import UIUX from "../../images/website.webp";
 import SEO from "../../images/seo.webp";
 import Media from "../../images/social-media.webp";
 import Website from "../../images/websiteI.jpg"
+
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const MotionLink = motion(Link);
 
@@ -128,7 +134,92 @@ const services = [
 ];
 
 export function Services() {
-  // Premium, luxury-style typography variants
+  // ── refs / state for the vertical GSAP flip-book ──
+  const containerRef = useRef(null);
+  const stRef = useRef(null);
+  const pageIndexRef = useRef(0);
+  const [pageIndex, setPageIndex] = useState(0);
+
+  useEffect(() => {
+    const pages = gsap.utils.toArray('.service-page');
+    if (!pages.length) return;
+
+    gsap.set(containerRef.current, {
+      perspective: 2200,
+    });
+
+    gsap.set(pages, {
+      transformStyle: 'preserve-3d',
+      transformOrigin: 'top center', // pivot at the TOP edge → vertical flip
+      backfaceVisibility: 'hidden',
+      position: 'absolute',
+      inset: 0,
+      willChange: 'transform',
+      force3D: true,
+    });
+
+    pages.forEach((page, i) => {
+      gsap.set(page, {
+        zIndex: services.length - i,
+        rotateX: 0,
+      });
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top 72px',
+        end: `+=${window.innerHeight * 0.9 * services.length}`,
+        scrub: 0.45,
+        pin: true,
+        anticipatePin: 1,
+        snap: {
+          snapTo: 1 / Math.max(1, services.length - 1), // lock to whole-slide steps
+          duration: { min: 0.25, max: 0.5 },
+          delay: 0.05,
+          ease: 'power1.inOut',
+        },
+        onUpdate: (self) => {
+          const newIndex = Math.round(self.progress * Math.max(0, services.length - 1));
+          if (pageIndexRef.current !== newIndex) {
+            pageIndexRef.current = newIndex;
+            setPageIndex(newIndex);
+          }
+        },
+      },
+    });
+
+    pages.forEach((page, i) => {
+      if (i === pages.length - 1) return;
+      // negative rotateX folds the panel "up and away" — top-hinged, like a
+      // page on a vertical flip calendar / desk pad
+      tl.to(page, {
+        rotateX: -180,
+        duration: 1,
+        ease: 'none',
+      }, i);
+    });
+
+    stRef.current = tl.scrollTrigger;
+
+    return () => {
+      tl.scrollTrigger?.kill();
+      tl.kill();
+    };
+  }, []);
+
+  const goTo = useCallback((i) => {
+    setPageIndex(i);
+    pageIndexRef.current = i;
+    if (stRef.current) {
+      const st = stRef.current;
+      const progress = i / Math.max(1, services.length - 1);
+      const targetScroll = st.start + (st.end - st.start) * progress;
+      gsap.to(window, { scrollTo: targetScroll, duration: 0.7, ease: 'power2.out' });
+    }
+  }, []);
+
+  // Premium, luxury-style typography variants (used outside the pinned flip-book)
   const containerVariants = {
     hidden: {},
     visible: {
@@ -207,21 +298,21 @@ export function Services() {
       <PageHero
         eyebrow="What We Offer"
         title={
-  <>
-    <span style={{ whiteSpace: "nowrap" }}>
-      STRATEGY TO EXECUTION
-    </span>
-    <br />
-    ONE ROOF
-  </>
-}
+          <>
+            <span style={{ whiteSpace: "nowrap" }}>
+              STRATEGY TO EXECUTION
+            </span>
+            <br />
+            ONE ROOF
+          </>
+        }
         description="Digital solutions, built with intent."
         image="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=1920&q=80"
         alt="Digital product design and development workspace"
       />
 
-      {/* ── QUICK NAV PILLS ── */}
-      <motion.section 
+      {/* ── QUICK NAV PILLS ── (jump straight into the flip-book) */}
+      <motion.section
         style={{ backgroundColor: C.light, padding: "48px 32px 32px", borderBottom: `1px solid rgba(30, 58, 86, 0.1)` }}
         initial="hidden"
         whileInView="visible"
@@ -230,17 +321,21 @@ export function Services() {
       >
         <div style={{ maxWidth: 1240, margin: "0 auto", display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center" }}>
           {services.map(({ Icon, title }, i) => (
-            <motion.a key={i} href={`#s${i}`} style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              backgroundColor: "#FFFFFF",
-              border: `1px solid rgba(30, 58, 86, 0.12)`,
-              borderRadius: 0, padding: "10px 20px",
-              color: C.dark, textDecoration: "none", fontSize: 12, fontWeight: 700,
-              fontFamily: "Sora, sans-serif",
-              letterSpacing: "0.05em", textTransform: "uppercase",
-              transition: "all 0.2s ease",
-              willChange: "transform, opacity",
-            }}
+            <motion.button
+              key={i}
+              onClick={() => goTo(i)}
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                backgroundColor: i === pageIndex ? C.accent : "#FFFFFF",
+                border: `1px solid rgba(30, 58, 86, 0.12)`,
+                borderRadius: 0, padding: "10px 20px",
+                color: i === pageIndex ? C.light : C.dark, fontSize: 12, fontWeight: 700,
+                fontFamily: "Sora, sans-serif",
+                letterSpacing: "0.05em", textTransform: "uppercase",
+                transition: "all 0.2s ease",
+                willChange: "transform, opacity",
+                cursor: "pointer",
+              }}
               variants={buttonVariants}
               whileHover={{
                 backgroundColor: C.accent,
@@ -250,138 +345,58 @@ export function Services() {
               }}
             >
               <Icon size={13} /> {title}
-            </motion.a>
+            </motion.button>
           ))}
         </div>
       </motion.section>
 
-      {/* ── SERVICE DETAIL SECTIONS ── */}
-      {services.map(({ Icon, n, title, tagline, desc, deliverables, img }, i) => (
-        <section 
-          key={i} 
-          id={`s${i}`} 
-          style={{
-            backgroundColor: i % 2 === 0 ? C.dark : C.light,
-            padding: "100px 32px",
-            borderBottom: `1px solid ${i % 2 === 0 ? "rgba(127, 160, 196,0.15)" : "rgba(30, 58, 86,0.1)"}`,
-          }}
+      {/* ── VERTICAL GSAP FLIP-BOOK (rotateX, hinged at the top edge) ── */}
+      <div
+        ref={containerRef}
+        className="relative w-full overflow-hidden"
+        style={{ height: '92vh', backgroundColor: C.dark }}
+      >
+        {/* side dots — jump to any service, mirrors the chapter rail on Menu */}
+        <div
+          className="hidden lg:flex flex-col items-center gap-3"
+          style={{ position: 'absolute', right: 24, top: '50%', transform: 'translateY(-50%)', zIndex: 50 }}
         >
-          <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-            <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: 80, alignItems: "center" }}>
-              {/* Content */}
-              <motion.div 
-                style={{ order: i % 2 === 0 ? 0 : 1 }}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-                variants={{
-                  hidden: { opacity: 0, y: 35 },
-                  visible: { 
-                    opacity: 1, 
-                    y: 0, 
-                    transition: { duration: 0.65, delay: 0.45, ease: [0.16, 1, 0.3, 1] } 
-                  }
-                }}
-              >
-                <p style={{ color: C.accent, fontSize: 14, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16, fontFamily: "Sora, sans-serif" }}>
-                  {n} — SERVICE
-                </p>
-                <div style={{
-                  width: 52, height: 52, borderRadius: 0,
-                  backgroundColor: i % 2 === 0 ? "rgba(127, 160, 196,0.18)" : "rgba(127, 160, 196,0.1)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  marginBottom: 24,
-                }}>
-                  <Icon size={22} color={i % 2 === 0 ? C.light : C.accent} strokeWidth={1.5} />
-                </div>
-                <h2 style={{
-                  ...sora, color: i % 2 === 0 ? C.light : C.dark,
-                  fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)",
-                  fontWeight: 800, textTransform: "uppercase",
-                  letterSpacing: "-0.02em", lineHeight: 1.15,
-                  marginBottom: 12,
-                }}>
-                  {title}
-                </h2>
-                <p style={{ color: i % 2 === 0 ? C.support : C.accent, fontSize: 16.5, fontStyle: "italic", marginBottom: 20 }}>{tagline}</p>
-                <p style={{ color: i % 2 === 0 ? C.support : "rgba(30, 58, 86, 0.75)", fontSize: 15.5, lineHeight: 1.85, marginBottom: 32 }}>{desc}</p>
+          {services.map((s, i) => (
+            <button
+              key={s.n}
+              aria-label={`Go to ${s.title}`}
+              onClick={() => goTo(i)}
+              style={{
+                width: i === pageIndex ? 10 : 7,
+                height: i === pageIndex ? 10 : 7,
+                borderRadius: '50%',
+                background: i === pageIndex ? C.accent : 'rgba(224,225,221,0.35)',
+                border: 'none',
+                transition: 'all 200ms ease',
+                cursor: 'pointer',
+              }}
+            />
+          ))}
+        </div>
 
-                <motion.div style={{ marginBottom: 36 }} variants={staggerContainer}>
-                  <p style={{ ...sora, color: i % 2 === 0 ? C.light : C.dark, fontSize: 13, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 16 }}>
-                    What's Included:
-                  </p>
-                  {deliverables.map((d, di) => (
-                    <motion.div key={di} style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 12 }}
-                      variants={fadeInUp}
-                    >
-                      <CheckCircle size={15} color={C.accent} style={{ flexShrink: 0, marginTop: 3 }} />
-                      <span style={{ color: i % 2 === 0 ? C.support : "rgba(30, 58, 86, 0.75)", fontSize: 15 }}>{d}</span>
-                    </motion.div>
-                  ))}
-                </motion.div>
-
-                <MotionLink to="/contact" style={{
-                  ...sora,
-                  display: "inline-flex", alignItems: "center", gap: 10,
-                  backgroundColor: C.accent, color: C.light,
-                  padding: "13px 32px", borderRadius: 0,
-                  textDecoration: "none", fontSize: 11.5, fontWeight: 700,
-                  letterSpacing: "0.08em", textTransform: "uppercase",
-                  border: `2px solid ${C.accent}`,
-                }}
-                  whileHover={{
-                    scale: 1.03,
-                    backgroundColor: "transparent",
-                    borderColor: i % 2 === 0 ? C.light : C.dark,
-                    color: i % 2 === 0 ? C.light : C.dark,
-                  }}
-                  transition={{ duration: 0.2 }}
-                >
-                  GET A QUOTE <ArrowRight size={13} />
-                </MotionLink>
-              </motion.div>
-
-              {/* Image */}
-              <motion.div 
-                style={{ order: i % 2 === 0 ? 1 : 0, position: "relative" }}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-                variants={{
-                  hidden: { opacity: 0, x: i % 2 === 0 ? 50 : -50 },
-                  visible: { 
-                    opacity: 1, 
-                    x: 0, 
-                    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
-                  }
-                }}
-              >
-                <div style={{
-                  position: "absolute",
-                  top: -16, left: i % 2 === 0 ? -16 : "auto",
-                  right: i % 2 !== 0 ? -16 : "auto",
-                  width: "100%", height: "100%",
-                  border: `1px solid ${i % 2 === 0 ? "rgba(127, 160, 196,0.3)" : "rgba(30, 58, 86,0.12)"}`, borderRadius: 0, zIndex: 0,
-                }} />
-                <motion.div
-                  style={{ width: "100%", borderRadius: 0, overflow: "hidden", position: "relative", zIndex: 1, border: `1px solid ${i % 2 === 0 ? "rgba(127, 160, 196,0.2)" : "rgba(30, 58, 86,0.1)"}` }}
-                  whileHover={{ scale: 1.03 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <ImageWithFallback
-                    src={img}
-                    alt={title}
-                    style={{ width: "100%", height: 400, objectFit: "cover", display: "block" }}
-                  />
-                </motion.div>
-              </motion.div>
-            </div>
+        {services.map((service, i) => (
+          <div
+            key={service.n}
+            className="service-page absolute inset-0 w-full h-full"
+            style={{
+              zIndex: services.length - i,
+              backfaceVisibility: 'hidden',
+              backgroundColor: i % 2 === 0 ? C.dark : C.light,
+              boxShadow: '0 18px 40px rgba(20,17,15,0.18)',
+            }}
+          >
+            <ServicePanel service={service} index={i} isActive={i === pageIndex} />
           </div>
-        </section>
-      ))}
+        ))}
+      </div>
 
       {/* ── BOLD STATEMENT ── */}
-      <motion.section 
+      <motion.section
         style={{ backgroundColor: C.dark, padding: "100px 32px", textAlign: "center" }}
         initial="hidden"
         whileInView="visible"
@@ -429,7 +444,7 @@ export function Services() {
       </motion.section>
 
       {/* ── PROCESS ── */}
-      <motion.section 
+      <motion.section
         style={{ backgroundColor: C.light, padding: "110px 32px" }}
         initial="hidden"
         whileInView="visible"
@@ -440,7 +455,7 @@ export function Services() {
           <motion.div variants={subheadingVariants}>
             <SectionTag>Our Process</SectionTag>
           </motion.div>
-          <motion.h2 
+          <motion.h2
             style={{
               ...sora, color: C.dark,
               fontSize: "clamp(1.8rem,2vw,2rem)",
@@ -462,8 +477,8 @@ export function Services() {
               { n: "05", t: "Launch", d: "Deploy, test, and go live with confidence." },
               { n: "06", t: "Grow", d: "Monitor, optimize, and drive ongoing results." },
             ].map(({ n, t, d }, i) => (
-              <motion.div 
-                key={i} 
+              <motion.div
+                key={i}
                 style={{
                   backgroundColor: "#FFFFFF",
                   padding: "36px 20px",
@@ -489,7 +504,7 @@ export function Services() {
       </motion.section>
 
       {/* ── CTA ── */}
-      <motion.section 
+      <motion.section
         style={{ backgroundColor: C.secondary, padding: "110px 32px", textAlign: "center" }}
         initial="hidden"
         whileInView="visible"
@@ -509,10 +524,10 @@ export function Services() {
           }}
             variants={headingVariants}
           >
-Every brand starts with one conversation
+            Every brand starts with one conversation
             <span style={{ color: C.accent }}>.</span>
           </motion.h2>
-         
+
           <MotionLink to="/contact" style={{
             ...sora,
             display: "inline-flex", alignItems: "center", gap: 10,
@@ -538,3 +553,103 @@ Every brand starts with one conversation
     </div>
   );
 }
+
+// ─── Memoized panel rendered inside each flipping page ───────────────────────
+
+const ServicePanel = memo(function ServicePanel({ service, index, isActive }) {
+  const { Icon, n, title, tagline, desc, deliverables, img } = service;
+  const isDark = index % 2 === 0;
+
+  return (
+    <div
+      className="w-full h-full flex items-center overflow-y-auto"
+      style={{ padding: '60px 32px' }}
+    >
+      <div style={{ maxWidth: 1240, margin: "0 auto", width: '100%' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: 60, alignItems: "center" }}>
+          {/* Content */}
+          <motion.div
+            initial={false}
+            animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0.4, y: 8 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p style={{ color: C.accent, fontSize: 14, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16, fontFamily: "Sora, sans-serif" }}>
+              {n} — SERVICE
+            </p>
+            <div style={{
+              width: 52, height: 52, borderRadius: 0,
+              backgroundColor: isDark ? "rgba(127, 160, 196,0.18)" : "rgba(127, 160, 196,0.1)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              marginBottom: 24,
+            }}>
+              <Icon size={22} color={isDark ? C.light : C.accent} strokeWidth={1.5} />
+            </div>
+            <h2 style={{
+              ...sora, color: isDark ? C.light : C.dark,
+              fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
+              fontWeight: 800, textTransform: "uppercase",
+              letterSpacing: "-0.02em", lineHeight: 1.15,
+              marginBottom: 12,
+            }}>
+              {title}
+            </h2>
+            <p style={{ color: isDark ? C.support : C.accent, fontSize: 16, fontStyle: "italic", marginBottom: 18 }}>{tagline}</p>
+            <p style={{ color: isDark ? C.support : "rgba(30, 58, 86, 0.75)", fontSize: 15, lineHeight: 1.8, marginBottom: 26 }}>{desc}</p>
+
+            <div style={{ marginBottom: 28 }}>
+              <p style={{ ...sora, color: isDark ? C.light : C.dark, fontSize: 13, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14 }}>
+                What's Included:
+              </p>
+              {deliverables.map((d, di) => (
+                <div key={di} style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 10 }}>
+                  <CheckCircle size={15} color={C.accent} style={{ flexShrink: 0, marginTop: 3 }} />
+                  <span style={{ color: isDark ? C.support : "rgba(30, 58, 86, 0.75)", fontSize: 14.5 }}>{d}</span>
+                </div>
+              ))}
+            </div>
+
+            <MotionLink to="/contact" style={{
+              ...sora,
+              display: "inline-flex", alignItems: "center", gap: 10,
+              backgroundColor: C.accent, color: C.light,
+              padding: "13px 32px", borderRadius: 0,
+              textDecoration: "none", fontSize: 11.5, fontWeight: 700,
+              letterSpacing: "0.08em", textTransform: "uppercase",
+              border: `2px solid ${C.accent}`,
+            }}
+              whileHover={{
+                scale: 1.03,
+                backgroundColor: "transparent",
+                borderColor: isDark ? C.light : C.dark,
+                color: isDark ? C.light : C.dark,
+              }}
+              transition={{ duration: 0.2 }}
+            >
+              GET A QUOTE <ArrowRight size={13} />
+            </MotionLink>
+          </motion.div>
+
+          {/* Image */}
+          <div style={{ position: "relative" }} className="hidden md:block">
+            <div style={{
+              position: "absolute",
+              top: -16, left: isDark ? -16 : "auto",
+              right: !isDark ? -16 : "auto",
+              width: "100%", height: "100%",
+              border: `1px solid ${isDark ? "rgba(127, 160, 196,0.3)" : "rgba(30, 58, 86,0.12)"}`, borderRadius: 0, zIndex: 0,
+            }} />
+            <div
+              style={{ width: "100%", borderRadius: 0, overflow: "hidden", position: "relative", zIndex: 1, border: `1px solid ${isDark ? "rgba(127, 160, 196,0.2)" : "rgba(30, 58, 86,0.1)"}` }}
+            >
+              <ImageWithFallback
+                src={img}
+                alt={title}
+                style={{ width: "100%", height: 340, objectFit: "cover", display: "block" }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+});
