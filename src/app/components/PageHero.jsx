@@ -52,7 +52,7 @@ export function PageHero({ eyebrow, title, description, image, alt }) {
         textAlign: "center",
         backgroundColor: C.dark,
       }}
-      className="min-h-[420px] sm:min-h-[520px] lg:min-h-[clamp(520px,74vh,760px)] px-4 py-24 sm:px-8 sm:py-32 md:py-40"
+      className="min-h-[420px] sm:min-h-[520px] lg:min-h-[clamp(420px,64vh,660px)] px-4 py-24 sm:px-8 sm:py-32 md:py-40"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -63,7 +63,7 @@ export function PageHero({ eyebrow, title, description, image, alt }) {
           inset: 0,
           backgroundImage: `url(${image})`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "top center",
           backgroundRepeat: "no-repeat",
           filter: "brightness(0.42) contrast(1.03) saturate(0.95)",
           transform: "scale(1.02)",

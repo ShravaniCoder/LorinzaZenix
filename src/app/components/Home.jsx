@@ -421,14 +421,17 @@ export function Home() {
         />
 
         {/* Hero Content */}
-        <motion.div
-          style={{
-            position: "relative",
-            zIndex: 3,
-            maxWidth: "960px",
-            y: textY,
-          }}
-        >
+       <motion.div
+  style={{
+    position: "relative",
+    zIndex: 3,
+    maxWidth: "1400px",
+    y: textY,
+    textAlign: "center",  // ← add this
+    margin: "0 auto",     // ← add this
+    width: "100%",        // ← add this
+  }}
+>
           {/* Top tagline / Consultation request */}
           <motion.p
             style={{
@@ -453,8 +456,8 @@ export function Home() {
   style={{
     color: C.light,
     ...sora,
-    fontSize: "clamp(2rem, 4.2vw, 3.6rem)",
-    fontWeight: 900,
+    fontSize: "clamp(2rem, 3.2vw, 2.6rem)",
+    fontWeight: 700,
     lineHeight: 1.1,
     letterSpacing: "-0.03em",
     textTransform: "uppercase",
@@ -462,10 +465,13 @@ export function Home() {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    justifyContent: "center",  // ← add this
+    textAlign: "center",       // ← add this
     gap: "0.15em",
+    width: "100%",             // ← add this so it fills the container
   }}
 >
-  {["WE BUILD BRANDS", "THAT MOVE PEOPLE"].map((line, lineIndex) => (
+  {["From the first brief to the final delivery", "full ownership, every time.",].map((line, lineIndex) => (
     <div key={lineIndex} style={{ display: "flex", gap: "0.22em", flexWrap: "wrap" }}>
       {line.split(" ").map((word, idx) => (
         <span

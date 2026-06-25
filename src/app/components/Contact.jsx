@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Mail, Phone, MapPin, Send, CheckCircle, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { PageHero } from "./PageHero";
-
+import ContactImg from "../../images/contactt.webp";
+ 
 const C = { dark: "#1E3A56", secondary: "#2D4A6A", accent: "#7FA0C4", support: "#B0C4DA", light: "#E0E1DD" };
 const sora = { fontFamily: "'Sora', sans-serif" };
 
@@ -189,7 +190,7 @@ const onSubmit = async (event) => {
         eyebrow="Contact"
         title="GET IN TOUCH"
         description="Starting fresh or scaling something that already works, we're ready when you are."
-        image="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=1920&q=80"
+        image={ContactImg}
         alt="Modern agency collaboration environment"
       />
 
