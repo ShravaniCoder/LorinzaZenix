@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import { Target, Eye, Heart, Lightbulb, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Counter } from "./Counter";
 import { PageHero } from "./PageHero";
@@ -26,6 +27,8 @@ function SectionTag({ children, dark = false }) {
 }
 
 export function About() {
+  const [processOpen, setProcessOpen] = useState(false);
+
   // Premium, luxury-style typography variants
   const containerVariants = {
     hidden: {},
@@ -248,6 +251,201 @@ export function About() {
           </motion.p>
         </div>
       </motion.section>
+
+      {/* ── YOUR DIGITAL PRESENCE + SEE HOW WE DO IT ── */}
+      <motion.section
+        style={{ position: "relative", overflow: "hidden" }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={containerVariants}
+      >
+        <div style={{
+          position: "absolute", inset: 0,
+          backgroundImage: "url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1920&q=80')",
+          backgroundSize: "cover", backgroundPosition: "center", backgroundAttachment: "fixed",
+        }}>
+          <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(30,58,86,0.92)" }} />
+        </div>
+        <div style={{
+          position: "relative", zIndex: 1,
+          padding: "120px 32px", textAlign: "center",
+          maxWidth: 900, margin: "0 auto",
+        }}>
+          <motion.h2 style={{
+            ...sora, color: C.light,
+            fontSize: "clamp(2rem, 3.5vw, 2.6rem)",
+            fontWeight: 700, lineHeight: 1.15,
+            textTransform: "uppercase", letterSpacing: "-0.02em",
+            marginBottom: 24,
+          }} variants={headingVariants}>
+            YOUR DIGITAL PRESENCE IS YOUR FIRST IMPRESSION
+            <span style={{ color: C.accent }}>.</span>
+          </motion.h2>
+          <motion.p style={{
+            color: C.support, fontSize: 17, lineHeight: 1.85, fontWeight: 700,
+            maxWidth: 620, margin: "0 auto 40px",
+          }} variants={paragraphVariants}>
+            Every touchpoint shapes how people see you. We make sure yours says the right thing, to the right people, at the right time.
+          </motion.p>
+          <motion.button
+            type="button"
+            onClick={() => setProcessOpen((o) => !o)}
+            aria-expanded={processOpen}
+            style={{
+              ...sora, display: "inline-block", cursor: "pointer",
+              backgroundColor: C.accent, color: C.light,
+              padding: "14px 36px", borderRadius: 0,
+              fontSize: 11.5, fontWeight: 700,
+              letterSpacing: "0.1em", textTransform: "uppercase",
+              border: `1.5px solid ${C.accent}`,
+              transition: "box-shadow 0.3s ease, border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease",
+            }}
+            variants={buttonVariants}
+            whileHover={{ scale: 1.03, backgroundColor: "transparent", borderColor: C.light }}
+          >
+            SEE HOW WE DO IT
+          </motion.button>
+        </div>
+      </motion.section>
+
+      {/* ── EXPANDABLE "HOW WE WORK" PROCESS ── */}
+      <AnimatePresence initial={false}>
+        {processOpen && (
+          <motion.section
+            key="how-we-work"
+            initial={{ height: 0 }}
+            animate={{ height: "auto" }}
+            exit={{ height: 0 }}
+            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+            style={{
+              overflow: "hidden", position: "relative",
+              background: "linear-gradient(180deg, #152B40 0%, #1E3A56 45%, #172F47 100%)",
+              borderTop: `1px solid rgba(127,160,196,0.25)`,
+            }}
+          >
+            <div style={{
+              position: "absolute", inset: 0, pointerEvents: "none",
+              background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(127,160,196,0.08) 0%, transparent 70%)",
+            }} />
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 30 }}
+              transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+              style={{
+                position: "relative", zIndex: 1,
+                padding: "clamp(72px, 9vw, 120px) 32px clamp(64px, 8vw, 100px)",
+                maxWidth: 1100, margin: "0 auto", textAlign: "center",
+              }}
+            >
+              <SectionTag>How We Work</SectionTag>
+              <h2 style={{
+                ...sora, color: C.light,
+                fontSize: "clamp(2rem, 3.5vw, 2.4rem)",
+                fontWeight: 800, lineHeight: 1.15,
+                textTransform: "uppercase", letterSpacing: "-0.02em",
+                marginBottom: 16,
+              }}>
+                A Process Built For Results<span style={{ color: C.accent }}>.</span>
+              </h2>
+              <p style={{
+                color: C.support, fontSize: 14.5, lineHeight: 1.8,
+                maxWidth: 540, margin: "0 auto clamp(48px, 6vw, 72px)",
+              }}>
+                Simple steps. No surprises. Just work that delivers.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "clamp(16px, 2vw, 24px)", textAlign: "left" }}>
+                {[
+                  { n: "01", title: "Brief", body: "We start by listening. Understanding your business, your goals, and what success actually looks like for you — before a single thing gets designed or written." },
+                  { n: "02", title: "Strategy", body: "Every decision needs a reason behind it. We map out the direction — positioning, channels, messaging — so execution has a clear foundation to build on." },
+                  { n: "03", title: "Design & Build", body: "This is where thinking becomes visible. Branding, UI/UX, development, content — crafted with precision and built to perform in the real world." },
+                  { n: "04", title: "Deliver & Grow", body: "We don't hand off and disappear. We launch, track, refine, and stay invested in the outcome — because delivery is the beginning, not the end." },
+                ].map((step) => (
+                  <div
+                    key={step.n}
+                    style={{
+                      position: "relative", overflow: "hidden",
+                      borderRadius: 20,
+                      border: "1px solid rgba(255,255,255,0.07)",
+                      background: "linear-gradient(150deg, rgba(45,74,106,0.55) 0%, rgba(30,58,86,0.30) 100%)",
+                      backdropFilter: "blur(10px)",
+                      padding: "clamp(30px, 3.5vw, 44px)",
+                      transition: "transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.4s ease, box-shadow 0.4s ease",
+                      willChange: "transform",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "translateY(-6px)";
+                      e.currentTarget.style.borderColor = "rgba(127,160,196,0.5)";
+                      e.currentTarget.style.boxShadow = "0 24px 50px -18px rgba(0,0,0,0.5), 0 0 24px rgba(127,160,196,0.12)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "translateY(0)";
+                      e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)";
+                      e.currentTarget.style.boxShadow = "none";
+                    }}
+                  >
+                    <span style={{
+                      ...sora, position: "absolute", top: 8, right: 18,
+                      fontSize: "clamp(60px, 8vw, 96px)", fontWeight: 800,
+                      lineHeight: 1, letterSpacing: "-0.04em",
+                      color: "rgba(127,160,196,0.08)", pointerEvents: "none", userSelect: "none",
+                    }}>{step.n}</span>
+                    <p style={{
+                      ...sora, color: C.accent, fontSize: 11, fontWeight: 700,
+                      letterSpacing: "0.18em", textTransform: "uppercase",
+                      marginBottom: 18, position: "relative",
+                    }}>Step {step.n}</p>
+                    <span style={{ display: "block", width: 32, height: 2, backgroundColor: "rgba(127,160,196,0.55)", marginBottom: 18 }} />
+                    <h3 style={{
+                      ...sora, color: C.light, fontSize: "clamp(18px, 2vw, 22px)",
+                      fontWeight: 700, textTransform: "uppercase",
+                      letterSpacing: "0.01em", marginBottom: 14, position: "relative",
+                    }}>{step.title}</h3>
+                    <p style={{ color: C.support, fontSize: 14.5, lineHeight: 1.8, position: "relative" }}>{step.body}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ marginTop: "clamp(52px, 6vw, 76px)" }}>
+                <MotionLink to="/contact" style={{
+                  ...sora, display: "inline-flex", alignItems: "center", gap: 10,
+                  backgroundColor: C.accent, color: C.light,
+                  padding: "18px 52px", borderRadius: 0,
+                  textDecoration: "none", fontSize: 12.5, fontWeight: 700,
+                  letterSpacing: "0.12em", textTransform: "uppercase",
+                  border: `1.5px solid ${C.accent}`,
+                  transition: "box-shadow 0.3s ease, border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease",
+                }}
+                  whileHover={{ scale: 1.03, backgroundColor: "transparent", borderColor: C.light, color: C.light, boxShadow: "0 0 20px rgba(127,160,196,0.35)" }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Start Your Project <span aria-hidden="true">→</span>
+                </MotionLink>
+                <div style={{ marginTop: 26 }}>
+                  <button
+                    type="button"
+                    onClick={() => setProcessOpen(false)}
+                    style={{
+                      ...sora, background: "none", border: "none", cursor: "pointer",
+                      color: C.support, fontSize: 11.5, fontWeight: 700,
+                      letterSpacing: "0.14em", textTransform: "uppercase",
+                      textDecoration: "underline", textUnderlineOffset: 5,
+                      textDecorationColor: "rgba(176,196,218,0.5)",
+                      transition: "color 0.3s ease, text-decoration-color 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = C.light; e.currentTarget.style.textDecorationColor = "rgba(224,225,221,0.7)"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = C.support; e.currentTarget.style.textDecorationColor = "rgba(176,196,218,0.5)"; }}
+                  >
+                    Hide it
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.section>
+        )}
+      </AnimatePresence>
 
       {/* ── CORE VALUES ── */}
       <motion.section 
