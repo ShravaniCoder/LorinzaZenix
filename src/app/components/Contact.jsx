@@ -180,19 +180,13 @@ const onSubmit = async (event) => {
 
   const cards = [
     { icon: Mail, label: "Email", value: "contact@lorinzazenix.com", meta: "Reply within 24 business hours" },
-    { icon: Phone, label: "Phone", value: "+1 (555) 123-4567", meta: "Mon to Fri, 9am to 6pm EST" },
+    { icon: Phone, label: "Phone", value: "+91 86990 09381", meta: "Mon to Fri, 9am to 6pm EST" },
     { icon: MapPin, label: "Location", value: "1311, MARATHON MILLENIUM, LBS ROAD, BESIDE NIRMAL LIFESTYLE MALL, MULUND WEST, Mumbai(400080).", meta: "Remote-first, global client base" },
   ];
 
   return (
     <div style={{ backgroundColor: C.dark }}>
-      <PageHero
-        eyebrow="Contact"
-        title="GET IN TOUCH"
-        description="Starting fresh or scaling something that already works, we're ready when you are."
-        image={ContactImg}
-        alt="Modern agency collaboration environment"
-      />
+     
 
       <motion.section
         style={{
@@ -339,7 +333,7 @@ const onSubmit = async (event) => {
                       <input
                         name="phone"
                         type="tel"
-                        placeholder="+1 (555) 000-0000"
+                        placeholder=""
                         value={form.phone}
                         onChange={(e) => setForm((prev) => ({ ...prev, phone: e.target.value }))}
                         style={inputStyle("phone")}

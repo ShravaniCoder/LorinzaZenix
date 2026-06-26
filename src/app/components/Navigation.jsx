@@ -117,30 +117,7 @@ export function Navigation() {
           })}
         </div>
 
-        {/* CTA */}
-        <MotionLink
-          to="/contact"
-          className="hidden md:inline-flex"
-          style={{
-            backgroundColor: C.accent, color: C.light,
-            padding: "10px 24px", borderRadius: 0,
-            textDecoration: "none", fontSize: 11, fontWeight: 700,
-            letterSpacing: "0.1em", textTransform: "uppercase",
-            fontFamily: "Sora, sans-serif",
-            border: `1.5px solid ${C.accent}`,
-          }}
-          whileHover={{
-            scale: 1.03,
-            backgroundColor: "transparent",
-            borderColor: "#F4C95D",
-            color: "#F4C95D",
-            boxShadow: "0 0 15px rgba(244, 201, 93, 0.4)",
-          }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-        >
-          Get a Free Consultation
-        </MotionLink>
-
+    
         {/* Mobile toggle */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
@@ -234,31 +211,7 @@ export function Navigation() {
                   </motion.div>
                 ))}
 
-                <motion.div variants={itemVariants} style={{ marginTop: 10 }}>
-                  <Link
-                    to="/contact"
-                    onClick={() => setMenuOpen(false)}
-                    style={{
-                      ...sora,
-                      display: "inline-flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backgroundColor: C.accent,
-                      color: C.light,
-                      padding: "14px 22px",
-                      borderRadius: 0,
-                      textDecoration: "none",
-                      fontSize: 11,
-                      fontWeight: 700,
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      border: `1.5px solid ${C.accent}`,
-                      boxShadow: "0 0 24px rgba(65, 90, 119, 0.2)",
-                    }}
-                  >
-                    Get A Free Consultation
-                  </Link>
-                </motion.div>
+              
               </div>
             </motion.div>
           </motion.div>

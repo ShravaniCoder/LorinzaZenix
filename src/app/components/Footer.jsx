@@ -173,20 +173,25 @@ export function Footer() {
                       Empowering businesses with cutting-edge digital solutions. We craft brands that connect, inspire, and convert.
                     </p>
                     <div style={{ display: "flex", gap: 10 }}>
-                      {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (
-                        <a key={i} href="#" style={{
-                          width: 34, height: 34, borderRadius: 0,
-                          border: "1px solid rgba(127, 160, 196,0.4)",
-                          display: "flex", alignItems: "center", justifyContent: "center",
-                          color: C.support, transition: "all 0.2s",
-                          textDecoration: "none",
-                        }}
-                          onMouseEnter={e => { e.currentTarget.style.backgroundColor = C.accent; e.currentTarget.style.color = C.light; e.currentTarget.style.borderColor = C.accent; }}
-                          onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = C.support; e.currentTarget.style.borderColor = "rgba(127, 160, 196,0.4)"; }}
-                        >
-                          <Icon size={14} />
-                        </a>
-                      ))}
+                     {[
+  { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61590538412946" },
+  { Icon: Instagram, href: "https://www.instagram.com/lorinzazenix_digital.agency?igsh=MWFpdnIxdGY0MXpjOA==" },
+  { Icon: Twitter, href: "https://x.com/lorinzazenix" },
+  { Icon: Linkedin, href: "https://www.linkedin.com/company/lorinzazenix" },
+].map(({ Icon, href }, i) => (
+  <a key={i} href={href} target="_blank" rel="noopener noreferrer" style={{
+    width: 34, height: 34, borderRadius: 0,
+    border: "1px solid rgba(127, 160, 196,0.4)",
+    display: "flex", alignItems: "center", justifyContent: "center",
+    color: C.support, transition: "all 0.2s",
+    textDecoration: "none",
+  }}
+    onMouseEnter={e => { e.currentTarget.style.backgroundColor = C.accent; e.currentTarget.style.color = C.light; e.currentTarget.style.borderColor = C.accent; }}
+    onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = C.support; e.currentTarget.style.borderColor = "rgba(127, 160, 196,0.4)"; }}
+  >
+    <Icon size={14} />
+  </a>
+))}
                     </div>
                   </div>
 
