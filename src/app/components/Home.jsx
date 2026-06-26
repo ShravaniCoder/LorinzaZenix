@@ -545,34 +545,7 @@ export function Home() {
               ease: [0.16, 1, 0.3, 1],
             }}
           >
-            {/* Primary Button */}
-            <MotionLink
-              to="/contact"
-              style={{
-                ...sora,
-                backgroundColor: C.accent,
-                color: C.light,
-                padding: "14px 36px",
-                textDecoration: "none",
-                fontSize: "11.5px",
-                fontWeight: 700,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                border: `1.5px solid ${C.accent}`,
-                display: "inline-block",
-                transition: "box-shadow 0.3s ease, border-color 0.3s ease, color 0.3s ease",
-              }}
-              whileHover={{
-                scale: 1.03,
-                backgroundColor: "transparent",
-                borderColor: "#D4AF37",
-                color: "#D4AF37",
-                boxShadow: "0 0 20px rgba(212, 175, 55, 0.35)",
-              }}
-              transition={{ duration: 0.2 }}
-            >
-             START A PROJECT
-            </MotionLink>
+         
 
             {/* Secondary Button */}
             <MotionLink

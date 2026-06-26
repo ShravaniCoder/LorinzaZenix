@@ -401,78 +401,72 @@ const ServicePanel = memo(function ServicePanel({ service, index, isActive }) {
   const isDark = index % 2 === 0;
 
   return (
-    <div className="w-full h-full flex items-center overflow-y-auto" style={{ padding: "60px 32px" }}>
-      <div style={{ maxWidth: 1240, margin: "0 auto", width: "100%" }}>
-        <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: 60, alignItems: "center" }}>
+    <div
+      className="w-full h-full flex items-center justify-center overflow-y-auto"
+      style={{
+        padding: "60px 32px",
+        backgroundImage: `linear-gradient(rgba(30,58,86,0.82), rgba(30,58,86,0.82)), url(${img})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <motion.div
+        initial={false}
+        animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0.4, y: 8 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        style={{ maxWidth: 700, textAlign: "center" }}
+      >
+        <p style={{ color: C.accent, fontSize: 14, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16, fontFamily: "Sora, sans-serif" }}>
+          {n} — SERVICE
+        </p>
 
-          <motion.div
-            initial={false}
-            animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0.4, y: 8 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <p style={{ color: C.accent, fontSize: 14, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16, fontFamily: "Sora, sans-serif" }}>
-              {n} — SERVICE
-            </p>
-            <div style={{
-              width: 52, height: 52, borderRadius: 0,
-              backgroundColor: isDark ? "rgba(127, 160, 196,0.18)" : "rgba(127, 160, 196,0.1)",
-              display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 24,
-            }}>
-              <Icon size={22} color={isDark ? C.light : C.accent} strokeWidth={1.5} />
-            </div>
-            <h2 style={{
-              ...sora, color: isDark ? C.light : C.dark,
-              fontSize: "clamp(1.5rem, 3vw, 2.2rem)", fontWeight: 800,
-              textTransform: "uppercase", letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 12,
-            }}>
-              {title}
-            </h2>
-            <p style={{ color: isDark ? C.support : C.accent, fontSize: 16, fontStyle: "italic", marginBottom: 18 }}>{tagline}</p>
-            <p style={{ color: isDark ? C.support : "rgba(30, 58, 86, 0.75)", fontSize: 15, lineHeight: 1.8, marginBottom: 26 }}>{desc}</p>
-
-            <div style={{ marginBottom: 28 }}>
-              <p style={{ ...sora, color: isDark ? C.light : C.dark, fontSize: 13, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14 }}>
-                What's Included:
-              </p>
-              {deliverables.map((d, di) => (
-                <div key={di} style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 10 }}>
-                  <CheckCircle size={15} color={C.accent} style={{ flexShrink: 0, marginTop: 3 }} />
-                  <span style={{ color: isDark ? C.support : "rgba(30, 58, 86, 0.75)", fontSize: 14.5 }}>{d}</span>
-                </div>
-              ))}
-            </div>
-
-            <MotionLink to="/contact" style={{
-              ...sora, display: "inline-flex", alignItems: "center", gap: 10,
-              backgroundColor: C.accent, color: C.light, padding: "13px 32px", borderRadius: 0,
-              textDecoration: "none", fontSize: 11.5, fontWeight: 700,
-              letterSpacing: "0.08em", textTransform: "uppercase", border: `2px solid ${C.accent}`,
-            }}
-              whileHover={{ scale: 1.03, backgroundColor: "transparent", borderColor: isDark ? C.light : C.dark, color: isDark ? C.light : C.dark }}
-              transition={{ duration: 0.2 }}
-            >
-              GET A QUOTE <ArrowRight size={13} />
-            </MotionLink>
-          </motion.div>
-
-          <div style={{ position: "relative" }} className="hidden md:block">
-            <div style={{
-              position: "absolute", top: -16,
-              left: isDark ? -16 : "auto", right: !isDark ? -16 : "auto",
-              width: "100%", height: "100%",
-              border: `1px solid ${isDark ? "rgba(127, 160, 196,0.3)" : "rgba(30, 58, 86,0.12)"}`,
-              borderRadius: 0, zIndex: 0,
-            }} />
-            <div style={{
-              width: "100%", borderRadius: 0, overflow: "hidden", position: "relative", zIndex: 1,
-              border: `1px solid ${isDark ? "rgba(127, 160, 196,0.2)" : "rgba(30, 58, 86,0.1)"}`,
-            }}>
-              <ImageWithFallback src={img} alt={title} style={{ width: "100%", height: 340, objectFit: "cover", display: "block" }} />
-            </div>
-          </div>
-
+        <div style={{
+          width: 56, height: 56, borderRadius: 0,
+          backgroundColor: "rgba(127, 160, 196,0.2)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          margin: "0 auto 24px",
+        }}>
+          <Icon size={24} color={C.light} strokeWidth={1.5} />
         </div>
-      </div>
+
+        <h2 style={{
+          ...sora, color: C.light,
+          fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", fontWeight: 800,
+          textTransform: "uppercase", letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 12,
+        }}>
+          {title}
+        </h2>
+
+        <p style={{ color: C.support, fontSize: 16, fontStyle: "italic", marginBottom: 18 }}>{tagline}</p>
+        <p style={{ color: C.support, fontSize: 15, lineHeight: 1.8, marginBottom: 26 }}>{desc}</p>
+
+        <div style={{ marginBottom: 28, display: "inline-block", textAlign: "left" }}>
+          <p style={{ ...sora, color: C.light, fontSize: 13, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14 }}>
+            What's Included:
+          </p>
+          {deliverables.map((d, di) => (
+            <div key={di} style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 10 }}>
+              <CheckCircle size={15} color={C.accent} style={{ flexShrink: 0, marginTop: 3 }} />
+              <span style={{ color: C.support, fontSize: 14.5 }}>{d}</span>
+            </div>
+          ))}
+        </div>
+
+        <div>
+          <MotionLink to="/contact" style={{
+            ...sora, display: "inline-flex", alignItems: "center", gap: 10,
+            backgroundColor: C.accent, color: C.light, padding: "13px 32px", borderRadius: 0,
+            textDecoration: "none", fontSize: 11.5, fontWeight: 700,
+            letterSpacing: "0.08em", textTransform: "uppercase", border: `2px solid ${C.accent}`,
+          }}
+            whileHover={{ scale: 1.03, backgroundColor: "transparent", borderColor: C.light }}
+            transition={{ duration: 0.2 }}
+          >
+            GET A QUOTE <ArrowRight size={13} />
+          </MotionLink>
+        </div>
+      </motion.div>
     </div>
   );
 });
