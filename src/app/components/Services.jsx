@@ -218,7 +218,7 @@ export function Services() {
 
       <PageHero
         eyebrow="What We Offer"
-        title={<><span style={{ whiteSpace: "nowrap" }}>STRATEGY TO EXECUTION</span><br />ONE ROOF</>}
+        title={<><span style={{ whiteSpace: "nowrap" }}>STRATEGY TO EXECUTION</span><br />UNDER ONE ROOF</>}
         description="Digital solutions, built with intent."
         image="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=1920&q=80"
         alt="Digital product design and development workspace"
