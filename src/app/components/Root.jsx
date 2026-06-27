@@ -14,6 +14,71 @@ const WhatsAppIcon = ({ size = 20, color = "currentColor" }) => (
   </svg>
 );
 
+function FloatingWhatsApp({
+  phone = "919869900938",
+  message = "Hi! I'd like to know more.",
+}) {
+  const href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  const [isOverLight, setIsOverLight] = useState(false);
+
+  useEffect(() => {
+    const lightSections = document.querySelectorAll(".light-section");
+    if (!lightSections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const anyVisible = entries.some((e) => e.isIntersecting);
+        setIsOverLight(anyVisible);
+      },
+      {
+        // rootMargin pushes the observation zone to the bottom ~60px of the viewport
+        // (where the floating button lives)
+        rootMargin: "-100% 0px 0px 0px",
+        threshold: 0,
+      }
+    );
+
+    lightSections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat on WhatsApp"
+      style={{
+        position: "fixed",
+        bottom: "24px",
+        right: "24px",
+        width: "60px",
+        height: "60px",
+        borderRadius: "50%",
+        background: isOverLight
+          ? "rgba(0,0,0,0.08)"
+          : "rgba(255,255,255,0.08)",
+        backdropFilter: "blur(8px)",
+        WebkitBackdropFilter: "blur(8px)",
+        border: isOverLight
+          ? "1px solid rgba(0,0,0,0.15)"
+          : "1px solid rgba(255,255,255,0.12)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        boxShadow: "0 8px 20px rgba(0,0,0,0.3)",
+        zIndex: 9999,
+        cursor: "pointer",
+        textDecoration: "none",
+        transition: "transform 0.2s ease, background 0.3s ease, border 0.3s ease",
+      }}
+      onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.08)")}
+      onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+    >
+      <WhatsAppIcon size={30} color={isOverLight ? "#0D1B2A" : "#fff"} />
+    </a>
+  );
+}
 
 
 export function Root() {
@@ -29,7 +94,7 @@ export function Root() {
         <Outlet />
       </main>
       <Footer />
-     
+      <FloatingWhatsApp phone="919869900938" message="Hi! I'd like to know more." />
     </div>
   );
 }

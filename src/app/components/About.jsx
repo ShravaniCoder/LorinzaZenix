@@ -222,6 +222,7 @@ export function About() {
 
       {/* ── BOLD STATEMENT ── */}
       <motion.section 
+       className="light-section"
         style={{ backgroundColor: C.light, padding: "100px 32px", textAlign: "center" }}
         initial="hidden"
         whileInView="visible"

@@ -620,7 +620,11 @@ export function Home() {
           SECTION 4 — INVESTMENT STATEMENT  (WokWok: light bg, large bold text)
       ══════════════════════════════════════════ */}
       <motion.section
-        style={{ backgroundColor: C.light, padding: "100px 32px 80px" }}
+       className="light-section"
+  style={{
+    backgroundColor: C.light,
+    padding: "100px 32px 80px",
+  }}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}

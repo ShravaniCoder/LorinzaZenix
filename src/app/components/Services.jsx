@@ -327,6 +327,7 @@ export function Services() {
 
       {/* ── PROCESS ── */}
       <motion.section
+       className="light-section"
         style={{ backgroundColor: C.light, padding: "110px 32px" }}
         initial="hidden" whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
