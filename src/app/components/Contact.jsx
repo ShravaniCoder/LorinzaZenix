@@ -180,7 +180,7 @@ const onSubmit = async (event) => {
 
   const cards = [
     { icon: Mail, label: "Email", value: "contact@lorinzazenix.com", meta: "Reply within 24 business hours" },
-    { icon: Phone, label: "Phone", value: "+91 86990 09381", meta: "Mon to Fri, 9am to 6pm EST" },
+    { icon: Phone, label: "Phone", value: "+91 86990 09381", meta: "Mon to Fri, 9am to 6pm IST" },
     { icon: MapPin, label: "Location", value: "1311, MARATHON MILLENIUM, LBS ROAD, BESIDE NIRMAL LIFESTYLE MALL, MULUND WEST, Mumbai(400080).", meta: "Remote-first, global client base" },
   ];
 
@@ -300,7 +300,7 @@ const onSubmit = async (event) => {
                         <input
                           name="name"
                           required
-                          placeholder="John Smith"
+                          placeholder=""
                           value={form.name}
                           onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
                           style={inputStyle("name")}
@@ -316,7 +316,7 @@ const onSubmit = async (event) => {
                           name="email"
                           type="email"
                           required
-                          placeholder="john@company.com"
+                          placeholder=""
                           value={form.email}
                           onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
                           style={inputStyle("email")}
@@ -350,7 +350,7 @@ const onSubmit = async (event) => {
                         name="message"
                         required
                         rows={8}
-                        placeholder="Tell us about your project, goals, timeline, and any specific requirements..."
+                        placeholder=""
                         value={form.message}
                         onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
                         style={{ ...inputStyle("message", true), resize: "vertical", minHeight: 180 }}
