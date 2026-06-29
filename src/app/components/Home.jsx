@@ -16,12 +16,14 @@ import seoImage from "../../images/SEO new.png";
 import socialImage from "../../images/Social media new.png";
 import webDevImage from "../../images/WEB DEV new.png";
 import strategyImage from "../../images/Strategy new.png";
-import Img1 from "../../images/Img1.png";
-import Img2 from "../../images/Img2.png";
-import Img3 from "../../images/Img3.png";
-import Img4 from "../../images/Img4.png";
-import Img5 from "../../images/Img5.png";
-import Img6 from "../../images/Img6.png";
+import Img1 from "../../images/P4.png";
+import Img2 from "../../images/P2.png";
+import Img3 from "../../images/P3.png";
+import Img4 from "../../images/P5.png";
+import Img5 from "../../images/P1.png";
+import Img6 from "../../images/P6.png";
+
+
 
 const serviceImages = {
   branding: brandingImage,
@@ -132,6 +134,7 @@ export function Home() {
   const bgY = useTransform(scrollY, [0, 800], [0, 160]);
   const textY = useTransform(scrollY, [0, 800], [0, 60]);
   const bgYImage = useTransform(scrollY, [0, 800], [0, 80]);
+  const [activeImage, setActiveImage] = useState(null);
 
   // Parallax tilt motion values
   const mouseX = useMotionValue(250);
@@ -968,65 +971,158 @@ export function Home() {
         variants={containerVariants}
       >
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-          {/* Row 1 — 4 cols on desktop, collapses to 2 cols on tablet, 1 on mobile */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 4, marginBottom: 4 }}>
-            {portfolio.slice(0, 4).map((p, i) => (
-              <motion.div key={i} style={{
-                position: "relative", overflow: "hidden",
-                backgroundColor: p.bg, cursor: "pointer",
-                aspectRatio: "4/3",
-                willChange: "transform, opacity",
-              }}
-                variants={cardVariants}
-                onMouseEnter={e => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1.05)"; }}
-                onMouseLeave={e => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1)"; }}
-              >
-                <ImageWithFallback
-                  src={p.img}
-                  alt={p.title}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.4s ease" }}
-                />
-                <div style={{
-                  position: "absolute", inset: 0,
-                  background: "linear-gradient(0deg, rgba(13, 27, 42, 0.5) 0%, rgba(13, 27, 42, 0.1) 40%, transparent 70%)",
-                  display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "18px",
-                }}>
-                  <span style={{ color: C.support, fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{p.cat}</span>
-                  <span style={{ ...sora, color: C.light, fontSize: 13.5, fontWeight: 700, marginTop: 4 }}>{p.title}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          {/* Row 2 — 2 cols on desktop, collapses to 1 on mobile */}
-          <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 4 }}>
-            {portfolio.slice(4).map((p, i) => (
-              <motion.div key={i} style={{
-                position: "relative", overflow: "hidden",
-                backgroundColor: p.bg, cursor: "pointer",
-                aspectRatio: "16/7",
-                willChange: "transform, opacity",
-              }}
-                variants={cardVariants}
-                onMouseEnter={e => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1.05)"; }}
-                onMouseLeave={e => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1)"; }}
-              >
-                <ImageWithFallback
-                  src={p.img}
-                  alt={p.title}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.4s ease" }}
-                />
-                <div style={{
-                  position: "absolute", inset: 0,
-                  background: "linear-gradient(0deg, rgba(13, 27, 42, 0.5) 0%, rgba(13, 27, 42, 0.1) 40%, transparent 70%)",
-                  display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "22px",
-                }}>
-                  <span style={{ color: C.support, fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{p.cat}</span>
-                  <span style={{ ...sora, color: C.light, fontSize: 14.5, fontWeight: 700, marginTop: 4 }}>{p.title}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        {/* Row 1 — 4 cols on desktop, collapses to 2 cols on tablet, 1 on mobile */}
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 4, marginBottom: 4 }}>
+  {portfolio.slice(0, 4).map((p, i) => (
+    <motion.div key={i} style={{
+      position: "relative", overflow: "hidden",
+      backgroundColor: p.bg, cursor: "pointer",
+      aspectRatio: "4/3",
+      willChange: "transform, opacity",
+    }}
+      variants={cardVariants}
+      onClick={() => setActiveImage(p)}
+      onMouseEnter={e => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1.05)"; }}
+      onMouseLeave={e => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1)"; }}
+    >
+      <ImageWithFallback
+        src={p.img}
+        alt={p.title}
+        style={{
+          opacity: 0.85,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          display: "block",
+          transition: "transform 0.4s ease, opacity 0.4s ease",
+        }}
+      />
+      <div style={{
+        position: "absolute", inset: 0,
+        background: "linear-gradient(0deg, rgba(13, 27, 42, 0.5) 0%, rgba(13, 27, 42, 0.1) 40%, transparent 70%)",
+        display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "18px",
+      }}>
+        <span style={{ color: C.support, fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{p.cat}</span>
+        <span style={{ ...sora, color: C.light, fontSize: 13.5, fontWeight: 700, marginTop: 4 }}>{p.title}</span>
+      </div>
+    </motion.div>
+  ))}
+</div>
 
+{/* Row 2 — 2 cols on desktop, collapses to 1 on mobile */}
+<div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 4 }}>
+  {portfolio.slice(4).map((p, i) => (
+    <motion.div key={i} style={{
+      position: "relative", overflow: "hidden",
+      backgroundColor: p.bg, cursor: "pointer",
+      aspectRatio: "16/7",
+      willChange: "transform, opacity",
+    }}
+      variants={cardVariants}
+      onClick={() => setActiveImage(p)}
+      onMouseEnter={e => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1.05)"; }}
+      onMouseLeave={e => { const img = e.currentTarget.querySelector("img"); if (img) img.style.transform = "scale(1)"; }}
+    >
+      <ImageWithFallback
+        src={p.img}
+        alt={p.title}
+        style={{
+          opacity: 0.85,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          display: "block",
+          transition: "transform 0.4s ease, opacity 0.4s ease",
+        }}
+      />
+      <div style={{
+        position: "absolute", inset: 0,
+        background: "linear-gradient(0deg, rgba(13, 27, 42, 0.5) 0%, rgba(13, 27, 42, 0.1) 40%, transparent 70%)",
+        display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "22px",
+      }}>
+        <span style={{ color: C.support, fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{p.cat}</span>
+        <span style={{ ...sora, color: C.light, fontSize: 14.5, fontWeight: 700, marginTop: 4 }}>{p.title}</span>
+      </div>
+    </motion.div>
+  ))}
+</div>
+
+<AnimatePresence>
+  {activeImage && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={() => setActiveImage(null)}
+      style={{
+        position: "fixed", inset: 0, zIndex: 1000,
+        backgroundColor: "rgba(13, 27, 42, 0.92)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        cursor: "zoom-out",
+      }}
+      className="px-4 sm:px-6"
+    >
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ duration: 0.25 }}
+        style={{ position: "relative" }}
+        className="max-w-[92vw] sm:max-w-[90vw] max-h-[80vh]"
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Close button — top right corner of the image */}
+        <button
+          onClick={() => setActiveImage(null)}
+          style={{
+            position: "absolute",
+            top: 12,
+            right: 12,
+            width: 36,
+            height: 36,
+            borderRadius: "50%",
+            background: "rgba(13, 27, 42, 0.7)",
+            border: "1px solid rgba(255,255,255,0.3)",
+            color: "#fff",
+            fontSize: 20,
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 1001,
+            lineHeight: 1,
+          }}
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+        <ImageWithFallback
+          src={activeImage.img}
+          alt={activeImage.title}
+          style={{
+            maxWidth: "92vw",
+            maxHeight: "75vh",
+            objectFit: "contain",
+            display: "block",
+          }}
+          className="sm:!max-w-[90vw] sm:!max-h-[80vh]"
+        />
+
+        <div style={{ marginTop: 12, textAlign: "center" }}>
+          <span style={{ color: C.support, fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            {activeImage.cat}
+          </span>
+          <div style={{ ...sora, color: C.light, fontSize: 16, fontWeight: 700, marginTop: 4 }}>
+            {activeImage.title}
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
           {/* LOAD MORE */}
           <div style={{ textAlign: "center", paddingTop: 44 }}>
             <MotionLink to="/services" style={{
