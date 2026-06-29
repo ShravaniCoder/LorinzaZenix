@@ -15,7 +15,7 @@ const WhatsAppIcon = ({ size = 20, color = "currentColor" }) => (
 );
 
 function FloatingWhatsApp({
-  phone = "919869900938",
+  phone = "918699009381",
   message = "Hi! I'd like to know more.",
 }) {
   const href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
@@ -94,7 +94,7 @@ export function Root() {
         <Outlet />
       </main>
       <Footer />
-      <FloatingWhatsApp phone="919869900938" message="Hi! I'd like to know more." />
+      <FloatingWhatsApp phone="918699009381" message="Hi! I'd like to know more." />
     </div>
   );
 }
