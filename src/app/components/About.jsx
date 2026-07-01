@@ -359,10 +359,10 @@ export function About() {
 
               <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "clamp(16px, 2vw, 24px)", textAlign: "left" }}>
                 {[
-                  { n: "01", title: "Brief", body: "We start by listening. Understanding your business, your goals, and what success actually looks like for you — before a single thing gets designed or written." },
-                  { n: "02", title: "Strategy", body: "Every decision needs a reason behind it. We map out the direction — positioning, channels, messaging — so execution has a clear foundation to build on." },
-                  { n: "03", title: "Design & Build", body: "This is where thinking becomes visible. Branding, UI/UX, development, content — crafted with precision and built to perform in the real world." },
-                  { n: "04", title: "Deliver & Grow", body: "We don't hand off and disappear. We launch, track, refine, and stay invested in the outcome — because delivery is the beginning, not the end." },
+                  { n: "01", title: "Brief", body: "We start by listening. Understanding your business, your goals, and what success actually looks like for you, before a single thing gets designed or written." },
+                  { n: "02", title: "Strategy", body: "Every decision needs a reason behind it. We map out the direction, positioning, channels, messaging, so execution has a clear foundation to build on." },
+                  { n: "03", title: "Design & Build", body: "This is where thinking becomes visible. Branding, UI/UX, development, content, crafted with precision and built to perform in the real world." },
+                  { n: "04", title: "Deliver & Grow", body: "We don't hand off and disappear. We launch, track, refine, and stay invested in the outcome, because delivery is the beginning, not the end." },
                 ].map((step) => (
                   <div
                     key={step.n}

@@ -22,7 +22,7 @@ import Img3 from "../../images/P3.png";
 import Img4 from "../../images/P5.png";
 import Img5 from "../../images/P1.png";
 import Img6 from "../../images/P6.png";
-
+import Img7 from "../../images/P7.png";
 
 
 const serviceImages = {
@@ -66,8 +66,10 @@ const portfolio = [
   {   bg: "#101D2C", img: Img2 },
   {  bg: "#1B263B", img: Img3 },
   {  bg: "#101D2C", img: Img4 },
+  {  bg: "#1B263B", img: Img7 },
   {  bg: C.secondary, img: Img5 },
   {  bg: "#1B263B", img: Img6 },
+ 
 ];
 
 /* ─── testimonials ─── */
@@ -407,21 +409,23 @@ export function Home() {
         />
 
         {/* Hero Image Layer (visible over animations, fading into background) */}
-        <motion.div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: `url(${officeSpace})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            opacity: 0.22,
-            zIndex: 2, // Over the animations (zIndex: 1)
-            pointerEvents: "none",
-            mixBlendMode: "lighten",
-            maskImage: "radial-gradient(ellipse at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%)",
-            WebkitMaskImage: "radial-gradient(ellipse at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%)",
-          }}
-        />
+      <motion.div
+  role="img"
+  aria-label="Hero background — Digital marketing agency in Mulund — LorinzaZenix"
+  style={{
+    position: "absolute",
+    inset: 0,
+    backgroundImage: `url(${officeSpace})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    opacity: 0.22,
+    zIndex: 2,
+    pointerEvents: "none",
+    mixBlendMode: "lighten",
+    maskImage: "radial-gradient(ellipse at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%)",
+    WebkitMaskImage: "radial-gradient(ellipse at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%)",
+  }}
+/>
 
         {/* Hero Content */}
        <motion.div
@@ -1009,13 +1013,13 @@ export function Home() {
   ))}
 </div>
 
-{/* Row 2 — 2 cols on desktop, collapses to 1 on mobile */}
-<div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 4 }}>
-  {portfolio.slice(4).map((p, i) => (
+{/* Row 2 — 3 cols on desktop, 2 on tablet, 1 on mobile */}
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 4 }}>
+  {portfolio.slice(4, 7).map((p, i) => (
     <motion.div key={i} style={{
       position: "relative", overflow: "hidden",
       backgroundColor: p.bg, cursor: "pointer",
-      aspectRatio: "16/7",
+      aspectRatio: "4/3",
       willChange: "transform, opacity",
     }}
       variants={cardVariants}
@@ -1273,7 +1277,7 @@ export function Home() {
       {/* ══════════════════════════════════════════
           SECTION 9 — TESTIMONIALS
       ══════════════════════════════════════════ */}
-      <motion.section
+      {/* <motion.section
         style={{ backgroundColor: C.secondary, padding: "110px 32px 200px" }}
         initial="hidden"
         whileInView="visible"
@@ -1332,7 +1336,7 @@ export function Home() {
             ))}
           </div>
         </div>
-      </motion.section>
+      </motion.section> */}
 
     </div>
   );
